@@ -1,8 +1,11 @@
 //This file contains the functions for the admin menu and all associated features.
+#include <stdio.h>
+#include <string.h>
+#include "structures.h"
 
-// adminmenu()
-// showallusers()
-// showallsellers()
-// showtotalsalesbyduration()
-// showsellersales()
-// showshopaholics()
+// adminMenu()
+// showAllUsers()
+// showAllSellers()
+// showTotalSalesByDuration()
+// showSellerSales()
+// showShopaholics()

@@ -1,12 +1,16 @@
 //This file contains the functions for the sell menu and all associated features.
+#include <stdio.h>
+#include <string.h>
+#include "structures.h"
 
-// sellmenu()
-// addnewitem()
-// editstockmenu()
+// sellMenu()
+// addNewItem()
+// editStockMenu()
     // replenish()
-    // changeprice()
-    // changeitemname()
-    // changecategory()
-    // changedescription()
-// showmyproducts()
-// showmylowstockproducts()
+    // changePrice()
+    // changeItemName()
+    // changeCategory()
+    // changeDescription()
+// showMyProducts()
+// showMyLowStockProducts()
+

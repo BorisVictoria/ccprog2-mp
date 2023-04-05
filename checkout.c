@@ -1,6 +1,9 @@
 //This file contains the functions for the checkout menu and all associated features.
+#include <stdio.h>
+#include <string.h>
+#include "structures.h"
 
-// checkoutmenu()
-// checkoutall()
-// checkoutbyseller()
-// checkoutbyitem()
+// checkoutMenu()
+// checkoutAll()
+// checkoutBySeller()
+// checkoutByItem()

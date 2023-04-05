@@ -1,4 +1,6 @@
 // This file contains the structure variables and typedef declarations used in main.c
+#ifndef STRUCTURES_H
+#define STRUCTURES_H
 
 struct user
 {
@@ -32,3 +34,8 @@ struct transactions
     float total;
 
 };
+
+void userMenu();
+
+#endif
+
