@@ -37,7 +37,7 @@ void replenish(struct user users[], int index, int productIndex)
     {
         printf("\nAmount added!\n");
         users[index].items[productIndex].quantity += quantity;
-
+        printf("New quantity:%ld\n", users[index].items[productIndex].quantity);
     }
 }
 
@@ -75,6 +75,7 @@ void changePrice(struct user users[], int index, int productIndex)
     {
         printf("\nPrice changed!\n");
         users[index].items[productIndex].price = price;
+        printf("New price:%lf\n", users[index].items[productIndex].price);
 
     }
 
@@ -114,6 +115,7 @@ void changeItemName(struct user users[], int index, int productIndex)
     {
         printf("\nItem name changed!\n");
         strcpy(users[index].items[productIndex].name, name);
+        printf("New name:%s\n", users[index].items[productIndex].name);
     }
 
 }
@@ -152,6 +154,7 @@ void changeCategory(struct user users[], int index, int productIndex)
     {
         printf("\nItem category changed!\n");
         strcpy(users[index].items[productIndex].category, category);
+        printf("New category:%s\n", users[index].items[productIndex].category);
     }
 
 }
@@ -190,6 +193,7 @@ void changeDescription(struct user users[], int index, int productIndex)
     {
         printf("\nItem description changed!\n");
         strcpy(users[index].items[productIndex].description, description);
+        printf("New description:%s\n", users[index].items[productIndex].description);
     }
 
 }
