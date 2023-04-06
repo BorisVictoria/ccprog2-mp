@@ -40,8 +40,7 @@ int registerUser(struct user users[], int userCount)
         printf("Address:%s\n", address);
         printf("Contact Number:%ld\n", contactnumber);
         printf("Would you like to register this information? [Y]/[N]:");
-        choice = getch();
-        getch();
+        getString(&choice, 1);
 
         if (choice == 'Y' || choice == 'y' || choice == 'N' || choice == 'n')
         {
@@ -53,8 +52,7 @@ int registerUser(struct user users[], int userCount)
             {
                 printf("Would you like to continue registration? [Y]/[N]:");
 
-                choice = getch();
-                getch();
+                getString(&choice, 1);
 
                 if (choice == 'N' || choice == 'n')
                 {
