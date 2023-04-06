@@ -4,5 +4,5 @@
 #include "structures.h"
 
 void userMenu(){
-    printf("User Test!");
+    printf("User Test!\n");
 }

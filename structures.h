@@ -35,6 +35,12 @@ struct transactions
 
 };
 
+//Helper.c Functions
+void getString(char dest, int destsize);
+int getLong(void);
+int getDouble(void);
+
+//User.c Functions
 void userMenu();
 
 #endif
