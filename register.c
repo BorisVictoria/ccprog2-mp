@@ -56,22 +56,22 @@ int registerUser(struct user users[], int userCount)
 
                 if (choice == 'N' || choice == 'n')
                 {
-                    printf("Exiting registration");
+                    printf("Exiting registration\n");
                 }
                 else if (choice != 'Y' || choice != 'y')
                 {
-                    printf("Unrecognized option, exiting registration");
+                    printf("Unrecognized option, exiting registration\n");
                 }
             }
             else
             {
-                printf("Unrecognized option, exiting registration");
+                printf("Unrecognized option, exiting registration\n");
                 choice = 'n';
             }
         }
         else
         {
-            printf("Unrecognized option, exiting registration");
+            printf("Unrecognized option, exiting registration\n");
         }
 
         if (success == 1)
