@@ -26,9 +26,10 @@ void getString(char dest[], int destsize)
         }
 
     }
-
-    strcpy(dest, buffer);
-
+    if (len > 1)
+        strcpy(dest, buffer);
+    else
+        *dest = buffer[0];
 }
 
 long getLong(void)

@@ -13,15 +13,25 @@ int registerUser(struct user users[], int userCount)
     long contactnumber;
     char choice = '\0';
     int success = 0;
+    int exit = 0;
 
-    while (choice != 'n' || choice != 'N')
+    while (exit == 0)
     {
 
-        printf("Register as a User\n");
+        printf("\nRegister as a User\n");
 
         printf("Input User ID:");
         userid = getLong();
 
+        for (int i = 0; i < userCount; i++)
+        {
+            if (userid == users[i].userid)
+            {
+                printf("User ID already exists! Exiting registration\n\n");
+                return success;
+            }
+
+        }
         printf("Input Name:");
         getString(name, 21);
 
@@ -34,7 +44,7 @@ int registerUser(struct user users[], int userCount)
         printf("Input Contact Number:");
         contactnumber = getLong();
 
-        printf("User ID:%ld\n", userid);
+        printf("\nUser ID:%ld\n", userid);
         printf("Name:%s\n", name);
         printf("Password:%s\n", password);
         printf("Address:%s\n", address);
@@ -47,6 +57,7 @@ int registerUser(struct user users[], int userCount)
             if (choice == 'Y' || choice == 'y')
             {
                 success = 1;
+                exit = 1;
             }
             else if (choice == 'N' || choice == 'n')
             {
@@ -56,45 +67,44 @@ int registerUser(struct user users[], int userCount)
 
                 if (choice == 'N' || choice == 'n')
                 {
-                    printf("Exiting registration\n");
+                    printf("Exiting registration\n\n");
+                    exit = 1;
                 }
-                else if (choice != 'Y' || choice != 'y')
-                {
-                    printf("Unrecognized option, exiting registration\n");
-                }
+
             }
             else
             {
-                printf("Unrecognized option, exiting registration\n");
-                choice = 'n';
+                printf("Unrecognized option, exiting registration\n\n");
+                exit = 1;
             }
         }
         else
         {
-            printf("Unrecognized option, exiting registration\n");
+            printf("Unrecognized option, exiting registration\n\n");
+            exit = 1;
         }
 
         if (success == 1)
         {
-            printf("Registration successful!\n");
+            printf("\nRegistration successful!\n");
             users[userCount].userid = userid;
             strcpy(users[userCount].name, name);
-            strcpy( users[userCount].password, password);
-            strcpy( users[userCount].address, address);
+            strcpy(users[userCount].password, password);
+            strcpy(users[userCount].address, address);
             users[userCount].contactnumber = contactnumber;
 
-            printf("Test: Determine what was stored\n");
+            printf("\nTest: Determine what was stored\n");
             printf("User ID:%ld\n", users[userCount].userid);
             printf("Name:%s\n", users[userCount].name);
             printf("Password:%s\n", users[userCount].password);
             printf("Address:%s\n", users[userCount].address);
-            printf("Contact Number:%ld\n", users[userCount].contactnumber);
+            printf("Contact Number:%ld\n\n", users[userCount].contactnumber);
+
         }
 
-        return success;
     }
 
-
+    return success;
 
 }
 
