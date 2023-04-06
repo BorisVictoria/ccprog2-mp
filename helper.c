@@ -27,7 +27,7 @@ void getString(char dest[], int destsize)
         }
 
     }
-    if (len > 1)
+    if (destsize > 1)
         strcpy(dest, buffer);
     else
         *dest = buffer[0];
