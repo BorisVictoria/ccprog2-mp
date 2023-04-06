@@ -42,9 +42,37 @@ int getDouble(void);
 
 //Sell.c Functions
 void sellMenu();
+void addNewItem();
+void showMyProducts();
+void showMyLowStockProducts();
+
+//Stock.c Functions
+void editStockMenu();
+void replenish();
+void changePrice();
+void changeItemName();
+void changeCategory();
+void changeDescription();
 
 //Buy.c Functions
 void buyMenu();
+void viewAllProducts();
+void showProductBySeller();
+void showProductByCategory();
+void showProductByName();
+void addToCart();
+
+//Cart.c Functions
+void editCartMenu();
+void removeItemsFromSeller();
+void removeSpecificItem();
+void editQuantity();
+
+//Checkout.c Functions
+void checkoutMenu();
+void checkoutAll();
+void checkoutBySeller();
+void checkoutByItem();
 
 //Startup.c Functions
 void readUsers(struct user users[]);

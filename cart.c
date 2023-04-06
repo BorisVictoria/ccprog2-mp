@@ -1,31 +1,31 @@
-//This file contains the functions for the checkout menu and all associated features.
+//This file contains the functions for the edit cart menu and all associated features.
 #include <stdio.h>
 #include <string.h>
 #include "structures.h"
 
-void checkoutAll()
+void removeItemsFromSeller()
 {
     printf("Test!\n\n");
 }
-void checkoutBySeller()
+void removeSpecificItem()
 {
     printf("Test!\n\n");
 }
-void checkoutByItem()
+void editQuantity()
 {
     printf("Test!\n\n");
 }
 
-void checkoutMenu()
+void editCartMenu()
 {
     int choice = 0;
 
     while (choice != 4)
     {
-        printf("\nCheckout Menu\n\n");
-        printf("[1] All\n");
-        printf("[2] By a Specific Seller\n");
-        printf("[3] Specific Item\n");
+        printf("\nEdit Cart Menu\n\n");
+        printf("[1] Remove All Items from Seller\n");
+        printf("[2] Remove Specific Item\n");
+        printf("[3] Edit Quantity\n");
         printf("[4] Exit\n");
 
         printf("\nSelect an option:");
@@ -33,13 +33,13 @@ void checkoutMenu()
 
         switch (choice) {
             case 1:
-                checkoutAll();
+                removeItemsFromSeller();
                 break;
             case 2:
-                checkoutBySeller();
+                removeSpecificItem();
                 break;
             case 3:
-                checkoutByItem();
+                editQuantity();
                 break;
             case 4:
                 break;
@@ -48,4 +48,5 @@ void checkoutMenu()
                 break;
         }
     }
+
 }

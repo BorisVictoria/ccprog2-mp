@@ -9,7 +9,7 @@ void userMenu(struct user users[], int userCount)
     char password[11];
     int index = 0;
     int found = 0;
-    int choice = '\0';
+    int choice = 0;
 
     printf("User ID:");
     userid = getLong();
@@ -43,7 +43,7 @@ void userMenu(struct user users[], int userCount)
         printf("\nUser Menu\n\n");
         printf("[1] Sell Menu\n");
         printf("[2] Buy Menu\n");
-        printf("[3] Exit\n");
+        printf("[3] Return to main menu\n");
 
         printf("\nSelect an option:");
         choice = getLong();
@@ -57,7 +57,6 @@ void userMenu(struct user users[], int userCount)
                 buyMenu();
                 break;
             case 3:
-
                 break;
             default:
                 printf("Please select from the listed options\n");
