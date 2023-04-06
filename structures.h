@@ -62,5 +62,13 @@ void userMenu();
 //Register.c Functions
 int registerUser(struct user users[], int userCount);
 
+//admin.c Functions
+void adminMenu();
+void showAllUsers();
+void showAllSellers();
+int showTotalSalesByDuration();
+void showSellerSales();
+void showShopaholics();
+
 #endif
 
