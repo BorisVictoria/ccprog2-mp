@@ -43,5 +43,8 @@ int getDouble(void);
 //User.c Functions
 void userMenu();
 
+//Register.c Functions
+void register();
+
 #endif
 
