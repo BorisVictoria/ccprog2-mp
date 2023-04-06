@@ -4,47 +4,58 @@
 
 struct user
 {
-    int userid;
+    long userid;
     char name[21];
     char password[11];
     char address[31];
-    int contactnumber;
+    long contactnumber;
 
 };
 
 struct item
 {
-    int sellerid;
-    int productid;
+    long sellerid;
+    long productid;
     char name[21];
     char category[16];
     char description[31];
-    int quantity;
-    float price;
+    long quantity;
+    double price;
 };
 
-struct transactions
+struct transaction
 {
-    int month;
-    int day;
-    int year;
-    int buyerid;
-    int sellerid;
+    long month;
+    long day;
+    long year;
+    long buyerid;
+    long sellerid;
     struct item items[5];
-    float total;
+    double total;
 
 };
 
 //Helper.c Functions
-void getString(char dest, int destsize);
+void getString(char dest[], int destsize);
 int getLong(void);
 int getDouble(void);
+
+//Startup.c Functions
+void readUsers(struct user users[]);
+void readItems(struct item items[]);
+void readTransactions(struct transaction transactions[]);
+
+//Exit.c Functions
+
+void writeUsers(struct user users[]);
+void writeItems(struct item items[]);
+void writeTransactions(struct transaction transactions[]);
 
 //User.c Functions
 void userMenu();
 
 //Register.c Functions
-void register();
+int registerUser(struct user users[], int userCount);
 
 #endif
 

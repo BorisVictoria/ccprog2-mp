@@ -6,7 +6,16 @@
 int main()
 {
     struct user users[100];
+    int userCount, itemCount, transactionCount;
     int choice = 0;
+    int registerSuccess = 0;
+
+    userCount = 0;
+    /*
+    userCount = readUsers();
+    itemCount = readItems();              // Read all data from text files to structures;
+    transactionCount = readTransactions();
+    */
 
     while (choice != 4)
     {
@@ -16,12 +25,18 @@ int main()
         printf("[3] Admin Menu\n");
         printf("[4] Exit\n");
 
+        printf("\nSelect an option:");
         choice = getLong();
 
         switch (choice)
         {
             case 1:
-                //register();
+                registerSuccess = registerUser(users, userCount);
+                if (registerSuccess == 1)
+                {
+                    userCount++;
+                    registerSuccess = 0;
+                }
                 break;
             case 2:
                 userMenu();
@@ -39,8 +54,11 @@ int main()
 
     }
 
-
-
+    /*
+    writeUsers();
+    writeItems();              // Write all data from structures to text files;
+    writeTransactions();
+    */
 
 
     return 0;

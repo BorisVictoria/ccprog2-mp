@@ -7,7 +7,7 @@
 void getString(char dest[], int destsize)
 {
     char buffer[1024];
-    int len;
+    long len;
     int success;
 
     success = 0;
@@ -31,7 +31,7 @@ void getString(char dest[], int destsize)
 
 }
 
-int getLong(void)
+long getLong(void)
 {
     char buffer[1024];
     char *convert;
@@ -72,7 +72,7 @@ int getLong(void)
 
 }
 
-int getDouble(void)
+double getDouble(void)
 {
     char buffer[1024];
     char *convert;
