@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include "structures.h"
 
 void getString(char dest[], int destsize)
 {
@@ -111,5 +112,52 @@ double getDouble(void)
     while (success == 0);
 
     return number;
+
+}
+
+void sortUsers(struct user users[], int userCount)
+{
+    int min ;
+    struct user temp;
+
+    for (int i = 0; i < userCount-1; i++)
+    {
+        min = i;
+        for (int j = i+1; j < userCount; j++)
+        {
+            if (users[j].userid < users[min].userid)
+                min = j;
+        }
+        if (min != i)
+        {
+            temp = users[i];
+            users[i] = users[min];
+            users[min] = temp;
+        }
+
+    }
+}
+
+void sortItems(struct item items[], int itemCount)
+{
+    int min;
+    struct item temp;
+
+    for (int i = 0; i < itemCount-1; i++)
+    {
+        min = i;
+        for (int j = i+1; j < itemCount; j++)
+        {
+            if (items[j].productid < items[min].productid)
+                min = j;
+        }
+        if (min != i)
+        {
+            temp = items[i];
+            items[i] = items[min];
+            items[min] = temp;
+        }
+
+    }
 
 }

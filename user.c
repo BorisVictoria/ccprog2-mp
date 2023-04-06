@@ -36,6 +36,7 @@ void userMenu(struct user users[], int userCount)
     if (strcmp(password, users[index].password) != 0)
     {
         printf("Incorrect password! Returning to main menu\n\n");
+        return;
     }
 
     while(choice != 3)
@@ -51,7 +52,7 @@ void userMenu(struct user users[], int userCount)
         switch (choice)
         {
             case 1:
-                sellMenu();
+                sellMenu(users, index);
                 break;
             case 2:
                 buyMenu();

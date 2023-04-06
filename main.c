@@ -8,7 +8,7 @@ int main()
     struct user users[100];
     int userCount, itemCount, transactionCount;
     int choice = 0;
-    int registerSuccess = 0;
+    int registerSuccess;
 
     userCount = 0;
     /*
@@ -35,7 +35,7 @@ int main()
                 if (registerSuccess == 1)
                 {
                     userCount++;
-                    registerSuccess = 0;
+                    sortUsers(users, userCount);
                 }
                 break;
             case 2:
@@ -45,7 +45,7 @@ int main()
                     userMenu(users, userCount);
                 break;
             case 3:
-                //adminMenu();
+                adminMenu();
                 break;
             case 4:
                 printf("Thank you for shopping!\n");

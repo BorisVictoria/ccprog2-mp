@@ -1,7 +1,6 @@
 //This file contains the functions for the registration menu and all associated features.
 #include <stdio.h>
 #include <string.h>
-#include <conio.h>
 #include "structures.h"
 
 int registerUser(struct user users[], int userCount)
@@ -30,8 +29,8 @@ int registerUser(struct user users[], int userCount)
                 printf("User ID already exists! Exiting registration\n\n");
                 return success;
             }
-
         }
+
         printf("Input Name:");
         getString(name, 21);
 
@@ -92,13 +91,16 @@ int registerUser(struct user users[], int userCount)
             strcpy(users[userCount].password, password);
             strcpy(users[userCount].address, address);
             users[userCount].contactnumber = contactnumber;
+            users[userCount].itemCount = 0;
 
             printf("\nTest: Determine what was stored\n");
             printf("User ID:%ld\n", users[userCount].userid);
             printf("Name:%s\n", users[userCount].name);
             printf("Password:%s\n", users[userCount].password);
             printf("Address:%s\n", users[userCount].address);
-            printf("Contact Number:%ld\n\n", users[userCount].contactnumber);
+            printf("Contact Number:%ld\n", users[userCount].contactnumber);
+            printf("Item Count:%ld\n\n", users[userCount].itemCount);
+
 
         }
 

@@ -1,17 +1,6 @@
 // This file contains the structure variables and typedef declarations used in main.c
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
-
-struct user
-{
-    long userid;
-    char name[21];
-    char password[11];
-    char address[31];
-    long contactnumber;
-
-};
-
 struct item
 {
     long sellerid;
@@ -21,6 +10,17 @@ struct item
     char description[31];
     long quantity;
     double price;
+};
+
+struct user
+{
+    long userid;
+    char name[21];
+    char password[11];
+    char address[31];
+    long contactnumber;
+    struct item items[20];
+    long itemCount;
 };
 
 struct transaction
@@ -37,22 +37,25 @@ struct transaction
 
 //Helper.c Functions
 void getString(char dest[], int destsize);
-int getLong(void);
-int getDouble(void);
+long getLong(void);
+double getDouble(void);
+void sortUsers(struct user users[], int userCount);
+void sortItems(struct item items[], int itemCount);
+void sortTransactions(struct transaction transactions[], int transactionCount);
 
 //Sell.c Functions
-void sellMenu();
-void addNewItem();
-void showMyProducts();
-void showMyLowStockProducts();
+void sellMenu(struct user users[], int index);
+int addNewItem(struct user users[], int index, int itemCount);
+void showMyProducts(struct user users[], int index, int itemCount);
+void showMyLowStockProducts(struct user users[], int index, int itemCount);
 
 //Stock.c Functions
-void editStockMenu();
-void replenish();
-void changePrice();
-void changeItemName();
-void changeCategory();
-void changeDescription();
+void editStockMenu(struct user users[], int index, int itemCount);
+void replenish(struct user users[], int index, int productIndex);
+void changePrice(struct user users[], int index, int productIndex);
+void changeItemName(struct user users[], int index, int productIndex);
+void changeCategory(struct user users[], int index, int productIndex);
+void changeDescription(struct user users[], int index, int productIndex);
 
 //Buy.c Functions
 void buyMenu();
@@ -85,7 +88,7 @@ void writeItems(struct item items[]);
 void writeTransactions(struct transaction transactions[]);
 
 //User.c Functions
-void userMenu();
+void userMenu(struct user users[], int userCount);
 
 //Register.c Functions
 int registerUser(struct user users[], int userCount);
