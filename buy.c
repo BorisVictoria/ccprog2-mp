@@ -3,7 +3,7 @@
 #include <string.h>
 #include "structures.h"
 
-// buyMenu()
+void buyMenu()
 // viewAllProducts()
 // showProductBySeller()
 // showProductByCategory()

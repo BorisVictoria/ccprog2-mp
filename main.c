@@ -39,7 +39,10 @@ int main()
                 }
                 break;
             case 2:
-                userMenu();
+                if (userCount == 0)
+                    printf("No users found! Please register a user first\n\n");
+                else
+                    userMenu(users, userCount);
                 break;
             case 3:
                 //adminMenu();

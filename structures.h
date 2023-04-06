@@ -40,13 +40,18 @@ void getString(char dest[], int destsize);
 int getLong(void);
 int getDouble(void);
 
+//Sell.c Functions
+void sellMenu();
+
+//Buy.c Functions
+void buyMenu();
+
 //Startup.c Functions
 void readUsers(struct user users[]);
 void readItems(struct item items[]);
 void readTransactions(struct transaction transactions[]);
 
 //Exit.c Functions
-
 void writeUsers(struct user users[]);
 void writeItems(struct item items[]);
 void writeTransactions(struct transaction transactions[]);
