@@ -35,10 +35,18 @@ struct transaction
 
 };
 
+struct cartItem
+{
+    long productid;
+    long quantity;
+};
+
 struct cart
 {
-    int userid;
-    struct item items[10];
+    long userid;
+    struct cartItem cartItems[10];
+    long cartItemCount;
+
 };
 
 //Helper.c Functions
@@ -73,7 +81,7 @@ void showProductByName(struct item items[], int itemCount);
 void addToCart(struct item items[], int itemCount);
 
 //Cart.c Functions
-void readCart(struct cart userCart); // implement
+int readCart(struct cart userCart); // implement
 void writeCart(struct cart userCart); // implement
 void editCartMenu();
 void removeItemsFromSeller();

@@ -207,8 +207,10 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
 {
     int choice = 0;
     struct cart userCart;
+    long cartItemCount;
 
-    //readCart(userCart); Implement
+    cartItemCount = 0;
+    //cartItemCount = readCart(userCart); Implement
 
     while (choice != 8)
     {
