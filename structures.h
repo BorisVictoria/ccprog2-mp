@@ -66,7 +66,7 @@ void viewAllProducts(struct user users[], int userCount);
 void showProductBySeller(struct user users[], int userCount);
 void showProductByCategory(struct item items[], int itemCount);
 void showProductByName(struct item items[], int itemCount);
-int addToCart();
+int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid);
 
 //Cart.c Functions
 void editCartMenu();
@@ -83,12 +83,14 @@ void checkoutByItem();
 //Startup.c Functions
 int readUsers(struct user users[]);
 int readItems(struct item items[]);
+int readCart(struct item items[], long userid);
 void readTransactions(struct transaction transactions[]);
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount);
 
 //Exit.c Functions
 void writeUsers(struct user users[], int userCount);
 void writeItems(struct item items[], int itemCount);
+void writeCart(struct item items[], int itemCount, long userid);
 void writeTransactions(struct transaction transactions[]);
 
 //User.c Functions

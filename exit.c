@@ -36,6 +36,27 @@ void writeItems(struct item items[], int itemCount)
     fclose(itemFile);
 }
 
+void writeCart(struct item items[], int itemCount, long userid)
+{
+    char fileName[32];
+    sprintf(fileName, "%ld.txt", userid);
+
+    FILE *itemFile = fopen(fileName, "w");
+
+    for (int i = 0; i < itemCount; i++)
+    {
+        fprintf(itemFile, "%ld %ld\n", items[i].productid, items[i].sellerid);
+        fprintf(itemFile, "%s\n", items[i].name);
+        fprintf(itemFile, "%s\n", items[i].category);
+        fprintf(itemFile, "%s\n", items[i].description);
+        fprintf(itemFile, "%ld %lf\n", items[i].quantity, items[i].price);
+        fprintf(itemFile, "\n");
+    }
+
+    fclose(itemFile);
+
+}
+
 void writeTransactions(struct transaction transactions[])
 {
     FILE *transactionFile = fopen("Transactions.txt", "w");

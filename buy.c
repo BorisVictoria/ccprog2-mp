@@ -199,19 +199,111 @@ void showProductByName(struct item items[], int itemCount)
 
     }
 }
-int addToCart()
+
+int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid)
 {
+    long productid;
+    long quantity;
+    char choice = '\0';
+    int found;
+    int productIndex;
+    int success = 0;
+
+    printf("Product ID:");
+    productid = getLong();
+
+    for (int i = 0; i < itemCount; i++)
+    {
+        if (productid == items[i].productid)
+        {
+            productIndex = i;
+            found = 1;
+            i = itemCount;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found! Returning to buy menu\n\n");
+        return success;
+    }
+
+    if (items[productIndex].sellerid == userid)
+    {
+        printf("You cannot buy your own product! Returning to buy menu\n\n");
+        return success;
+    }
+
+    if (items[productIndex].quantity == 0)
+    {
+        printf("Product is out of stock! Returning to buy menu\n\n");
+        return success;
+    }
+
+
+    printf("Number of items in stock:%ld", items[productIndex].quantity);
+    printf("Input quantity to add to cart");
+    do
+    {
+        quantity = getLong();
+        if (quantity <= 0)
+        {
+            printf("Please input a positive quantity:");
+        }
+        else if (quantity > items[productIndex].quantity)
+        {
+            printf("Entered quantity is not available. Please try again:");
+        }
+    }
+    while(quantity <= 0 || items[productIndex].quantity < quantity);
+    printf("\nQuantity:%ld\n", quantity);
+
+    printf("Confirm adding item to cart [Y]/[N]:");
+    getString(&choice, 1);
+
+    if (choice == 'Y' || choice == 'y' || choice == 'N' || choice == 'n')
+    {
+        if (choice == 'Y' || choice == 'y')
+        {
+            success = 1;
+        }
+        else
+        {
+            printf("Returning to menu\n\n");
+
+        }
+    }
+    else
+    {
+        printf("Unrecognized option, returning to menu\n\n");
+    }
+
+    if (success == 1)
+    {
+
+        cart[cartItemCount].sellerid = items[productIndex].sellerid;
+        cart[cartItemCount].productid = items[productIndex].productid;
+        strcpy(cart[cartItemCount].name, items[productIndex].name);
+        strcpy(cart[cartItemCount].category, items[productIndex].category);
+        strcpy(cart[cartItemCount].description, items[productIndex].description);
+        cart[cartItemCount].quantity = quantity;
+        cart[cartItemCount].price = items[productIndex].price;
+
+    }
+
+    return success;
 
 }
 
 void buyMenu(struct user users[], int userIndex, int userCount, struct item items[], int itemCount)
 {
     int choice = 0;
-    struct item cart;
+    long userid;
+    struct item cart[10];
     int cartItemCount;
 
-    cartItemCount = 0;
-    //cartItemCount = readCart(userCart); Implement
+    userid = users[userIndex].userid;
+    cartItemCount = readCart(cart, userid);
 
     while (choice != 8)
     {
@@ -256,8 +348,13 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
             case 5:
                 if (itemCount == 0)
                     printf("No items found! Please add an item first\n\n");
+                else if (cartItemCount >= 10)
+                    printf("Maximum number of items in cart! Please remove an item first");
                 else
-                    addToCart();
+                {
+                    addToCart(items, itemCount, cart, cartItemCount, userid);
+                    cartItemCount = sortCart(cart, cartItemCount);
+                }
                 break;
             case 6:
                 if (itemCount == 0)
@@ -283,7 +380,7 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
         }
     }
 
-    //writeCart(userCart);
+    writeCart(cart, cartItemCount, userid);
 
 }
 

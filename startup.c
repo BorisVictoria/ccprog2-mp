@@ -107,6 +107,68 @@ int readItems(struct item items[])
 
 }
 
+int readCart(struct item items[], long userid)
+{
+
+    char fileName[32];
+    sprintf(fileName, "%ld.txt", userid);
+
+    FILE *itemFile = fopen(fileName, "r");
+    char buffer[1024];
+    int itemCount = 0;
+
+    if (itemFile == NULL)
+        return itemCount;
+
+    while(!feof(itemFile))
+    {
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            sscanf(buffer, "%ld %ld", &items[itemCount].productid, &items[itemCount].sellerid);
+        }
+
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            strcpy(items[itemCount].name, buffer);
+        }
+
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            strcpy(items[itemCount].category, buffer);
+        }
+
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            strcpy(items[itemCount].description, buffer);
+
+        }
+
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            sscanf(buffer, "%ld %lf", &items[itemCount].quantity, &items[itemCount].price);
+        }
+
+        if (fgets(buffer, 1024, itemFile) != NULL)
+        {
+            itemCount++;
+        }
+
+    }
+
+    fclose(itemFile);
+
+    return itemCount;
+
+
+}
+
+
+
 void readTransactions(struct transaction transactions[])
 {
     FILE *transactionFile = fopen("Transactions.txt", "r");
