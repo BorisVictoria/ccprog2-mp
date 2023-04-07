@@ -276,6 +276,8 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
         }
     }
 
+    //writeCart(userCart);
+
 }
 
 
