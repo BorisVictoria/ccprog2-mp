@@ -91,7 +91,7 @@ int registerUser(struct user users[], int userCount)
             strcpy(users[userCount].password, password);
             strcpy(users[userCount].address, address);
             users[userCount].contactnumber = contactnumber;
-            users[userCount].itemCount = 0;
+            users[userCount].userItemCount = 0;
 
             printf("\nTest: Determine what was stored\n");
             printf("User ID:%ld\n", users[userCount].userid);
@@ -99,7 +99,7 @@ int registerUser(struct user users[], int userCount)
             printf("Password:%s\n", users[userCount].password);
             printf("Address:%s\n", users[userCount].address);
             printf("Contact Number:%ld\n", users[userCount].contactnumber);
-            printf("Item Count:%ld\n\n", users[userCount].itemCount);
+            printf("Item Count:%ld\n\n", users[userCount].userItemCount);
 
 
         }

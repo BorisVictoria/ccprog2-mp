@@ -3,11 +3,11 @@
 #include <string.h>
 #include "structures.h"
 
-void userMenu(struct user users[], int userCount)
+int userMenu(struct user users[], int userCount, struct item items[], int itemCount)
 {
     long userid;
     char password[11];
-    int index = 0;
+    int userIndex = 0;
     int found = 0;
     int choice = 0;
 
@@ -19,7 +19,7 @@ void userMenu(struct user users[], int userCount)
         if (userid == users[i].userid)
         {
             found = 1;
-            index = i;
+            userIndex = i;
             i = userCount;
         }
     }
@@ -27,16 +27,16 @@ void userMenu(struct user users[], int userCount)
     if (found == 0)
     {
         printf("User ID not found! Returning to main menu\n\n");
-        return;
+        return itemCount;
     }
 
     printf("Password:");
     getString(password, 11);
 
-    if (strcmp(password, users[index].password) != 0)
+    if (strcmp(password, users[userIndex].password) != 0)
     {
         printf("Incorrect password! Returning to main menu\n\n");
-        return;
+        return itemCount;
     }
 
     while(choice != 3)
@@ -52,10 +52,10 @@ void userMenu(struct user users[], int userCount)
         switch (choice)
         {
             case 1:
-                sellMenu(users, index);
+                itemCount = sellMenu(users, userIndex, items, itemCount);
                 break;
             case 2:
-                buyMenu();
+                buyMenu(users, userIndex, items, itemCount);
                 break;
             case 3:
                 break;
@@ -65,5 +65,7 @@ void userMenu(struct user users[], int userCount)
         }
 
     }
+
+    return itemCount;
 
 }

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "structures.h"
 
-int addNewItem(struct user users[], int index, int itemCount)
+int addNewItem(struct user users[], int userIndex, int userItemCount)
 {
     long productid;
     long sellerid;
@@ -24,11 +24,11 @@ int addNewItem(struct user users[], int index, int itemCount)
         printf("Input Product ID:");
         productid = getLong();
 
-        sellerid = users[index].userid;
+        sellerid = users[userIndex].userid;
 
-        for (int i = 0; i < itemCount; i++)
+        for (int i = 0; i < userItemCount; i++)
         {
-            if (productid == users[index].items[i].productid)
+            if (productid == users[userIndex].items[i].productid)
             {
                 printf("Product ID already exists! Returning to menu\n\n");
                 return success;
@@ -95,23 +95,23 @@ int addNewItem(struct user users[], int index, int itemCount)
         if (success == 1)
         {
             printf("\nAdding item successful!\n");
-            users[index].items[itemCount].sellerid = sellerid;
-            users[index].items[itemCount].productid = productid;
-            strcpy(users[index].items[itemCount].name, name);
-            strcpy(users[index].items[itemCount].category, category);
-            strcpy(users[index].items[itemCount].description, description);
-            users[index].items[itemCount].quantity = quantity;
-            users[index].items[itemCount].price = price;
-            users[index].itemCount++;
+            users[userIndex].items[userItemCount].sellerid = sellerid;
+            users[userIndex].items[userItemCount].productid = productid;
+            strcpy(users[userIndex].items[userItemCount].name, name);
+            strcpy(users[userIndex].items[userItemCount].category, category);
+            strcpy(users[userIndex].items[userItemCount].description, description);
+            users[userIndex].items[userItemCount].quantity = quantity;
+            users[userIndex].items[userItemCount].price = price;
+            users[userIndex].userItemCount++;
 
             printf("\nTest: Determine what was stored\n");
-            printf("\nProduct ID:%ld\n", users[index].items[itemCount].productid);
-            printf("Seller ID:%ld\n", users[index].items[itemCount].sellerid = sellerid);
-            printf("Name:%s\n", users[index].items[itemCount].name);
-            printf("Category:%s\n", users[index].items[itemCount].category);
-            printf("Description:%s\n", users[index].items[itemCount].description);
-            printf("Quantity:%ld\n",  users[index].items[itemCount].quantity);
-            printf("Price:%lf\n\n",  users[index].items[itemCount].price);
+            printf("\nProduct ID:%ld\n", users[userIndex].items[userItemCount].productid);
+            printf("Seller ID:%ld\n", users[userIndex].items[userItemCount].sellerid = sellerid);
+            printf("Name:%s\n", users[userIndex].items[userItemCount].name);
+            printf("Category:%s\n", users[userIndex].items[userItemCount].category);
+            printf("Description:%s\n", users[userIndex].items[userItemCount].description);
+            printf("Quantity:%ld\n",  users[userIndex].items[userItemCount].quantity);
+            printf("Price:%lf\n\n",  users[userIndex].items[userItemCount].price);
 
         }
 
@@ -121,35 +121,35 @@ int addNewItem(struct user users[], int index, int itemCount)
 
 }
 
-void showMyProducts(struct user users[], int index, int itemCount)
+void showMyProducts(struct user users[], int userIndex, int userItemCount)
 {
     printf("\nMy Products\n\n");
     printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
 
-    for (int i = 0; i < itemCount; i++)
+    for (int i = 0; i < userItemCount; i++)
     {
-        printf("%ld %s %s %ld %lf\n", users[index].items[i].productid, users[index].items[i].name, users[index].items[i].category, users[index].items[i].quantity, users[index].items[i].price);
+        printf("%ld %s %s %ld %lf\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
     }
 
 }
 
-void showMyLowStockProducts(struct user users[], int index, int itemCount)
+void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount)
 {
     printf("\nMy Low Stock Products\n\n");
     printf("Product ID\t\t Item Name\t\t Category\t\t Description\t\t Quantity\t\t Unit Price\n");
 
-    for (int i = 0; i < itemCount; i++)
+    for (int i = 0; i < userItemCount; i++)
     {
-        if (users[index].items[i].quantity < 5)
-            printf("%ld %s %s %s %ld %lf\n", users[index].items[i].productid, users[index].items[i].name, users[index].items[i].category, users[index].items[i].description, users[index].items[i].quantity, users[index].items[i].price);
+        if (users[userIndex].items[i].quantity < 5)
+            printf("%ld %s %s %s %ld %lf\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].description, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
     }
 }
 
-void sellMenu(struct user users[], int index)
+int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount)
 {
 
     int choice = 0;
-    int itemCount = users[index].itemCount;
+    int userItemCount = users[userIndex].userItemCount;
     int itemAdded = 0;
 
     while(choice != 5)
@@ -167,34 +167,37 @@ void sellMenu(struct user users[], int index)
         switch (choice)
         {
             case 1:
-                if (itemCount == 20)
+                if (userItemCount == 20)
                     printf("Maximum number of items already added!\n\n");
                 else
-                    itemAdded = addNewItem(users, index, itemCount);
+                    itemAdded = addNewItem(users, userIndex, userItemCount);
                 if (itemAdded == 1)
                 {
+                    userItemCount++;
                     itemCount++;
                     itemAdded = 0;
-                    sortItems(users[index].items, itemCount);
+                    items[itemCount-1] = users[userIndex].items[userItemCount-1];
+                    sortItems(users[userIndex].items, userItemCount);
+                    sortItems(items, itemCount);
                 }
                 break;
             case 2:
-                if (itemCount == 0)
+                if (userItemCount == 0)
                     printf("No items found! Please add an item first\n\n");
                 else
-                    editStockMenu(users, index, itemCount);
+                    editStockMenu(users, userIndex, userItemCount, items, itemCount);
                 break;
             case 3:
-                if (itemCount == 0)
+                if (userItemCount == 0)
                     printf("No items found! Please add an item first\n\n");
                 else
-                    showMyProducts(users, index, itemCount);
+                    showMyProducts(users, userIndex, userItemCount);
                 break;
             case 4:
-                if (itemCount == 0)
+                if (userItemCount == 0)
                     printf("No items found! Please add an item first\n\n");
                 else
-                    showMyLowStockProducts(users, index, itemCount);
+                    showMyLowStockProducts(users, userIndex, userItemCount);
                 break;
             case 5:
                 break;
@@ -203,6 +206,8 @@ void sellMenu(struct user users[], int index)
                 break;
         }
     }
+
+    return itemCount;
 
 }
 

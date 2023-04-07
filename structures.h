@@ -20,7 +20,7 @@ struct user
     char address[31];
     long contactnumber;
     struct item items[20];
-    long itemCount;
+    long userItemCount;
 };
 
 struct transaction
@@ -42,28 +42,29 @@ double getDouble(void);
 void sortUsers(struct user users[], int userCount);
 void sortItems(struct item items[], int itemCount);
 void sortTransactions(struct transaction transactions[], int transactionCount);
+int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[]);
 
 //Sell.c Functions
-void sellMenu(struct user users[], int index);
-int addNewItem(struct user users[], int index, int itemCount);
-void showMyProducts(struct user users[], int index, int itemCount);
-void showMyLowStockProducts(struct user users[], int index, int itemCount);
+int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount);
+int addNewItem(struct user users[], int userIndex, int userItemCount);
+void showMyProducts(struct user users[], int userIndex, int userItemCount);
+void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount);
 
 //Stock.c Functions
-void editStockMenu(struct user users[], int index, int itemCount);
-void replenish(struct user users[], int index, int productIndex);
-void changePrice(struct user users[], int index, int productIndex);
-void changeItemName(struct user users[], int index, int productIndex);
-void changeCategory(struct user users[], int index, int productIndex);
-void changeDescription(struct user users[], int index, int productIndex);
+void editStockMenu(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount);
+void replenish(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
+void changePrice(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
+void changeItemName(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
+void changeCategory(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
+void changeDescription(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
 
 //Buy.c Functions
-void buyMenu();
-void viewAllProducts();
-void showProductBySeller();
-void showProductByCategory();
-void showProductByName();
-void addToCart();
+void buyMenu(struct user users[], int userIndex, struct item items[], int itemCount);
+void viewAllProducts(struct item items[], int itemCount);
+void showProductBySeller(struct item items[], int itemCount);
+void showProductByCategory(struct item items[], int itemCount);
+void showProductByName(struct item items[], int itemCount);
+void addToCart(struct item items[], int itemCount);
 
 //Cart.c Functions
 void editCartMenu();
@@ -88,7 +89,7 @@ void writeItems(struct item items[]);
 void writeTransactions(struct transaction transactions[]);
 
 //User.c Functions
-void userMenu(struct user users[], int userCount);
+int userMenu(struct user users[], int userCount, struct item items[], int itemCount);
 
 //Register.c Functions
 int registerUser(struct user users[], int userCount);

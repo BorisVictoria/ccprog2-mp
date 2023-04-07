@@ -3,7 +3,7 @@
 #include <string.h>
 #include "structures.h"
 
-void replenish(struct user users[], int index, int productIndex)
+void replenish(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     long quantity;
     char choice = '\0';
@@ -36,12 +36,13 @@ void replenish(struct user users[], int index, int productIndex)
     if (success == 1)
     {
         printf("\nAmount added!\n");
-        users[index].items[productIndex].quantity += quantity;
-        printf("New quantity:%ld\n", users[index].items[productIndex].quantity);
+        users[userIndex].items[userProductIndex].quantity += quantity;
+        items[productIndex].quantity += quantity;
+        printf("New quantity:%ld\n", users[userIndex].items[userProductIndex].quantity);
     }
 }
 
-void changePrice(struct user users[], int index, int productIndex)
+void changePrice(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     double price;
     char choice = '\0';
@@ -74,14 +75,15 @@ void changePrice(struct user users[], int index, int productIndex)
     if (success == 1)
     {
         printf("\nPrice changed!\n");
-        users[index].items[productIndex].price = price;
-        printf("New price:%lf\n", users[index].items[productIndex].price);
+        users[userIndex].items[userProductIndex].price = price;
+        items[productIndex].price = price;
+        printf("New price:%lf\n", users[userIndex].items[userProductIndex].price);
 
     }
 
 }
 
-void changeItemName(struct user users[], int index, int productIndex)
+void changeItemName(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char name[21];
     char choice = '\0';
@@ -114,13 +116,14 @@ void changeItemName(struct user users[], int index, int productIndex)
     if (success == 1)
     {
         printf("\nItem name changed!\n");
-        strcpy(users[index].items[productIndex].name, name);
-        printf("New name:%s\n", users[index].items[productIndex].name);
+        strcpy(users[userIndex].items[userProductIndex].name, name);
+        strcpy(items[productIndex].name, name);
+        printf("New name:%s\n", users[userIndex].items[userProductIndex].name);
     }
 
 }
 
-void changeCategory(struct user users[], int index, int productIndex)
+void changeCategory(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char category[16];
     char choice = '\0';
@@ -153,13 +156,14 @@ void changeCategory(struct user users[], int index, int productIndex)
     if (success == 1)
     {
         printf("\nItem category changed!\n");
-        strcpy(users[index].items[productIndex].category, category);
-        printf("New category:%s\n", users[index].items[productIndex].category);
+        strcpy(users[userIndex].items[userProductIndex].category, category);
+        strcpy(items[productIndex].category, category);
+        printf("New category:%s\n", users[userIndex].items[userProductIndex].category);
     }
 
 }
 
-void changeDescription(struct user users[], int index, int productIndex)
+void changeDescription(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char description[31];
     char choice = '\0';
@@ -192,27 +196,47 @@ void changeDescription(struct user users[], int index, int productIndex)
     if (success == 1)
     {
         printf("\nItem description changed!\n");
-        strcpy(users[index].items[productIndex].description, description);
-        printf("New description:%s\n", users[index].items[productIndex].description);
+        strcpy(users[userIndex].items[userProductIndex].description, description);
+        strcpy(items[productIndex].description, description);
+        printf("New description:%s\n", users[userIndex].items[userProductIndex].description);
     }
 
 }
 
-void editStockMenu(struct user users[], int index, int itemCount) {
+void editStockMenu(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount) {
 
     long productid;
+    int userProductIndex = 0;
     int productIndex = 0;
     int found = 0;
     int choice = 0;
 
-    showMyProducts(users, index, itemCount);
+    showMyProducts(users, userIndex, userItemCount);
 
     printf("\nProduct ID:");
     productid = getLong();
 
+    for (int i = 0; i < userItemCount; i++)
+    {
+        if (productid == users[userIndex].items[i].productid)
+        {
+            found = 1;
+            userProductIndex = i;
+            i = userItemCount;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found in User! Returning to sell menu\n\n");
+        return;
+    }
+
+    found = 0;
+
     for (int i = 0; i < itemCount; i++)
     {
-        if (productid == users[index].items[i].productid)
+        if (productid == items[i].productid)
         {
             found = 1;
             productIndex = i;
@@ -222,7 +246,7 @@ void editStockMenu(struct user users[], int index, int itemCount) {
 
     if (found == 0)
     {
-        printf("Product ID not found! Returning to sell menu\n\n");
+        printf("Product ID not found in Items array! Returning to sell menu\n\n");
         return;
     }
 
@@ -241,19 +265,19 @@ void editStockMenu(struct user users[], int index, int itemCount) {
 
         switch (choice) {
             case 1:
-                replenish(users, index, productIndex);
+                replenish(users, userIndex, userProductIndex, items, productIndex);
                 break;
             case 2:
-                changePrice(users, index, productIndex);
+                changePrice(users, userIndex, userProductIndex, items, productIndex);
                 break;
             case 3:
-                changeItemName(users, index, productIndex);
+                changeItemName(users, userIndex, userProductIndex, items, productIndex);
                 break;
             case 4:
-                changeCategory(users, index, productIndex);
+                changeCategory(users, userIndex, userProductIndex, items, productIndex);
                 break;
             case 5:
-                changeDescription(users, index, productIndex);
+                changeDescription(users, userIndex, userProductIndex, items, productIndex);
                 break;
             case 6:
                 break;

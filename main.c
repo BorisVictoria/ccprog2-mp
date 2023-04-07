@@ -6,11 +6,13 @@
 int main()
 {
     struct user users[100];
+    struct item items[2000];
     int userCount, itemCount, transactionCount;
     int choice = 0;
     int registerSuccess;
 
     userCount = 0;
+    itemCount = 0;
     /*
     userCount = readUsers();
     itemCount = readItems();              // Read all data from text files to structures;
@@ -42,7 +44,7 @@ int main()
                 if (userCount == 0)
                     printf("No users found! Please register a user first\n\n");
                 else
-                    userMenu(users, userCount);
+                    itemCount = userMenu(users, userCount, items, itemCount);
                 break;
             case 3:
                 adminMenu();

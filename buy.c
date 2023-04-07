@@ -3,31 +3,35 @@
 #include <string.h>
 #include "structures.h"
 
-void viewAllProducts()
+void viewAllProducts(struct item items[], int itemCount)
+{
+    printf("\nAll Products\n\n");
+    printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
+
+    for (int i = 0; i < itemCount )
+
+}
+
+void showProductBySeller(struct item items[], int itemCount)
 {
     printf("Test!\n\n");
 }
 
-void showProductBySeller()
+void showProductByCategory(struct item items[], int itemCount)
 {
     printf("Test!\n\n");
 }
 
-void showProductByCategory()
+void showProductByName(struct item items[], int itemCount)
+{
+    printf("Test!\n\n");
+}
+void addToCart(struct item items[], int itemCount)
 {
     printf("Test!\n\n");
 }
 
-void showProductByName()
-{
-    printf("Test!\n\n");
-}
-void addToCart()
-{
-    printf("Test!\n\n");
-}
-
-void buyMenu()
+void buyMenu(struct user users[], int userIndex, struct item items[], int itemCount)
 {
     int choice = 0;
 
@@ -48,19 +52,19 @@ void buyMenu()
 
         switch (choice) {
             case 1:
-                viewAllProducts();
+                viewAllProducts(items, itemCount);
                 break;
             case 2:
-                showProductBySeller();
+                showProductBySeller(items, itemCount);
                 break;
             case 3:
-                showProductByCategory();
+                showProductByCategory(items, itemCount);
                 break;
             case 4:
-                showProductByName();
+                showProductByName(items, itemCount);
                 break;
             case 5:
-                addToCart();
+                addToCart(items, itemCount);
                 break;
             case 6:
                 editCartMenu();
