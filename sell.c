@@ -117,7 +117,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 
             printf("\nTest: Determine what was stored\n");
             printf("\nProduct ID:%ld\n", users[userIndex].items[userItemCount].productid);
-            printf("Seller ID:%ld\n", users[userIndex].items[userItemCount].sellerid = sellerid);
+            printf("Seller ID:%ld\n", users[userIndex].items[userItemCount].sellerid);
             printf("Name:%s\n", users[userIndex].items[userItemCount].name);
             printf("Category:%s\n", users[userIndex].items[userItemCount].category);
             printf("Description:%s\n", users[userIndex].items[userItemCount].description);

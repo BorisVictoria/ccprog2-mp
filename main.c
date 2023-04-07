@@ -11,13 +11,11 @@ int main()
     int choice = 0;
     int registerSuccess;
 
-    userCount = 0;
-    itemCount = 0;
-    /*
-    userCount = readUsers();
-    itemCount = readItems();              // Read all data from text files to structures;
-    transactionCount = readTransactions();
-    */
+
+    userCount = readUsers(users);
+    itemCount = readItems(items);  // Read all data from text files to structures;
+    //transactionCount = readTransactions();
+
 
     while (choice != 4)
     {
@@ -59,11 +57,10 @@ int main()
 
     }
 
-    /*
-    writeUsers();
-    writeItems();              // Write all data from structures to text files;
-    writeTransactions();
-    */
+    writeUsers(users, userCount);
+    writeItems(items, itemCount);              // Write all data from structures to text files;
+    //writeTransactions();
+
 
 
     return 0;

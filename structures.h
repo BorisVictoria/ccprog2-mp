@@ -79,13 +79,13 @@ void checkoutBySeller();
 void checkoutByItem();
 
 //Startup.c Functions
-void readUsers(struct user users[]);
-void readItems(struct item items[]);
+int readUsers(struct user users[]);
+int readItems(struct item items[]);
 void readTransactions(struct transaction transactions[]);
 
 //Exit.c Functions
-void writeUsers(struct user users[]);
-void writeItems(struct item items[]);
+void writeUsers(struct user users[], int userCount);
+void writeItems(struct item items[], int itemCount);
 void writeTransactions(struct transaction transactions[]);
 
 //User.c Functions
