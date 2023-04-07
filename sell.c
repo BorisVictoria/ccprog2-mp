@@ -3,7 +3,7 @@
 #include <string.h>
 #include "structures.h"
 
-int addNewItem(struct user users[], int userIndex, int userItemCount)
+int addNewItem(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount)
 {
     long productid;
     long sellerid;
@@ -35,6 +35,17 @@ int addNewItem(struct user users[], int userIndex, int userItemCount)
             }
 
         }
+
+        for (int i = 0; i < itemCount; i++)
+        {
+            if (productid == items[i].productid)
+            {
+                printf("Product ID already exists! Returning to menu\n\n");
+                return success;
+            }
+
+        }
+
         printf("Input Name:");
         getString(name, 21);
 
@@ -135,13 +146,59 @@ void showMyProducts(struct user users[], int userIndex, int userItemCount)
 
 void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount)
 {
-    printf("\nMy Low Stock Products\n\n");
-    printf("Product ID\t\t Item Name\t\t Category\t\t Description\t\t Quantity\t\t Unit Price\n");
+    char choice = '\0';
+    int exit = 0;
+    int userProductIndex = 0;
+    int found;
+    int loop = 0;
 
-    for (int i = 0; i < userItemCount; i++)
+    while (exit == 0)
     {
-        if (users[userIndex].items[i].quantity < 5)
-            printf("%ld %s %s %s %ld %lf\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].description, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
+        found = 0;
+        for (int i = userProductIndex; i < userItemCount; i++)
+        {
+
+            if (users[userIndex].items[i].quantity < 5)
+            {
+                found = 1;
+                loop = 1;
+                userProductIndex = i;
+                i = userItemCount;
+            }
+            else if (i == userItemCount-1 && loop == 1)
+            {
+                i = -1;
+            }
+        }
+
+        if (found == 1)
+        {
+            printf("\nLow Stock Products\n\n");
+            printf("Product ID\t\t Item Name\t\t Category\t\t Description \t\tQuantity\t\t Unit Price\n");
+            printf("%ld %s %s %s %ld %lf\n", users[userIndex].items[userProductIndex].productid, users[userIndex].items[userProductIndex].name, users[userIndex].items[userProductIndex].category, users[userIndex].items[userProductIndex].description, users[userIndex].items[userProductIndex].quantity, users[userIndex].items[userProductIndex].price);
+
+            printf("[N] Next Item [X] Exit:");
+            getString(&choice, 1);
+
+            if (choice == 'N' || choice == 'n')
+            {
+                userProductIndex++;
+                if (userProductIndex >= userItemCount)
+                    userProductIndex = 0;
+            }
+
+            else if (choice == 'X' || choice == 'x')
+                exit = 1;
+            else
+                printf("Invalid input! Please try again\n");
+
+        }
+        else
+        {
+            printf("No Low Stock Products Found!");
+            exit = 1;
+        }
+
     }
 }
 
@@ -170,7 +227,7 @@ int sellMenu(struct user users[], int userIndex, struct item items[], int itemCo
                 if (userItemCount == 20)
                     printf("Maximum number of items already added!\n\n");
                 else
-                    itemAdded = addNewItem(users, userIndex, userItemCount);
+                    itemAdded = addNewItem(users, userIndex, userItemCount, items, itemCount);
                 if (itemAdded == 1)
                 {
                     userItemCount++;

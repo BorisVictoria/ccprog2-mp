@@ -55,7 +55,7 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
                 itemCount = sellMenu(users, userIndex, items, itemCount);
                 break;
             case 2:
-                buyMenu(users, userIndex, items, itemCount);
+                buyMenu(users, userIndex, userCount, items, itemCount);
                 break;
             case 3:
                 break;

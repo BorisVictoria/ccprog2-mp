@@ -46,7 +46,7 @@ int getTotalItemsFromUsers(struct user users[], int userCount, struct item items
 
 //Sell.c Functions
 int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount);
-int addNewItem(struct user users[], int userIndex, int userItemCount);
+int addNewItem(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount);
 void showMyProducts(struct user users[], int userIndex, int userItemCount);
 void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount);
 
@@ -59,9 +59,9 @@ void changeCategory(struct user users[], int userIndex, int userProductIndex, st
 void changeDescription(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex);
 
 //Buy.c Functions
-void buyMenu(struct user users[], int userIndex, struct item items[], int itemCount);
-void viewAllProducts(struct item items[], int itemCount);
-void showProductBySeller(struct item items[], int itemCount);
+void buyMenu(struct user users[], int userIndex, int userCount, struct item items[], int itemCount);
+void viewAllProducts(struct user users[], int userCount);
+void showProductBySeller(struct user users[], int userCount);
 void showProductByCategory(struct item items[], int itemCount);
 void showProductByName(struct item items[], int itemCount);
 void addToCart(struct item items[], int itemCount);
