@@ -8,7 +8,6 @@ int readUsers(struct user users[])
     FILE *userFile = fopen("Users.txt", "r");
     char buffer[1024];
     int userCount = 0;
-    char temp;
 
     if (userFile == NULL)
         return userCount;
@@ -58,7 +57,6 @@ int readItems(struct item items[])
     FILE *itemFile = fopen("Items.txt", "r");
     char buffer[1024];
     int itemCount = 0;
-    char temp;
 
     if (itemFile == NULL)
         return itemCount;

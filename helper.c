@@ -162,6 +162,56 @@ void sortItems(struct item items[], int itemCount)
 
 }
 
+int sortCart(struct item items[], int cartItemCount)
+{
+    int min;
+    int max;
+    struct item temp;
+    int newCartItemCount = 0;
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        max = i;
+        for (int j = i+1; j < cartItemCount; j++)
+        {
+            if (items[j].quantity > items[max].quantity)
+                max = j;
+        }
+        if (max != i)
+        {
+            temp = items[i];
+            items[i] = items[max];
+            items[max] = temp;
+        }
+    }
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (items[i].quantity > 0)
+            newCartItemCount++;
+    }
+
+    for (int i = 0; i < newCartItemCount; i++)
+    {
+        min = i;
+        for (int j = i+1; j < newCartItemCount; j++)
+        {
+            if (items[j].productid < items[min].productid)
+                min = j;
+        }
+        if (min != i)
+        {
+            temp = items[i];
+            items[i] = items[min];
+            items[min] = temp;
+        }
+
+    }
+
+    return newCartItemCount;
+
+}
+
 /* No longer needed, itemCount and items array is automatically appended if addNewItem() returns 1 for successfully adding an item
 int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[])
 {

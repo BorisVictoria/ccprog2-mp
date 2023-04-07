@@ -3,16 +3,6 @@
 #include <string.h>
 #include "structures.h"
 
-void readCart(struct cart userCart)
-{
-
-}
-
-void writeCart(struct cart userCart)
-{
-
-}
-
 void removeItemsFromSeller()
 {
     printf("Test!\n\n");
@@ -44,9 +34,11 @@ void editCartMenu()
         switch (choice) {
             case 1:
                 removeItemsFromSeller();
+
                 break;
             case 2:
                 removeSpecificItem();
+
                 break;
             case 3:
                 editQuantity();

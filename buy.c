@@ -27,13 +27,14 @@ void viewAllProducts(struct user users[], int userCount)
         if (choice == 'N' || choice == 'n')
         {
             userIndex++;
-            while (users[userIndex].userItemCount == 0)
-            {
-                userIndex++;
-            }
-
             if (userIndex >= userCount)
                 userIndex = 0;
+            else
+                while (users[userIndex].userItemCount == 0)
+                {
+                    userIndex++;
+                }
+
         }
         else if (choice == 'X' || choice == 'x')
             exit = 1;
@@ -198,16 +199,16 @@ void showProductByName(struct item items[], int itemCount)
 
     }
 }
-void addToCart(struct item items[], int itemCount)
+int addToCart()
 {
-    printf("Test!\n\n");
+
 }
 
 void buyMenu(struct user users[], int userIndex, int userCount, struct item items[], int itemCount)
 {
     int choice = 0;
-    struct cart userCart;
-    long cartItemCount;
+    struct item cart;
+    int cartItemCount;
 
     cartItemCount = 0;
     //cartItemCount = readCart(userCart); Implement
@@ -256,17 +257,21 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
                 if (itemCount == 0)
                     printf("No items found! Please add an item first\n\n");
                 else
-                    addToCart(items, itemCount);
+                    addToCart();
                 break;
             case 6:
                 if (itemCount == 0)
                     printf("No items found! Please add an item first\n\n");
+                else if (cartItemCount == 0)
+                    printf("No items in cart! Please add an item first\n\n");
                 else
                     editCartMenu();
                 break;
             case 7:
                 if (itemCount == 0)
                     printf("No items found! Please add an item first\n\n");
+                else if (cartItemCount == 0)
+                    printf("No items in cart! Please add an item first\n\n");
                 else
                     checkoutMenu();
                 break;

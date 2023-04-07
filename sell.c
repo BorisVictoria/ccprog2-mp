@@ -89,6 +89,11 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
                     printf("Returning to menu\n\n");
                     exit = 1;
                 }
+                else if (choice != 'Y' || choice != 'y')
+                {
+                    printf("Unrecognized option, returning to menu\n\n");
+                    exit = 1;
+                }
 
             }
             else
