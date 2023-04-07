@@ -35,6 +35,12 @@ struct transaction
 
 };
 
+struct cart
+{
+    int userid;
+    struct item items[10];
+};
+
 //Helper.c Functions
 void getString(char dest[], int destsize);
 long getLong(void);
@@ -42,7 +48,7 @@ double getDouble(void);
 void sortUsers(struct user users[], int userCount);
 void sortItems(struct item items[], int itemCount);
 void sortTransactions(struct transaction transactions[], int transactionCount);
-int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[]);
+//int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[]);
 
 //Sell.c Functions
 int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount);
@@ -67,6 +73,8 @@ void showProductByName(struct item items[], int itemCount);
 void addToCart(struct item items[], int itemCount);
 
 //Cart.c Functions
+void readCart(struct cart userCart); // implement
+void writeCart(struct cart userCart); // implement
 void editCartMenu();
 void removeItemsFromSeller();
 void removeSpecificItem();
@@ -82,6 +90,7 @@ void checkoutByItem();
 int readUsers(struct user users[]);
 int readItems(struct item items[]);
 void readTransactions(struct transaction transactions[]);
+void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount);
 
 //Exit.c Functions
 void writeUsers(struct user users[], int userCount);

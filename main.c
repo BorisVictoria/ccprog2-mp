@@ -15,7 +15,7 @@ int main()
     userCount = readUsers(users);
     itemCount = readItems(items);  // Read all data from text files to structures;
     //transactionCount = readTransactions();
-
+    storeItemsToUsers(users, userCount, items, itemCount);
 
     while (choice != 4)
     {

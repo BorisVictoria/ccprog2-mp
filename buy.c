@@ -206,6 +206,9 @@ void addToCart(struct item items[], int itemCount)
 void buyMenu(struct user users[], int userIndex, int userCount, struct item items[], int itemCount)
 {
     int choice = 0;
+    struct cart userCart;
+
+    //readCart(userCart); Implement
 
     while (choice != 8)
     {

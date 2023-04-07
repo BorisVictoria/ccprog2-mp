@@ -3,6 +3,16 @@
 #include <string.h>
 #include "structures.h"
 
+void readCart(struct cart userCart)
+{
+
+}
+
+void writeCart(struct cart userCart)
+{
+
+}
+
 void removeItemsFromSeller()
 {
     printf("Test!\n\n");

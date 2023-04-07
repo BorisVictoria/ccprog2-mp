@@ -162,6 +162,7 @@ void sortItems(struct item items[], int itemCount)
 
 }
 
+/* No longer needed, itemCount and items array is automatically appended if addNewItem() returns 1 for successfully adding an item
 int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[])
 {
     int totalItemCount = 0;
@@ -178,4 +179,4 @@ int getTotalItemsFromUsers(struct user users[], int userCount, struct item items
     return totalItemCount;
 
 }
-
+*/

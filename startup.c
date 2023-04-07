@@ -115,3 +115,26 @@ void readTransactions(struct transaction transactions[])
 
     fclose(transactionFile);
 }
+
+void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount)
+{
+    int userItemCount;
+
+    for (int i = 0; i < userCount; i++)
+    {
+        userItemCount = 0;
+
+        for (int j = 0; j < itemCount; j++)
+        {
+            if (users[i].userid == items[j].sellerid)
+            {
+                users[i].items[userItemCount] = items[j];
+                userItemCount++;
+                users[i].userItemCount = userItemCount;
+            }
+        }
+
+    }
+
+
+}
