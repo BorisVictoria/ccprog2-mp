@@ -69,7 +69,7 @@ void showProductByName(struct item items[], int itemCount);
 int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid);
 
 //Cart.c Functions
-void editCartMenu();
+void editCartMenu(struct item cart[], int cartItemCount);
 void removeItemsFromSeller();
 void removeSpecificItem();
 void editQuantity();

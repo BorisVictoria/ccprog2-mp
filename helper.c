@@ -196,7 +196,7 @@ int sortCart(struct item items[], int cartItemCount)
         min = i;
         for (int j = i+1; j < newCartItemCount; j++)
         {
-            if (items[j].productid < items[min].productid)
+            if (items[j].sellerid < items[min].sellerid)
                 min = j;
         }
         if (min != i)
@@ -207,6 +207,25 @@ int sortCart(struct item items[], int cartItemCount)
         }
 
     }
+
+
+    for (int i = 0; i < newCartItemCount; i++)
+    {
+        min = i;
+        for (int j = i+1; j < newCartItemCount; j++)
+        {
+            if (items[j].sellerid == items[min].sellerid && items[j].productid < items[min].productid)
+                min = j;
+        }
+        if (min != i)
+        {
+            temp = items[i];
+            items[i] = items[min];
+            items[min] = temp;
+        }
+
+    }
+
 
     return newCartItemCount;
 

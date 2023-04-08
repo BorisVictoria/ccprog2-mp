@@ -86,25 +86,25 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 
                 if (choice == 'N' || choice == 'n')
                 {
-                    printf("Returning to menu\n\n");
+                    printf("Returning to menu\n");
                     exit = 1;
                 }
                 else if (choice != 'Y' || choice != 'y')
                 {
-                    printf("Unrecognized option, returning to menu\n\n");
+                    printf("Unrecognized option, returning to menu\n");
                     exit = 1;
                 }
 
             }
             else
             {
-                printf("Unrecognized option, returning to menu\n\n");
+                printf("Unrecognized option, returning to menu\n");
                 exit = 1;
             }
         }
         else
         {
-            printf("Unrecognized option, returning to menu\n\n");
+            printf("Unrecognized option, returning to menu\n");
             exit = 1;
         }
 
@@ -127,7 +127,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             printf("Category:%s\n", users[userIndex].items[userItemCount].category);
             printf("Description:%s\n", users[userIndex].items[userItemCount].description);
             printf("Quantity:%ld\n",  users[userIndex].items[userItemCount].quantity);
-            printf("Price:%lf\n\n",  users[userIndex].items[userItemCount].price);
+            printf("Price:%lf\n",  users[userIndex].items[userItemCount].price);
 
         }
 
@@ -200,7 +200,7 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
         }
         else
         {
-            printf("No Low Stock Products Found!");
+            printf("No Low Stock Products Found!\n");
             exit = 1;
         }
 
