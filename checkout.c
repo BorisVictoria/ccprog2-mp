@@ -3,20 +3,29 @@
 #include <string.h>
 #include "structures.h"
 
-int checkoutAll(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
+
+void checkoutAll(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
+    struct transaction transactions[10];
 
 
 
 
 
 
-    return cartItemCount;
 }
-int checkoutBySeller(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
+void checkoutBySeller(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
+    struct transaction transactions[10];
+    long productid;
     long sellerid;
+    int cartProductIndex;
+    int userIndex;
+    int userProductIndex;
+    int productIndex;
     int found = 0;
+    int ctr = 0;
+    int sellerProducts = 0;
 
     printf("Input Seller ID:");
     sellerid = getLong();
@@ -32,18 +41,111 @@ int checkoutBySeller(struct user users[], int userCount, struct item items[], in
 
     if (found == 0)
     {
-        printf("Product ID not found! Returning to buy menu\n");
-        return cartItemCount;
+        printf("Seller Id not found! Returning to buy menu\n");
+        return;
     }
 
-    return cartItemCount;
+    for (int i = 0; i < 10; i++)
+    {
+        transactions[i].total = 0;
+    }
+
+    found = 0;
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (sellerid == cart[i].sellerid)
+        {
+            productid = cart[i].productid;
+            cartProductIndex = i;
+            found = 1;
+        }
+
+        if (found == 1)
+        {
+            for (int j = 0; j < userCount; j++)
+            {
+                for (int k = 0; k < users[j].userItemCount; k++)
+                {
+                    if (productid == users[j].items[k].productid)
+                    {
+                        userIndex = j;
+                        j = userCount;
+                        k = 20;
+                    }
+                }
+            }
+
+            for (int j = 0; j < users[userIndex].userItemCount; j++)
+            {
+                if (users[userIndex].items[j].productid == productid)
+                {
+                    userProductIndex = j;
+                    j = userCount;
+                }
+            }
+
+            for (int j = 0; j < itemCount; j++)
+            {
+                if (productid == items[j].productid)
+                {
+                    productIndex = j;
+                    j = itemCount;
+                }
+            }
+
+            transactions[ctr].buyerid = userid;
+            transactions[ctr].sellerid = cart[cartProductIndex].sellerid;
+            transactions[ctr].month = month;
+            transactions[ctr].day = day;
+            transactions[ctr].year = year;
+            transactions[ctr].total += cart[cartProductIndex].quantity * cart[cartProductIndex].price;
+
+            transactions[ctr].items[sellerProducts].sellerid = cart[cartProductIndex].sellerid;
+            transactions[ctr].items[sellerProducts].productid = cart[cartProductIndex].productid;
+            strcpy(transactions[ctr].items[sellerProducts].name, cart[cartProductIndex].name);
+            strcpy(transactions[ctr].items[sellerProducts].category, cart[cartProductIndex].category);
+            strcpy(transactions[ctr].items[sellerProducts].description, cart[cartProductIndex].description);
+            transactions[ctr].items[sellerProducts].quantity = cart[cartProductIndex].quantity;
+            transactions[ctr].items[sellerProducts].price = cart[cartProductIndex].price;
+
+            users[userIndex].items[userProductIndex].quantity -= cart[cartProductIndex].quantity;
+            items[productIndex].quantity -= cart[cartProductIndex].quantity;
+            cart[cartProductIndex].quantity = 0;
+            sellerProducts++;
+            found = 0;
+            if (sellerProducts == 5) {
+                ctr++;
+                sellerProducts = 0;
+            }
+
+        }
+
+    }
+
+    for (int i = 0; i <= ctr; i++)
+    {
+        if (ctr > 0 && i < ctr)
+        {
+            writeTransactionItems(5);
+        }
+        else
+            writeTransactionItems(sellerProducts);
+
+    }
+
+    writeTransactions(transactions, ctr*5+sellerProducts);
+
 
 }
 
-int checkoutByItem(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
+void checkoutByItem(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
+    struct transaction transactions[10];
     long productid;
     int cartProductIndex;
+    int userIndex;
+    int userProductIndex;
+    int productIndex;
     int found = 0;
 
     printf("Input Product ID:");
@@ -53,9 +155,9 @@ int checkoutByItem(struct user users[], int userCount, struct item items[], int 
     {
         if (productid == cart[i].productid)
         {
-           found = 1;
-           cartProductIndex = i;
-           i = cartItemCount;
+            found = 1;
+            cartProductIndex = i;
+            i = cartItemCount;
         }
 
     }
@@ -63,14 +165,69 @@ int checkoutByItem(struct user users[], int userCount, struct item items[], int 
     if (found == 0)
     {
         printf("Product ID not found! Returning to buy menu\n");
-        return cartItemCount;
+        return;
     }
 
-    printf("")
+    for (int i = 0; i < userCount; i++)
+    {
+        for (int j = 0; j < users[i].userItemCount; j++)
+        {
+            if (productid == users[i].items[j].productid)
+            {
+                userIndex = i;
+                i = userCount;
+                j = 20;
+            }
+        }
+    }
 
+    for (int i = 0; i < users[userIndex].userItemCount; i++)
+    {
+        if (users[userIndex].items[i].productid == productid)
+        {
+            userProductIndex = i;
+            i = userCount;
+        }
 
+    }
 
-    return cartItemCount;
+    for (int i = 0; i < itemCount; i++)
+    {
+        if (productid == items[i].productid)
+        {
+            productIndex = i;
+            i = itemCount;
+        }
+    }
+
+    transactions[0].buyerid = userid;
+    transactions[0].sellerid = cart[cartProductIndex].sellerid;
+    transactions[0].month = month;
+    transactions[0].day = day;
+    transactions[0].year = year;
+    transactions[0].total = cart[cartProductIndex].quantity * cart[cartProductIndex].price;
+
+    transactions[0].items[0].sellerid = cart[cartProductIndex].sellerid;
+    transactions[0].items[0].productid = cart[cartProductIndex].productid;
+    strcpy(transactions[0].items[0].name, cart[cartProductIndex].name);
+    strcpy(transactions[0].items[0].category, cart[cartProductIndex].category);
+    strcpy(transactions[0].items[0].description, cart[cartProductIndex].description);
+    transactions[0].items[0].quantity = cart[cartProductIndex].quantity;
+    transactions[0].items[0].price = cart[cartProductIndex].price;
+
+    users[userIndex].items[userProductIndex].quantity -= cart[cartProductIndex].quantity;
+    items[productIndex].quantity -= cart[cartProductIndex].quantity;
+    cart[cartProductIndex].quantity = 0;
+
+    printf("Transaction Summary\n");
+    printf("Quantity\t\t Product ID\t\t Item Name\t\t Unit Price\t\t Total Price of Item\n");
+    printf("%ld %ld %s %lf %lf ", transactions[0].items[0].quantity, productid, transactions[0].items[0].name, transactions[0].items[0].price, transactions[0].total);
+
+    printf("Total Amount Due: %lf\n", transactions[0].total);
+    printf("Paid to: %ld %s\n", transactions[0].sellerid, users[userIndex].name);
+
+    writeTransactionItems(1);
+    writeTransactions(transactions, 1);
 
 }
 
@@ -143,7 +300,7 @@ int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], i
             if (productid == items[j].productid)
             {
                 printf("Checking availability of product: %s..........Done!\n\n", cart[i].name);
-                *proceed = checkCartItem(cart, items, i, j);
+                *proceed = checkCartItem(items, cart, i, j);
                 cartItemCount = sortCart(cart, cartItemCount);
             }
 
@@ -154,10 +311,9 @@ int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], i
 
 }
 
-int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount)
+int checkoutMenu(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount)
 {
     int choice = 0;
-    struct transaction transactions[10];
     long month;
     long day;
     long year;
@@ -173,18 +329,25 @@ int checkoutMenu(struct user users[], int userCount, struct item items[], int it
     }
 
     printf("Input month [mm]:");
-    month = getLong();
-    printf("Input day [dd]:");
-    day = getLong();
-    printf("Input year [yyyy]:");
-    year = getLong();
-
-    for (int i = 0; i < 10; i++)
+    do
     {
-        transactions[i].month = month;
-        transactions[i].day = day;
-        transactions[i].year = year;
+        month = getLong();
+        if (month < 1 || month > 12)
+            printf("Please input a valid month:");
     }
+    while(month < 1 || month > 12);
+    printf("Input day [dd]:");
+    do
+    {
+        day = getLong();
+    }
+    while(day < 1 || day > 31);
+    printf("Input year [yyyy]:");
+    do
+    {
+        year = getLong();
+    }
+    while(year < 0);
 
     while (choice != 4)
     {
@@ -199,13 +362,16 @@ int checkoutMenu(struct user users[], int userCount, struct item items[], int it
 
         switch (choice) {
             case 1:
-                checkoutAll(users, userCount, items, itemCount, cart, cartItemCount, transactions);
+                checkoutAll(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 2:
-                checkoutBySeller(users, userCount, items, itemCount, cart, cartItemCount, transactions);
+               checkoutBySeller(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 3:
-                checkoutByItem(users, userCount, items, itemCount, cart, cartItemCount, transactions);
+                checkoutByItem(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 4:
                 break;

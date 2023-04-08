@@ -166,9 +166,89 @@ int readCart(struct item items[], long userid)
 
 }
 
-void readTransactions(struct transaction transactions[])
+int readTransactionItems(int transactionItems[])
+{
+    FILE *transactionItemFile = fopen("TransactionOffsets.txt", "r");
+    char buffer[1024];
+    int transactionItemCount = 0;
+
+    if (transactionItemFile == NULL)
+        return transactionItemCount;
+
+    while(!feof(transactionItemFile))
+    {
+        if (fgets(buffer, 1024, transactionItemFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            sscanf(buffer, "%d", &transactionItems[transactionItemCount]);
+        }
+
+        if (fgets(buffer, 1024, transactionItemFile) != NULL)
+        {
+            transactionItemCount++;
+        }
+
+    }
+
+    fclose(transactionItemFile);
+
+    return transactionItemCount;
+
+}
+
+void readTransactions(struct transaction transactions[], int transactionItems[], int transactionItemCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "r");
+    char buffer[1024];
+
+    for (int i = 0; i < transactionItemCount; i++)
+    {
+        if (fgets(buffer, 1024, transactionFile) != NULL)
+        {
+            buffer[strcspn(buffer, "\n")] = '\0';
+            sscanf(buffer, "%ld %ld %ld %ld %ld", &transactions[i].buyerid, &transactions[i].sellerid, &transactions[i].month, &transactions[i].day, &transactions[i].month);
+        }
+
+        for (int j = 0; j < transactionItems[i]; j++)
+        {
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+                buffer[strcspn(buffer, "\n")] = '\0';
+                sscanf(buffer, "%ld %ld", &transactions[i].items[j].productid, &transactions[i].items[j].sellerid);
+            }
+
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+                buffer[strcspn(buffer, "\n")] = '\0';
+                strcpy(transactions[i].items[j].name, buffer);
+            }
+
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+                buffer[strcspn(buffer, "\n")] = '\0';
+                strcpy(transactions[i].items[j].category, buffer);
+            }
+
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+                buffer[strcspn(buffer, "\n")] = '\0';
+                strcpy(transactions[i].items[j].description, buffer);
+
+            }
+
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+                buffer[strcspn(buffer, "\n")] = '\0';
+                sscanf(buffer, "%ld %lf", &transactions[i].items[j].quantity, &transactions[i].items[j].price);
+            }
+
+            if (fgets(buffer, 1024, transactionFile) != NULL)
+            {
+
+            }
+        }
+
+    }
 
     fclose(transactionFile);
 }

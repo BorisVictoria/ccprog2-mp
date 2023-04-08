@@ -396,7 +396,7 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
                 else if (cartItemCount == 0)
                     printf("No items in cart! Please add an item first\n\n");
                 else
-                    cartItemCount = checkoutMenu(users, userCount, items, itemCount, cart, cartItemCount);
+                    cartItemCount = checkoutMenu(users, userid, userCount, items, itemCount, cart, cartItemCount);
                 break;
             case 8:
                 break;

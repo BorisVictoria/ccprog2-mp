@@ -57,15 +57,63 @@ void writeCart(struct item items[], int itemCount, long userid)
 
 }
 
-void writeTransactions(struct transaction transactions[], int transactionCount)
+void writeTransactionItems(int transactionItems)
+{
+    FILE *transactionItemFile = fopen("TransactionOffsets.txt", "a");
+
+    fprintf(transactionItemFile, "%d\n", transactionItems);
+    fprintf(transactionItemFile, "\n");
+
+    fclose(transactionItemFile);
+
+}
+
+void writeTransactions(struct transaction transactions[], int totalTransactionItemCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "a");
 
-    for (int i = 0; i < transactionCount; i++)
+    int transactionItemCount;
+    int totalTransactions = totalTransactionItemCount / 5;
+
+    if (totalTransactions == 0)
     {
-        fprintf(transactionFile, "%ld %ld %ld %ld %ld\n", transactions[i].buyerid, transactions[i].sellerid, transactions[i].month, transactions[i].day, transactions[i].year);
-        fprintf(transactionFile, "%ld\n", transactions[i].buyerid);
-        fprintf(transactionFile, "%lf\n", transactions[i].total);
+        totalTransactions = 1;
+        transactionItemCount = totalTransactionItemCount % 5;
+    }
+    else if (totalTransactions == 1)
+    {
+        if (totalTransactionItemCount % 5 == 0)
+        {
+            transactionItemCount = 5;
+        }
+        else
+        {
+            totalTransactions = 2;
+            transactionItemCount = 5;
+        }
+    }
+    else
+    {
+        totalTransactions = 2;
+        transactionItemCount = 5;
+    }
+
+
+    for (int i = 0; i < totalTransactions; i++)
+    {
+        if (i == 1)
+            if (totalTransactionItemCount % 5 != 0)
+                transactionItemCount = totalTransactionItemCount % 5;
+        fprintf(transactionFile, "%ld %ld %ld %ld %ld %lf\n", transactions[i].buyerid, transactions[i].sellerid, transactions[i].month, transactions[i].day, transactions[i].year, transactions[i].total);
+        for (int j = 0; j < transactionItemCount; j++)
+        {
+            fprintf(transactionFile, "%ld %ld\n", transactions[i].items[j].productid, transactions[i].items[j].sellerid);
+            fprintf(transactionFile, "%s\n", transactions[i].items[j].name);
+            fprintf(transactionFile, "%s\n", transactions[i].items[j].category);
+            fprintf(transactionFile, "%s\n", transactions[i].items[j].description);
+            fprintf(transactionFile, "%ld %lf\n", transactions[i].items[j].quantity, transactions[i].items[j].price);
+            fprintf(transactionFile, "\n");
+        }
     }
 
     fclose(transactionFile);

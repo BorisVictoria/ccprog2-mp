@@ -1,6 +1,7 @@
 // This file contains the structure variables and typedef declarations used in main.c
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
+
 struct item
 {
     long sellerid;
@@ -30,12 +31,11 @@ struct transaction
     long month;
     long day;
     long year;
-    struct item items[5];
     double total;
+    struct item items[5];
 
 };
-
-
+void debugOut(const char *format, ... );
 //Helper.c Functions
 void getString(char dest[], int destsize);
 long getLong(void);
@@ -75,24 +75,27 @@ void removeSpecificItem(struct item cart[], int cartItemCount);
 void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount);
 
 //Checkout.c Functions
-int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount);
+int checkoutMenu(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount);
 int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount, int* proceed);
 int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, int itemIndex);
-int checkoutAll(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
-int checkoutBySeller(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
-int checkoutByItem(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
+void checkoutAll(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year);
+void checkoutBySeller(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year);
+void checkoutByItem(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year);
 
 //Startup.c Functions
 int readUsers(struct user users[]);
 int readItems(struct item items[]);
 int readCart(struct item items[], long userid);
+void readTransactions(struct transaction transactions[], int transactionItems[], int transactionItemCount);
+int readTransactionItems(int transactionItems[]);
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount);
 
 //Exit.c Functions
 void writeUsers(struct user users[], int userCount);
 void writeItems(struct item items[], int itemCount);
 void writeCart(struct item items[], int itemCount, long userid);
-void writeTransactions(struct transaction transactions[], int transactionCount);
+void writeTransactions(struct transaction transactions[], int totalTransactionItemCount);
+void writeTransactionItems(int transactionItemCount);
 
 //User.c Functions
 int userMenu(struct user users[], int userCount, struct item items[], int itemCount);
