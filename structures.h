@@ -69,13 +69,14 @@ void showProductByName(struct item items[], int itemCount);
 int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid);
 
 //Cart.c Functions
-void editCartMenu(struct item cart[], int cartItemCount);
-void removeItemsFromSeller();
-void removeSpecificItem();
-void editQuantity();
+int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int itemCount);
+void removeItemsFromSeller(struct item cart[], int cartItemCount);
+void removeSpecificItem(struct item cart[], int cartItemCount);
+void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount);
 
 //Checkout.c Functions
-void checkoutMenu();
+int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount);
+void cartIntegrityCheck(struct item items[], struct itemCount, struct item cart[], int cartItemCount);
 void checkoutAll();
 void checkoutBySeller();
 void checkoutByItem();

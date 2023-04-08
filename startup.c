@@ -164,10 +164,7 @@ int readCart(struct item items[], long userid)
 
     return itemCount;
 
-
 }
-
-
 
 void readTransactions(struct transaction transactions[])
 {
