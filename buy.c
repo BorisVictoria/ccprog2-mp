@@ -315,9 +315,19 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
     struct item cart[10];
     int cartItemCount;
     int cartItemAdded;
+    int proceed = 1;
 
     userid = users[userIndex].userid;
     cartItemCount = readCart(cart, userid);
+
+    printf("\n");
+    cartItemCount = cartIntegrityCheck(items, itemCount, cart, cartItemCount, &proceed);
+    cartItemCount = sortCart(cart, cartItemCount);
+
+    if (proceed == 0)
+    {
+        printf("Please change the quantity of the products above or remove them before proceeding to checkout\n\n");
+    }
 
     while (choice != 8)
     {

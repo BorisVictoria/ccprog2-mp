@@ -111,7 +111,7 @@ int checkoutMenu(struct user users[], int userCount, struct item items[], int it
 
     if (proceed == 0)
     {
-        printf("Please change the quantity of the products above or remove them before proceeding to checkout\n");
+        printf("Please change the quantity of the products above or remove them before proceeding to checkout\n\n");
     }
 
     printf("Input month [mm]:");
