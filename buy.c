@@ -326,7 +326,7 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
 
     if (proceed == 0)
     {
-        printf("Please change the quantity of the products above or remove them before proceeding to checkout\n\n");
+        printf("Please change the quantity of the products above or remove them before proceeding to checkout\n");
     }
 
     while (choice != 8)
