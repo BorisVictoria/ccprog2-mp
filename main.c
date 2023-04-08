@@ -45,7 +45,7 @@ int main()
                     itemCount = userMenu(users, userCount, items, itemCount);
                 break;
             case 3:
-                adminMenu();
+                adminMenu(users, userCount);
                 break;
             case 4:
                 printf("Thank you for shopping!\n");

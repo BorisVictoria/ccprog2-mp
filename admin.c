@@ -3,7 +3,39 @@
 #include <string.h>
 #include "structures.h"
 
-void adminMenu(){
+void showAllUsers(struct user users[], int userCount){
+    printf("---------------------------------------------------------------------------------------------------------\n");
+    printf("|    userID    |   password   |          name          |             address             | phone number |\n");
+    printf("---------------------------------------------------------------------------------------------------------\n");
+    for(int i=0; i<userCount; i++) {
+            printf("| %12ld | %-12s | %-22s | %-31s | %12ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber);
+            printf("---------------------------------------------------------------------------------------------------------\n");    }
+//userID, password, name, address, phone number
+}
+
+void showAllSellers(struct user users[], int userCount){
+
+    printf("userID password name address phone number number of items for sale\n");
+    for(int i=0; i<userCount; i++) {
+        if(users[i].userItemCount > 0) {
+            printf("%ld %s %s %s %ld %ld\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber, users[i].userItemCount);
+        }
+    }
+}
+
+int showTotalSalesByDuration(){
+    return 999;
+}
+
+void showSellerSales(){
+
+}
+
+void showShopaholics(){
+
+}
+
+void adminMenu(struct user users[], int userCount){
     char password[11];
     char admin[7] = "H3LLo?";
     int choice = 0;
@@ -30,10 +62,10 @@ void adminMenu(){
 
         switch (choice) {
             case 1:
-                showAllUsers();
+                showAllUsers(users,userCount);
                 break;
             case 2:
-                showAllSellers();
+                showAllSellers(users, userCount);
                 break;
             case 3:
                 showTotalSalesByDuration();
@@ -55,22 +87,4 @@ void adminMenu(){
     }
 }
 
-void showAllUsers(){
 
-}
-
-void showAllSellers(){
-
-}
-
-int showTotalSalesByDuration(){
-
-}
-
-void showSellerSales(){
-
-}
-
-void showShopaholics(){
-
-}
