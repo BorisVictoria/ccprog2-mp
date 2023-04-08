@@ -16,7 +16,7 @@ void checkoutByItem()
     printf("Test!\n\n");
 }
 
-int checkoutMenu(struct item items[], int itemCount, struct item cart[], int cartItemCount)
+int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount)
 {
     int choice = 0;
 

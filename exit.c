@@ -59,7 +59,7 @@ void writeCart(struct item items[], int itemCount, long userid)
 
 void writeTransactions(struct transaction transactions[])
 {
-    FILE *transactionFile = fopen("Transactions.txt", "w");
+    FILE *transactionFile = fopen("Transactions.txt", "a");
 
     fclose(transactionFile);
 }

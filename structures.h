@@ -76,7 +76,7 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
 
 //Checkout.c Functions
 int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount);
-void cartIntegrityCheck(struct item items[], struct itemCount, struct item cart[], int cartItemCount);
+void cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount);
 void checkoutAll();
 void checkoutBySeller();
 void checkoutByItem();
@@ -85,7 +85,6 @@ void checkoutByItem();
 int readUsers(struct user users[]);
 int readItems(struct item items[]);
 int readCart(struct item items[], long userid);
-void readTransactions(struct transaction transactions[]);
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount);
 
 //Exit.c Functions
