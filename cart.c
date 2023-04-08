@@ -31,6 +31,7 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
         if (sellerid == cart[i].sellerid)
             cart[i].quantity = 0;
     }
+    printf("Items from seller removed from cart!\n");
 
 }
 void removeSpecificItem(struct item cart[], int cartItemCount)
@@ -61,6 +62,7 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
         if (productid == cart[i].productid)
             cart[i].quantity = 0;
     }
+    printf("Item removed from cart!\n");
 
 }
 void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount)
@@ -71,7 +73,7 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
     int productIndex;
     int cartProductIndex;
 
-    printf("Enter Product ID of item to remove:");
+    printf("Enter Product ID of item to edit quantity:");
     productid = getLong();
 
     for (int i = 0; i < cartItemCount; i++)
@@ -120,7 +122,8 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
         }
     }
     while(quantity <= 0 || items[productIndex].quantity < quantity);
-    printf("\nQuantity:%ld\n", quantity);
+    printf("\nProduct quantity changed!\n");
+    printf("New Quantity:%ld\n", quantity);
 
     cart[cartProductIndex].quantity = quantity;
 
@@ -158,7 +161,7 @@ int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int
 
     for (int i = 0; i < sellerCount; i++)
     {
-        printf("\nProducts by Seller ID: %ld\n", sellers[i]);
+        printf("\nSeller ID: %ld\n", sellers[i]);
         printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
         for (int j = 0; j < cartItemCount; j++)
         {

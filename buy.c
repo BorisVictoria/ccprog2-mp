@@ -69,7 +69,7 @@ void showProductBySeller(struct user users[], int userCount)
         return;
     }
 
-    printf("\nSeller %ld Products\n\n", sellerid);
+    printf("\nSeller ID: %ld\n\n", sellerid);
     printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
 
     for (int i = 0; i < users[userIndex].userItemCount; i++)

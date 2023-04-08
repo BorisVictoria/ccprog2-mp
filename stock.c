@@ -24,13 +24,13 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
         }
         else
         {
-            printf("Returning to menu\n\n");
+            printf("Returning to menu\n");
 
         }
     }
     else
     {
-        printf("Unrecognized option, returning to menu\n\n");
+        printf("Unrecognized option, returning to menu\n");
     }
 
     if (success == 1)
@@ -63,13 +63,13 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
         }
         else
         {
-            printf("Returning to menu\n\n");
+            printf("Returning to menu\n");
 
         }
     }
     else
     {
-        printf("Unrecognized option, returning to menu\n\n");
+        printf("Unrecognized option, returning to menu\n");
     }
 
     if (success == 1)
@@ -104,13 +104,13 @@ void changeItemName(struct user users[], int userIndex, int userProductIndex, st
         }
         else
         {
-            printf("Returning to menu\n\n");
+            printf("Returning to menu\n");
 
         }
     }
     else
     {
-        printf("Unrecognized option, returning to menu\n\n");
+        printf("Unrecognized option, returning to menu\n");
     }
 
     if (success == 1)
@@ -144,13 +144,13 @@ void changeCategory(struct user users[], int userIndex, int userProductIndex, st
         }
         else
         {
-            printf("Returning to menu\n\n");
+            printf("Returning to menu\n");
 
         }
     }
     else
     {
-        printf("Unrecognized option, returning to menu\n\n");
+        printf("Unrecognized option, returning to menu\n");
     }
 
     if (success == 1)
@@ -184,13 +184,13 @@ void changeDescription(struct user users[], int userIndex, int userProductIndex,
         }
         else
         {
-            printf("Returning to menu\n\n");
+            printf("Returning to menu\n");
 
         }
     }
     else
     {
-        printf("Unrecognized option, returning to menu\n\n");
+        printf("Unrecognized option, returning to menu\n");
     }
 
     if (success == 1)
@@ -228,7 +228,7 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
 
     if (found == 0)
     {
-        printf("Product ID not found in User! Returning to sell menu\n\n");
+        printf("Product ID not found in User! Returning to sell menu\n");
         return;
     }
 
@@ -246,7 +246,7 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
 
     if (found == 0)
     {
-        printf("Product ID not found in Items array! Returning to sell menu\n\n");
+        printf("Product ID not found in Items array! Returning to sell menu\n");
         return;
     }
 
