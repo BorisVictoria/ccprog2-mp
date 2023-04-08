@@ -3,55 +3,170 @@
 #include <string.h>
 #include "structures.h"
 
-void removeItemsFromSeller()
+void removeItemsFromSeller(struct item cart[], int cartItemCount)
 {
-    printf("Test!\n\n");
+    long sellerid;
+    int found = 0;
+
+    printf("Enter Seller ID of items to remove:");
+    sellerid = getLong();
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (cart[i].sellerid == sellerid)
+        {
+            found = 1;
+            i = cartItemCount;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("Seller ID not found! Returning to edit cart menu\n");
+        return;
+    }
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (sellerid == cart[i].sellerid)
+            cart[i].quantity = 0;
+    }
+
 }
-void removeSpecificItem()
+void removeSpecificItem(struct item cart[], int cartItemCount)
 {
-    printf("Test!\n\n");
+    long productid;
+    int found = 0;
+
+    printf("Enter Product ID of item to remove:");
+    productid = getLong();
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (cart[i].productid == productid)
+        {
+            found = 1;
+            i = cartItemCount;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found! Returning to edit cart menu\n");
+        return;
+    }
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (productid == cart[i].productid)
+            cart[i].quantity = 0;
+    }
+
 }
-void editQuantity()
+void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount)
 {
-    printf("Test!\n\n");
+    long productid;
+    long quantity;
+    int found = 0;
+    int productIndex;
+    int cartProductIndex;
+
+    printf("Enter Product ID of item to remove:");
+    productid = getLong();
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (cart[i].productid == productid)
+        {
+            found = 1;
+            cartProductIndex = i;
+            i = cartItemCount;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found! Returning to edit cart menu\n");
+        return;
+    }
+
+    for (int i = 0; i < itemCount; i++)
+    {
+        if (productid == items[i].productid)
+        {
+            productIndex = i;
+            i = itemCount;
+        }
+    }
+
+    if (items[productIndex].quantity <= 0)
+    {
+        printf("Product is out of stock! Removing from cart\n");
+        cart[cartProductIndex].quantity = 0;
+    }
+
+    printf("Number of items in stock: %ld\n", items[productIndex].quantity);
+    printf("Input new quantity:");
+    do
+    {
+        quantity = getLong();
+        if (quantity <= 0)
+        {
+            printf("Please input a positive quantity:");
+        }
+        else if (quantity > items[productIndex].quantity)
+        {
+            printf("Entered quantity is not available. Please try again:");
+        }
+    }
+    while(quantity <= 0 || items[productIndex].quantity < quantity);
+    printf("\nQuantity:%ld\n", quantity);
+
+    cart[cartProductIndex].quantity = quantity;
+
 }
 
-void editCartMenu(struct item cart[], int cartItemCount)
+int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int itemCount)
 {
     int choice = 0;
-    long sellerid;
-    int toPrint = 1;
+    long sellers[10];
+    int sellerCount = 0;
 
     printf("\nProducts in Cart\n");
 
     for (int i = 0; i < cartItemCount; i++)
     {
-        if (toPrint == 1)
+        sellers[i] = cart[i].sellerid;
+        sellerCount++;
+    }
+
+    for (int i = 0; i < sellerCount; i++)
+    {
+        for (int j = i+1; j < sellerCount; j++)
         {
-            sellerid = cart[i].sellerid;
-            printf("\nSeller %ld Products\n", sellerid);
-        }
-        else if (toPrint == 0)
-        {
-            if (sellerid < cart[i].sellerid)
+            if (sellers[i] == sellers[j])
             {
-                if (sellerid != cart[i].sellerid)
+                for (int k = j; k < sellerCount-1; k++)
                 {
-                    sellerid = cart[i].sellerid;
-                    toPrint = 1;
+                    sellers[k] = sellers[k+1];
                 }
+                sellerCount--;
+                j--;
             }
         }
+    }
 
-        for (int j = 0;j < cartItemCount && toPrint == 1; j++)
+    for (int i = 0; i < sellerCount; i++)
+    {
+        printf("\nProducts by Seller ID: %ld\n", sellers[i]);
+        printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
+        for (int j = 0; j < cartItemCount; j++)
         {
-            if (sellerid == cart[j].sellerid)
+            if (sellers[i] == cart[j].sellerid)
+            {
                 printf("%ld %s %s %ld %lf\n", cart[j].productid, cart[j].name, cart[j].category, cart[j].quantity, cart[j].price);
-
-            if (j == cartItemCount-1)
-                toPrint = 0;
+            }
         }
-
     }
 
     while (choice != 4)
@@ -67,15 +182,16 @@ void editCartMenu(struct item cart[], int cartItemCount)
 
         switch (choice) {
             case 1:
-                removeItemsFromSeller();
-
+                removeItemsFromSeller(cart, cartItemCount);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 2:
-                removeSpecificItem();
-
+                removeSpecificItem(cart, cartItemCount);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 3:
-                editQuantity();
+                editQuantity(cart, cartItemCount, items, itemCount);
+                cartItemCount = sortCart(cart, cartItemCount);
                 break;
             case 4:
                 break;
@@ -84,5 +200,7 @@ void editCartMenu(struct item cart[], int cartItemCount)
                 break;
         }
     }
+
+    return cartItemCount;
 
 }
