@@ -25,11 +25,11 @@ struct user
 
 struct transaction
 {
+    long buyerid;
+    long sellerid;
     long month;
     long day;
     long year;
-    long buyerid;
-    long sellerid;
     struct item items[5];
     double total;
 
@@ -78,9 +78,9 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
 int checkoutMenu(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount);
 int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount, int* proceed);
 int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, int itemIndex);
-void checkoutAll(struct transaction transactions[]);
-void checkoutBySeller(struct transaction transactions[]);
-void checkoutByItem(struct transaction transactions[]);
+int checkoutAll(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
+int checkoutBySeller(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
+int checkoutByItem(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[]);
 
 //Startup.c Functions
 int readUsers(struct user users[]);
@@ -92,7 +92,7 @@ void storeItemsToUsers(struct user users[], int userCount, struct item items[], 
 void writeUsers(struct user users[], int userCount);
 void writeItems(struct item items[], int itemCount);
 void writeCart(struct item items[], int itemCount, long userid);
-void writeTransactions(struct transaction transactions[]);
+void writeTransactions(struct transaction transactions[], int transactionCount);
 
 //User.c Functions
 int userMenu(struct user users[], int userCount, struct item items[], int itemCount);

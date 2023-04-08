@@ -3,20 +3,78 @@
 #include <string.h>
 #include "structures.h"
 
-void checkoutAll(struct transaction transactions[])
+int checkoutAll(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
 {
-    printf("Test!\n\n");
+
+
+
+
+
+
+    return cartItemCount;
 }
-void checkoutBySeller(struct transaction transactions[])
+int checkoutBySeller(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
 {
-    printf("Test!\n\n");
-}
-void checkoutByItem(struct transaction transactions[])
-{
-    printf("Test!\n\n");
+    long sellerid;
+    int found = 0;
+
+    printf("Input Seller ID:");
+    sellerid = getLong();
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (sellerid == cart[i].sellerid)
+        {
+            found = 1;
+        }
+
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found! Returning to buy menu\n");
+        return cartItemCount;
+    }
+
+    return cartItemCount;
+
 }
 
-int checkCartItem(struct item cart[], struct item items[], int cartItemIndex, int itemIndex)
+int checkoutByItem(struct user users[], int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, struct transaction transactions[])
+{
+    long productid;
+    int cartProductIndex;
+    int found = 0;
+
+    printf("Input Product ID:");
+    productid = getLong();
+
+    for (int i = 0; i < cartItemCount; i++)
+    {
+        if (productid == cart[i].productid)
+        {
+           found = 1;
+           cartProductIndex = i;
+           i = cartItemCount;
+        }
+
+    }
+
+    if (found == 0)
+    {
+        printf("Product ID not found! Returning to buy menu\n");
+        return cartItemCount;
+    }
+
+    printf("")
+
+
+
+    return cartItemCount;
+
+}
+
+int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, int itemIndex)
 {
     int proceed = 1;
 
@@ -62,8 +120,8 @@ int checkCartItem(struct item cart[], struct item items[], int cartItemIndex, in
     if (cart[cartItemIndex].price != items[itemIndex].price)
     {
         printf("Price of product in cart has changed!\n");
-        printf("Price in cart: %s\n", cart[cartItemIndex].price);
-        printf("Price in items: %s\n", items[itemIndex].price);
+        printf("Price in cart: %lf\n", cart[cartItemIndex].price);
+        printf("Price in items: %lf\n", items[itemIndex].price);
         printf("Changing price...\n\n");
 
         cart[cartItemIndex].price = items[itemIndex].price;
@@ -141,13 +199,13 @@ int checkoutMenu(struct user users[], int userCount, struct item items[], int it
 
         switch (choice) {
             case 1:
-                checkoutAll(transactions);
+                checkoutAll(users, userCount, items, itemCount, cart, cartItemCount, transactions);
                 break;
             case 2:
-                checkoutBySeller(transactions);
+                checkoutBySeller(users, userCount, items, itemCount, cart, cartItemCount, transactions);
                 break;
             case 3:
-                checkoutByItem(transactions);
+                checkoutByItem(users, userCount, items, itemCount, cart, cartItemCount, transactions);
                 break;
             case 4:
                 break;

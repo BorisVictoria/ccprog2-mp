@@ -57,9 +57,16 @@ void writeCart(struct item items[], int itemCount, long userid)
 
 }
 
-void writeTransactions(struct transaction transactions[])
+void writeTransactions(struct transaction transactions[], int transactionCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "a");
+
+    for (int i = 0; i < transactionCount; i++)
+    {
+        fprintf(transactionFile, "%ld %ld %ld %ld %ld\n", transactions[i].buyerid, transactions[i].sellerid, transactions[i].month, transactions[i].day, transactions[i].year);
+        fprintf(transactionFile, "%ld\n", transactions[i].buyerid);
+        fprintf(transactionFile, "%lf\n", transactions[i].total);
+    }
 
     fclose(transactionFile);
 }
