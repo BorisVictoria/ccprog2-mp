@@ -500,15 +500,15 @@ int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, in
         printf("Unfortunately, the currently selected quantity for this item is no longer available.\n");
         printf("Please edit the quantity before proceeding to checkout...\n");
         printf("Quantity in cart: %ld\n", cart[cartItemIndex].quantity);
-        printf("Available quantity: %ld\n\n", items[itemIndex].quantity);
-        printf("Setting quantity to what's available..........Done!");
+        printf("Available quantity: %ld\n", items[itemIndex].quantity);
+        printf("Setting quantity to what's available..........Done!\n\n");
         cart[cartItemIndex].quantity = items[itemIndex].quantity;
         proceed = 0;
     }
     else if (cart[cartItemIndex].quantity > items[itemIndex].quantity && items[itemIndex].quantity <= 0)
     {
-        printf("Unfortunately, item is no longer available.\n");
-        printf("Removing item from cart..........Done!");
+        printf("Unfortunately, this item is no longer available.\n");
+        printf("Removing item from cart..........Done!\n\n");
         cart[cartItemIndex].quantity = 0;
     }
 
@@ -529,8 +529,9 @@ int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, in
 int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount, int* proceed)
 {
     long productid;
+    int ctr = cartItemCount;
 
-    for (int i = 0; i < cartItemCount; i++)
+    for (int i = 0; i < ctr; i++)
     {
         productid = cart[i].productid;
         for (int j = 0; j < itemCount; j++)
@@ -539,12 +540,13 @@ int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], i
             {
                 printf("Checking availability of product: %s..........Done!\n\n", cart[i].name);
                 *proceed = checkCartItem(items, cart, i, j);
-                cartItemCount = sortCart(cart, cartItemCount);
+
             }
 
         }
     }
 
+    cartItemCount = sortCart(cart, cartItemCount);
     return cartItemCount;
 
 }
