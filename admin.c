@@ -35,10 +35,17 @@ void showShopaholics(){
 
 }
 
-void adminMenu(struct user users[], int userCount){
+void adminMenu(struct user users[], int userCount)
+{
+    struct transaction transactions[100];
+    int transactionCount;
     char password[11];
     char admin[7] = "H3LLo?";
     int choice = 0;
+    int transactionItems[1000];
+
+    transactionCount = readTransactionItems(transactionItems);
+    readTransactions(transactions, transactionItems, transactionCount);
 
     printf("Please input the administrator password:");
     getString(password, 11);
@@ -47,6 +54,24 @@ void adminMenu(struct user users[], int userCount){
         printf("Unauthorized access not allowed");
         return;
     }
+
+    /*TEST: Print contents of transactions[] if they are correct
+    for (int i = 0; i < transactionCount; i++)
+    {
+        printf("\ntransactionsItems[%d] = %d\n", i, transactionItems[i]);
+    }
+
+    for (int i = 0; i < transactionCount; i++)
+    {
+        printf("\ntransactions[%d].buyerid = %ld\n", i, transactions[i].buyerid);
+        printf("transactions[%d].sellerid = %ld\n", i, transactions[i].sellerid);
+        printf("transactions[%d].month = %ld\n", i, transactions[i].month);
+        printf("transactions[%d].day = %ld\n", i, transactions[i].day);
+        printf("transactions[%d].year = %ld\n", i, transactions[i].year);
+        printf("transactions[%d].total = %lf\n\n", i, transactions[i].total);
+
+    }
+    */
 
     while (choice != 6) {
         printf("Admin Menu\n\n");
@@ -85,6 +110,7 @@ void adminMenu(struct user users[], int userCount){
         }
 
     }
+
 }
 
 

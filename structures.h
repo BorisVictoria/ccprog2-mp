@@ -85,7 +85,7 @@ void checkoutByItem(struct user users[], long userid, int userCount, struct item
 int readUsers(struct user users[]);
 int readItems(struct item items[]);
 int readCart(struct item items[], long userid);
-void readTransactions(struct transaction transactions[], int transactionItems[], int transactionItemCount);
+void readTransactions(struct transaction transactions[], int transactionItems[], int transactionCount);
 int readTransactionItems(int transactionItems[]);
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount);
 

@@ -170,43 +170,43 @@ int readTransactionItems(int transactionItems[])
 {
     FILE *transactionItemFile = fopen("TransactionOffsets.txt", "r");
     char buffer[1024];
-    int transactionItemCount = 0;
+    int transactionCount = 0;
 
     if (transactionItemFile == NULL)
-        return transactionItemCount;
+        return transactionCount;
 
     while(!feof(transactionItemFile))
     {
         if (fgets(buffer, 1024, transactionItemFile) != NULL)
         {
             buffer[strcspn(buffer, "\n")] = '\0';
-            sscanf(buffer, "%d", &transactionItems[transactionItemCount]);
+            sscanf(buffer, "%d", &transactionItems[transactionCount]);
         }
 
         if (fgets(buffer, 1024, transactionItemFile) != NULL)
         {
-            transactionItemCount++;
+            transactionCount++;
         }
 
     }
 
     fclose(transactionItemFile);
 
-    return transactionItemCount;
+    return transactionCount;
 
 }
 
-void readTransactions(struct transaction transactions[], int transactionItems[], int transactionItemCount)
+void readTransactions(struct transaction transactions[], int transactionItems[], int transactionCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "r");
     char buffer[1024];
 
-    for (int i = 0; i < transactionItemCount; i++)
+    for (int i = 0; i < transactionCount; i++)
     {
         if (fgets(buffer, 1024, transactionFile) != NULL)
         {
             buffer[strcspn(buffer, "\n")] = '\0';
-            sscanf(buffer, "%ld %ld %ld %ld %ld", &transactions[i].buyerid, &transactions[i].sellerid, &transactions[i].month, &transactions[i].day, &transactions[i].month);
+            sscanf(buffer, "%ld %ld %ld %ld %ld %lf", &transactions[i].buyerid, &transactions[i].sellerid, &transactions[i].month, &transactions[i].day, &transactions[i].year, &transactions[i].total);
         }
 
         for (int j = 0; j < transactionItems[i]; j++)
