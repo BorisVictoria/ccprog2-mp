@@ -179,12 +179,15 @@ int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int
     for (int i = 0; i < sellerCount; i++)
     {
         printf("\nSeller ID: %ld\n", sellers[i]);
-        printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
+        printf("-----------------------------------------------------------------------------------------\n");
+        printf("| Product ID |       Item Name       |     Category     |  Quantity  |    Unit Price    |\n");
+        printf("-----------------------------------------------------------------------------------------\n");
         for (int j = 0; j < cartItemCount; j++)
         {
             if (sellers[i] == cart[j].sellerid)
             {
-                printf("%ld %s %s %ld %lf\n", cart[j].productid, cart[j].name, cart[j].category, cart[j].quantity, cart[j].price);
+                printf("| %10ld | %-21s | %-16s | %10ld | %16lf |\n", cart[j].productid, cart[j].name, cart[j].category, cart[j].quantity, cart[j].price);
+                printf("-----------------------------------------------------------------------------------------\n");
             }
         }
     }

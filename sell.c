@@ -158,11 +158,13 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 void showMyProducts(struct user users[], int userIndex, int userItemCount)
 {
     printf("\nMy Products\n\n");
-    printf("Product ID\t\t Item Name\t\t Category\t\t Quantity\t\t Unit Price\n");
-
+    printf("-----------------------------------------------------------------------------------------\n");
+    printf("| Product ID |       Item Name       |     Category     |  Quantity  |    Unit Price    |\n");
+    printf("-----------------------------------------------------------------------------------------\n");
     for (int i = 0; i < userItemCount; i++)
     {
-        printf("%ld %s %s %ld %lf\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
+        printf("| %10ld | %-21s | %-16s | %10ld | %16lf |\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
+        printf("-----------------------------------------------------------------------------------------\n");
     }
 
 }
@@ -197,8 +199,12 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
         if (found == 1)
         {
             printf("\nLow Stock Products\n\n");
-            printf("Product ID\t\t Item Name\t\t Category\t\t Description \t\tQuantity\t\t Unit Price\n");
-            printf("%ld %s %s %s %ld %lf\n", users[userIndex].items[userProductIndex].productid, users[userIndex].items[userProductIndex].name, users[userIndex].items[userProductIndex].category, users[userIndex].items[userProductIndex].description, users[userIndex].items[userProductIndex].quantity, users[userIndex].items[userProductIndex].price);
+            printf("---------------------------------------------------------------------------------------------------------------------------\n");
+            printf("| Product ID |       Item Name       |     Category     |           Description           |  Quantity  |    Unit Price    |\n");
+            printf("---------------------------------------------------------------------------------------------------------------------------\n");
+            printf("| %10ld | %-21s | %-16s | %-31s | %10ld | %16lf |\n", users[userIndex].items[userProductIndex].productid, users[userIndex].items[userProductIndex].name, users[userIndex].items[userProductIndex].category, users[userIndex].items[userProductIndex].description, users[userIndex].items[userProductIndex].quantity, users[userIndex].items[userProductIndex].price);
+            printf("---------------------------------------------------------------------------------------------------------------------------\n");
+
 
             printf("[N] Next Item [X] Exit:");
             getString(&choice, 1);
