@@ -110,7 +110,7 @@ int registerUser(struct user users[], int userCount);
 void adminMenu(struct user users[], int userCount);
 void showAllUsers(struct user users[], int userCount);
 void showAllSellers(struct user users[], int userCount);
-int showTotalSalesByDuration();
+double showTotalSalesByDuration(struct transaction transactions[], int transactionCount);
 void showSellerSales();
 void showShopaholics();
 
