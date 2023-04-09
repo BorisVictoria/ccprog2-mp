@@ -12,7 +12,13 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
     int choice = 0;
 
     printf("User ID:");
-    userid = getLong();
+    do
+    {
+        userid = getLong();
+        if (userid < 1)
+            printf("Please input a positive number:");
+    }
+    while (userid < 1);
 
     for (int i = 0; i < userCount; i++)
     {
@@ -31,7 +37,7 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
     }
 
     printf("Password:");
-    getString(password, 11);
+    getString(password, 10);
 
     if (strcmp(password, users[userIndex].password) != 0)
     {

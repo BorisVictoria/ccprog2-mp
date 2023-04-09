@@ -11,7 +11,6 @@ int main()
     int choice = 0;
     int registerSuccess;
 
-
     userCount = readUsers(users);
     itemCount = readItems(items);  // Read all data from text files to structures;
     //transactionCount = readTransactions();

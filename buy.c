@@ -10,6 +10,13 @@ void viewAllProducts(struct user users[], int userCount)
     int userIndex = 0;
     int userItemCount;
 
+    while (users[userIndex].userItemCount == 0)
+    {
+        userIndex++;
+        if (userIndex >= userCount)
+            userIndex = 0;
+    }
+
     while (exit == 0)
     {
         printf("\nAll Products\n\n");
@@ -29,11 +36,13 @@ void viewAllProducts(struct user users[], int userCount)
             userIndex++;
             if (userIndex >= userCount)
                 userIndex = 0;
-            else
-                while (users[userIndex].userItemCount == 0)
-                {
+
+            while (users[userIndex].userItemCount == 0)
+            {
                     userIndex++;
-                }
+                    if (userIndex >= userCount)
+                    userIndex = 0;
+            }
 
         }
         else if (choice == 'X' || choice == 'x')
@@ -52,7 +61,13 @@ void showProductBySeller(struct user users[], int userCount)
     int found = 0;
 
     printf("Enter sellerid to search:");
-    sellerid = getLong();
+    do
+    {
+        sellerid = getLong();
+        if (sellerid < 1)
+            printf("Please input a positive number");
+    }
+    while (sellerid < 1);
     for (int i = 0; i < userCount; i++)
     {
         if (users[i].userid == sellerid)
@@ -77,8 +92,6 @@ void showProductBySeller(struct user users[], int userCount)
         printf("%ld %s %s %ld %lf\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
     }
 
-    printf("Enter any character to exit:");
-    getchar();
 }
 
 void showProductByCategory(struct item items[], int itemCount)
@@ -91,7 +104,7 @@ void showProductByCategory(struct item items[], int itemCount)
 
     char category[16];
     printf("Enter category to search:");
-    getString(category, 16);
+    getString(category, 15);
 
     while (exit == 0)
     {
@@ -153,7 +166,7 @@ void showProductByName(struct item items[], int itemCount)
 
     char name[21];
     printf("Enter product name to search:");
-    getString(name, 21);
+    getString(name, 20);
 
     while (exit == 0)
     {
@@ -215,7 +228,13 @@ int addToCart(struct item items[], int itemCount, struct item cart[], int cartIt
     int success = 0;
 
     printf("Product ID:");
-    productid = getLong();
+    do
+    {
+        productid = getLong();
+        if (productid < 1)
+        printf("Please input a positive number:");
+    }
+    while (productid < 1);
 
     for (int i = 0; i < itemCount; i++)
     {
@@ -317,10 +336,10 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
     int cartItemAdded;
     int proceed = 1;
 
+    printf("\n");
     userid = users[userIndex].userid;
     cartItemCount = readCart(cart, userid);
 
-    printf("\n");
     cartItemCount = cartIntegrityCheck(items, itemCount, cart, cartItemCount, &proceed);
     cartItemCount = sortCart(cart, cartItemCount);
 
@@ -347,31 +366,31 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
         switch (choice) {
             case 1:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     viewAllProducts(users, userCount);
                 break;
             case 2:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     showProductBySeller(users, userCount);
                 break;
             case 3:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     showProductByCategory(items, itemCount);
                 break;
             case 4:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     showProductByName(items, itemCount);
                 break;
             case 5:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else if (cartItemCount >= 10)
                     printf("Maximum number of items in cart! Please remove an item first");
                 else
@@ -384,17 +403,17 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
                 break;
             case 6:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else if (cartItemCount == 0)
-                    printf("No items in cart! Please add an item first\n\n");
+                    printf("No items in cart! Please add an item first\n");
                 else
                     cartItemCount = editCartMenu(cart, cartItemCount, items, itemCount);
                 break;
             case 7:
                 if (itemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else if (cartItemCount == 0)
-                    printf("No items in cart! Please add an item first\n\n");
+                    printf("No items in cart! Please add an item first\n");
                 else
                     cartItemCount = checkoutMenu(users, userid, userCount, items, itemCount, cart, cartItemCount);
                 break;

@@ -9,7 +9,13 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
     int found = 0;
 
     printf("Enter Seller ID of items to remove:");
-    sellerid = getLong();
+    do
+    {
+        sellerid = getLong();
+        if (sellerid < 1)
+            printf("Please input a positive number:");
+    }
+    while (sellerid < 1);
 
     for (int i = 0; i < cartItemCount; i++)
     {
@@ -40,7 +46,13 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
     int found = 0;
 
     printf("Enter Product ID of item to remove:");
-    productid = getLong();
+    do
+    {
+        productid = getLong();
+        if (productid < 1)
+            printf("Please input a positive number:");
+    }
+    while (productid < 1);
 
     for (int i = 0; i < cartItemCount; i++)
     {
@@ -74,7 +86,13 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
     int cartProductIndex;
 
     printf("Enter Product ID of item to edit quantity:");
-    productid = getLong();
+    do
+    {
+        productid = getLong();
+        if (productid < 1)
+            printf("Please input a positive number:");
+    }
+    while (productid < 1);
 
     for (int i = 0; i < cartItemCount; i++)
     {

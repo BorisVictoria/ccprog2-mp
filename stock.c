@@ -10,7 +10,13 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
     int success = 0;
 
     printf("Input quantity to add:");
-    quantity = getLong();
+    do
+    {
+        quantity = getLong();
+        if (quantity < 1)
+            printf("Please input a positive quantity:");
+    }
+    while (quantity < 1);
     printf("\nQuantity:%ld\n", quantity);
 
     printf("Confirm amount added [Y]/[N]:");
@@ -49,7 +55,13 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
     int success = 0;
 
     printf("Input new price:");
-    price = getDouble();
+    do
+    {
+        price = getDouble();
+        if (price < 1)
+            printf("Please input a positive price:");
+    }
+    while (price < 1);
     printf("\nPrice:%lf\n", price);
 
     printf("Confirm new price [Y]/[N]:");
@@ -214,7 +226,13 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
     showMyProducts(users, userIndex, userItemCount);
 
     printf("\nProduct ID:");
-    productid = getLong();
+    do
+    {
+        productid = getLong();
+        if (productid < 1)
+            printf("Please input a positive number");
+    }
+    while (productid < 1);
 
     for (int i = 0; i < userItemCount; i++)
     {

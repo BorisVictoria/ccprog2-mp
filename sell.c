@@ -22,7 +22,13 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
         printf("\nAdd a new item\n");
 
         printf("Input Product ID:");
-        productid = getLong();
+        do
+        {
+            productid = getLong();
+            if (productid < 1)
+                printf("Please input a positive number");
+        }
+        while (productid < 1);
 
         sellerid = users[userIndex].userid;
 
@@ -30,7 +36,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
         {
             if (productid == users[userIndex].items[i].productid)
             {
-                printf("Product ID already exists! Returning to menu\n\n");
+                printf("Product ID already exists! Returning to menu\n");
                 return success;
             }
 
@@ -40,7 +46,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
         {
             if (productid == items[i].productid)
             {
-                printf("Product ID already exists! Returning to menu\n\n");
+                printf("Product ID already exists! Returning to menu\n");
                 return success;
             }
 
@@ -56,10 +62,22 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
         getString(description, 31);
 
         printf("Input Quantity:");
-        quantity = getLong();
+        do
+        {
+            quantity = getLong();
+            if (quantity < 1)
+                printf("Please input a positive quantity:");
+        }
+        while (quantity < 1);
 
         printf("Input Price:");
-        price = getDouble();
+        do
+        {
+            price = getDouble();
+            if (price < 1)
+                printf("Please input a positive price:");
+        }
+        while (price < 1);
 
         printf("\nProduct ID:%ld\n", productid);
         printf("Seller ID:%ld\n", sellerid);
@@ -230,7 +248,7 @@ int sellMenu(struct user users[], int userIndex, struct item items[], int itemCo
         {
             case 1:
                 if (userItemCount == 20)
-                    printf("Maximum number of items already added!\n\n");
+                    printf("Maximum number of items already added!\n");
                 else
                     itemAdded = addNewItem(users, userIndex, userItemCount, items, itemCount);
                 if (itemAdded == 1)
@@ -245,19 +263,19 @@ int sellMenu(struct user users[], int userIndex, struct item items[], int itemCo
                 break;
             case 2:
                 if (userItemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     editStockMenu(users, userIndex, userItemCount, items, itemCount);
                 break;
             case 3:
                 if (userItemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     showMyProducts(users, userIndex, userItemCount);
                 break;
             case 4:
                 if (userItemCount == 0)
-                    printf("No items found! Please add an item first\n\n");
+                    printf("No items found! Please add an item first\n");
                 else
                     showMyLowStockProducts(users, userIndex, userItemCount);
                 break;

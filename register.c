@@ -20,28 +20,40 @@ int registerUser(struct user users[], int userCount)
         printf("\nRegister as a User\n");
 
         printf("Input User ID:");
-        userid = getLong();
+        do
+        {
+            userid = getLong();
+            if (userid < 1)
+                printf("Please input a positive number:");
+        }
+        while (userid < 1);
 
         for (int i = 0; i < userCount; i++)
         {
             if (userid == users[i].userid)
             {
-                printf("User ID already exists! Exiting registration\n\n");
+                printf("User ID already exists! Exiting registration\n");
                 return success;
             }
         }
 
         printf("Input Name:");
-        getString(name, 21);
+        getString(name, 20);
 
         printf("Input Password:");
-        getString(password,11 );
+        getString(password,10);
 
         printf("Input Address:");
-        getString(address, 31);
+        getString(address, 30);
 
         printf("Input Contact Number:");
-        contactnumber = getLong();
+        do
+        {
+            contactnumber = getLong();
+            if (contactnumber < 1)
+                printf("Please input a positive number:");
+        }
+        while (contactnumber < 1);
 
         printf("\nUser ID:%ld\n", userid);
         printf("Name:%s\n", name);
@@ -66,20 +78,20 @@ int registerUser(struct user users[], int userCount)
 
                 if (choice == 'N' || choice == 'n')
                 {
-                    printf("Exiting registration\n\n");
+                    printf("Exiting registration\n");
                     exit = 1;
                 }
 
             }
             else
             {
-                printf("Unrecognized option, exiting registration\n\n");
+                printf("Unrecognized option, exiting registration\n");
                 exit = 1;
             }
         }
         else
         {
-            printf("Unrecognized option, exiting registration\n\n");
+            printf("Unrecognized option, exiting registration\n");
             exit = 1;
         }
 

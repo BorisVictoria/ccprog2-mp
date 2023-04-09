@@ -35,7 +35,6 @@ struct transaction
     struct item items[5];
 
 };
-void debugOut(const char *format, ... );
 //Helper.c Functions
 void getString(char dest[], int destsize);
 long getLong(void);
