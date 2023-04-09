@@ -35,6 +35,13 @@ struct transaction
     struct item items[5];
 
 };
+
+struct transactor{
+    long sellerid;
+    long buyerid;
+    char name[21];
+    double total;
+};
 //Helper.c Functions
 void getString(char dest[], int destsize);
 long getLong(void);
@@ -111,8 +118,8 @@ void adminMenu(struct user users[], int userCount);
 void showAllUsers(struct user users[], int userCount);
 void showAllSellers(struct user users[], int userCount);
 double showTotalSalesByDuration(struct transaction transactions[], int transactionCount);
-void showSellerSales();
-void showShopaholics();
+void showSellerSales(struct transaction transactions[], int transactionCount, struct user users[], int userCount);
+void showShopaholics(struct transaction transactions[], int transactionCount, struct user users[], int userCount);
 
 #endif
 

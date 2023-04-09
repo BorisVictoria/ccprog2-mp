@@ -9,7 +9,8 @@ void showAllUsers(struct user users[], int userCount){
     printf("---------------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<userCount; i++) {
             printf("| %12ld | %-12s | %-22s | %-31s | %12ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber);
-            printf("---------------------------------------------------------------------------------------------------------\n");    }
+            printf("---------------------------------------------------------------------------------------------------------\n");
+    }
 //userID, password, name, address, phone number
 }
 
@@ -180,11 +181,196 @@ double showTotalSalesByDuration(struct transaction transactions[], int transacti
     return total;
 }
 
-void showSellerSales(){
+void showSellerSales(struct transaction transactions[], int transactionCount, struct user users[], int userCount){
+    struct transactor transactors[100];
 
+    long month, month2;
+    long day, day2;
+    long year, year2;
+    long temp;
+    int valid, swap, foundIndex;
+    int ctr=0;
+
+    printf("Please input the start date:\n");
+    do
+    {
+        printf("Input month [mm]:");
+        do
+        {
+            month = getLong();
+            if (month < 1 || month > 12)
+                printf("Please input a valid month:");
+        }
+        while(month < 1 || month > 12);
+        printf("Input day [dd]:");
+        do
+        {
+            day = getLong();
+            if (day < 1 || day > 31)
+                printf("Please input a valid day:");
+        }
+        while(day < 1 || day > 31);
+        printf("Input year [yyyy]:");
+        do
+        {
+            year = getLong();
+            if (year < 0)
+                printf("Please input a valid year:");
+        }
+        while(year < 0);
+    }
+    while (checkValidDate(month, day, year) == 0);
+
+    printf("Please input the end date:\n");
+    do
+    {
+        printf("Input month [mm]:");
+        do
+        {
+            month2 = getLong();
+            if (month2 < 1 || month2 > 12)
+                printf("Please input a valid month:");
+        }
+        while(month2 < 1 || month2 > 12);
+        printf("Input day [dd]:");
+        do
+        {
+            day2 = getLong();
+            if (day2 < 1 || day2 > 31)
+                printf("Please input a valid day:");
+        }
+        while(day2 < 1 || day2 > 31);
+        printf("Input year [yyyy]:");
+        do
+        {
+            year2 = getLong();
+            if (year2 < 0)
+                printf("Please input a valid year:");
+        }
+        while(year2 < 0);
+    }
+    while (checkValidDate(month2, day2, year2) == 0);
+
+    if(year2<year){
+        swap = 1;
+    }
+    else if(year2==year){
+        if(month2<month){
+            swap=1;
+        }
+        else if(month2==month){
+            if(day2<day)
+                swap=1;
+            else
+                swap=0;
+        }
+        else
+            swap=0;
+    }
+    else
+        swap=0;
+
+    if(swap) {
+
+        temp = day;
+        day = day2;
+        day2 = temp;
+
+        temp = month;
+        month = month2;
+        month2 = temp;
+
+        temp = year;
+        year = year2;
+        year2 = temp;
+        printf("The end date inputted is earlier than the start date. The two dates have been swapped.\n");
+    }
+
+    for(int i=0; i<transactionCount; i++){
+        valid = 0;
+
+        if(transactions[i].year>year){
+            valid = 1;
+        }
+        else if(transactions[i].year==year){
+            if(transactions[i].month>month){
+                valid=1;
+            }
+            else if(transactions[i].month==month){
+                if(transactions[i].day>=day){
+                    valid=1;
+                }
+                else
+                    valid=0;
+            }
+            else
+                valid=0;
+        }
+        else
+            valid=0;
+
+        if(valid ==1){
+            if(transactions[i].year<year2){
+                valid = 1;
+            }
+            else if(transactions[i].year==year2){
+                if(transactions[i].month<month2){
+                    valid=1;
+                }
+                else if(transactions[i].month==month2){
+                    if(transactions[i].day<=day2)
+                        valid=1;
+                    else
+                        valid=0;
+                }
+                else
+                    valid=0;
+            }
+            else
+                valid=0;
+        }
+//     sellerTotals[j] += transactions[i].total;
+//                }
+//                else{
+//                    validSellers[ctr] = transactions[i].sellerid;
+//                    sellerTotals[ctr] += transactions[i].total;
+//                    ctr++;
+//                }
+        if(valid){
+            foundIndex=-1;
+            for(int j=0; j<ctr; j++){
+                if(transactors[j].sellerid == transactions[i].sellerid) {
+                    foundIndex = j;
+                    j=100;
+                }
+            }
+            if(foundIndex==-1){
+                transactors[ctr].sellerid = transactions[i].sellerid;
+                for(int l=0; l<userCount; l++){
+                    if(transactions[i].sellerid == users[l].userid){
+                        strcpy(transactors[ctr].name, users[l].name);
+                    }
+                }
+                transactors[ctr].total = transactions[i].total;
+                ctr++;
+            }
+            else{
+                transactors[foundIndex].total += transactions[i].total;
+            }
+        }
+    }
+
+    //seller ID, seller name, total sales in the duration
+    printf("-----------------------------------------------------------\n");
+    printf("|  sellerID  |    name    |  total sales in the duration  |\n");
+    printf("-----------------------------------------------------------\n");
+    for(int k=0; k<ctr; k++) {
+        printf("| %10ld | %-10s | %29lf |\n", transactors[k].sellerid, transactors[k].name, transactors[k].total);
+        printf("-----------------------------------------------------------\n");
+    }
 }
 
-void showShopaholics(){
+void showShopaholics(struct transaction transactions[], int transactionCount, struct user users[], int userCount){
 
 }
 
@@ -251,10 +437,10 @@ void adminMenu(struct user users[], int userCount)
                 printf("Total sales in this given duration is: %lf\n", total);
                 break;
             case 4:
-                showSellerSales();
+                showSellerSales(transactions, transactionCount, users, userCount);
                 break;
             case 5:
-                showShopaholics();
+                showShopaholics(transactions, transactionCount, users, userCount);
                 break;
             case 6:
                 printf("Returning to the Main Menu\n");
