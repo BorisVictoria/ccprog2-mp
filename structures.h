@@ -81,6 +81,10 @@ void checkoutAll(struct user users[], long userid, int userCount, struct item it
 void checkoutBySeller(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year);
 void checkoutByItem(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year);
 
+//Date.c Function
+int checkLeapYear(long year);
+int checkValidDate(long month, long day, long year);
+
 //Startup.c Functions
 int readUsers(struct user users[]);
 int readItems(struct item items[]);

@@ -1,13 +1,11 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include "structures.h"
 
 int main()
 {
     struct user users[100];
     struct item items[2000];
-    int userCount, itemCount, transactionCount;
+    int userCount, itemCount;
     int choice = 0;
     int registerSuccess;
 

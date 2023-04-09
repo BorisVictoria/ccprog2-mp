@@ -1,6 +1,5 @@
 //This file contains the functions for the edit cart menu and all associated features.
 #include <stdio.h>
-#include <string.h>
 #include "structures.h"
 
 void removeItemsFromSeller(struct item cart[], int cartItemCount)

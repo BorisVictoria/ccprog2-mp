@@ -568,26 +568,34 @@ int checkoutMenu(struct user users[], long userid, int userCount, struct item it
         printf("Please change the quantity of the products above or remove them before proceeding to checkout\n\n");
     }
 
-    printf("Input month [mm]:");
     do
     {
-        month = getLong();
-        if (month < 1 || month > 12)
-            printf("Please input a valid month:");
+        printf("Input month [mm]:");
+        do
+        {
+            month = getLong();
+            if (month < 1 || month > 12)
+                printf("Please input a valid month:");
+        }
+        while(month < 1 || month > 12);
+        printf("Input day [dd]:");
+        do
+        {
+            day = getLong();
+            if (day < 1 || day > 31)
+                printf("Please input a valid day:");
+        }
+        while(day < 1 || day > 31);
+        printf("Input year [yyyy]:");
+        do
+        {
+            year = getLong();
+            if (year < 0)
+                printf("Please input a valid year:");
+        }
+        while(year < 0);
     }
-    while(month < 1 || month > 12);
-    printf("Input day [dd]:");
-    do
-    {
-        day = getLong();
-    }
-    while(day < 1 || day > 31);
-    printf("Input year [yyyy]:");
-    do
-    {
-        year = getLong();
-    }
-    while(year < 0);
+    while (checkValidDate(month, day, year) == 0);
 
     while (choice != 4)
     {

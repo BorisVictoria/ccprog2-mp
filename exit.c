@@ -1,6 +1,5 @@
 // This file contains the functions associated with the exit of the program
 #include <stdio.h>
-#include <string.h>
 #include "structures.h"
 
 void writeUsers(struct user users[], int userCount)

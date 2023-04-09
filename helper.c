@@ -78,7 +78,7 @@ double getDouble(void)
 {
     char buffer[1024];
     char *convert;
-    long number;
+    double number;
     int success;
 
     do
