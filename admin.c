@@ -4,22 +4,24 @@
 #include "structures.h"
 
 void showAllUsers(struct user users[], int userCount){
-    printf("---------------------------------------------------------------------------------------------------------\n");
-    printf("|    userID    |   password   |          name          |             address             | phone number |\n");
-    printf("---------------------------------------------------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------------------------\n");
+    printf("|   userID   |  password  |          name          |             address             | phone number |\n");
+    printf("-----------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<userCount; i++) {
-            printf("| %12ld | %-12s | %-22s | %-31s | %12ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber);
+            printf("| %10ld | %-10s | %-22s | %-31s | %12ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber);
             printf("---------------------------------------------------------------------------------------------------------\n");
     }
 //userID, password, name, address, phone number
 }
 
 void showAllSellers(struct user users[], int userCount){
-
-    printf("userID password name address phone number number of items for sale\n");
+    printf("--------------------------------------------------------------------------------------------------------------------------------\n");
+    printf("|   userID   |  password  |          name          |             address             | phone number | number of items for sale |\n");
+    printf("--------------------------------------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<userCount; i++) {
         if(users[i].userItemCount > 0) {
-            printf("%ld %s %s %s %ld %ld\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber, users[i].userItemCount);
+            printf("| %10ld | %-10s | %-22s | %-31s | %12ld | %24ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber, users[i].userItemCount);
+            printf("--------------------------------------------------------------------------------------------------------------------------------\n");
         }
     }
 }
@@ -361,12 +363,12 @@ void showSellerSales(struct transaction transactions[], int transactionCount, st
     }
 
     //seller ID, seller name, total sales in the duration
-    printf("-----------------------------------------------------------\n");
-    printf("|  sellerID  |    name    |  total sales in the duration  |\n");
-    printf("-----------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------\n");
+    printf("|  sellerID  |         name           |  total sales in the duration  |\n");
+    printf("-----------------------------------------------------------------------\n");
     for(int k=0; k<ctr; k++) {
-        printf("| %10ld | %-10s | %29lf |\n", transactors[k].sellerid, transactors[k].name, transactors[k].total);
-        printf("-----------------------------------------------------------\n");
+        printf("| %10ld | %-22s | %29lf |\n", transactors[k].sellerid, transactors[k].name, transactors[k].total);
+        printf("-----------------------------------------------------------------------\n");
     }
 }
 
