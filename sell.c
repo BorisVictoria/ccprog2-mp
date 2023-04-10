@@ -3,6 +3,13 @@
 #include <string.h>
 #include "structures.h"
 
+/* addNewItem adds new item to items struct
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userItemCount -  number of items each user has
+ * @items[] - array of items
+ * @itemCount - number of items
+*/
 int addNewItem(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount)
 {
     long productid;
@@ -149,6 +156,11 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 
 }
 
+/* showMyProducts show products of user
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userItemCount -  number of items each user has
+*/
 void showMyProducts(struct user users[], int userIndex, int userItemCount)
 {
     printf("\nMy Products\n\n");
@@ -163,6 +175,11 @@ void showMyProducts(struct user users[], int userIndex, int userItemCount)
 
 }
 
+/* showMyProducts shows low stock products of user
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userItemCount -  number of items each user has
+*/
 void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount)
 {
     char choice = '\0';
