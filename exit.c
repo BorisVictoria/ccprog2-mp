@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include "structures.h"
 
+/* writeUsers writes to the file the information in the users array
+ * @users[] - array of users
+ * @userCount - number of users
+ */
 void writeUsers(struct user users[], int userCount)
 {
     FILE *userFile = fopen("Users.txt", "w");
@@ -18,6 +22,10 @@ void writeUsers(struct user users[], int userCount)
     fclose(userFile); // close file
 }
 
+/* writeItems writes to the file the information in the items array
+ * @items[] - array of users
+ * @itemCount - number of users
+ */
 void writeItems(struct item items[], int itemCount)
 {
     FILE *itemFile = fopen("Items.txt", "w");
@@ -35,6 +43,11 @@ void writeItems(struct item items[], int itemCount)
     fclose(itemFile); // close file
 }
 
+/* writeCart writes to the file the information in the cart belonging to the user
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @userid - id belonging to user
+ */
 void writeCart(struct item items[], int itemCount, long userid)
 {
     char fileName[32]; // item file name will be userid
@@ -56,6 +69,9 @@ void writeCart(struct item items[], int itemCount, long userid)
 
 }
 
+/* writeTransactionItems writes to the file the dimensions of the transactions array
+ * @transactionItems - number of items transacted
+ */
 void writeTransactionItems(int transactionItems) // write transaction dimensions to file
 {
     FILE *transactionItemFile = fopen("TransactionOffsets.txt", "a");
@@ -67,6 +83,10 @@ void writeTransactionItems(int transactionItems) // write transaction dimensions
 
 }
 
+/* writeTransactions writes to the file the information in the transactions array
+ * @transactions[] - array of transactions
+ * @totalTransactionItemCount - total number of items transacted
+ */
 void writeTransactions(struct transaction transactions[], int totalTransactionItemCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "a");
