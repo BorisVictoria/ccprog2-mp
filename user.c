@@ -3,7 +3,7 @@
 #include <string.h>
 #include "structures.h"
 
-/* userMenu has an int return type and returns the itemCount
+/* userMenu has an int return type and returns the itemCount when sell menu is selected or user not found
 
  @param users passes the users array
  @param userCount number of users in the users array
