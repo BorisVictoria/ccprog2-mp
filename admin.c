@@ -333,13 +333,7 @@ void showSellerSales(struct transaction transactions[], int transactionCount, st
             else
                 valid=0;
         }
-//     sellerTotals[j] += transactions[i].total;
-//                }
-//                else{
-//                    validSellers[ctr] = transactions[i].sellerid;
-//                    sellerTotals[ctr] += transactions[i].total;
-//                    ctr++;
-//                }
+
         if(valid){
             foundIndex=-1;
             for(int j=0; j<ctr; j++){
