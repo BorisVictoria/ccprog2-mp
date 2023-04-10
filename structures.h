@@ -49,8 +49,6 @@ double getDouble(void);
 void sortUsers(struct user users[], int userCount);
 void sortItems(struct item items[], int itemCount);
 int sortCart(struct item items[], int cartItemCount);
-void sortTransactions(struct transaction transactions[], int transactionCount);
-//int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[]);
 
 //Sell.c Functions
 int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount);

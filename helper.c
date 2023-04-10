@@ -230,22 +230,3 @@ int sortCart(struct item items[], int cartItemCount)
     return newCartItemCount;
 
 }
-
-/* No longer needed, itemCount and items array is automatically appended if addNewItem() returns 1 for successfully adding an item
-int getTotalItemsFromUsers(struct user users[], int userCount, struct item items[])
-{
-    int totalItemCount = 0;
-
-    for (int i = 0; i < userCount; i++)
-    {
-        for (int j = 0; j < users[i].userItemCount; j++)
-        {
-            items[totalItemCount] = users[i].items[j];
-            totalItemCount++;
-        }
-    }
-
-    return totalItemCount;
-
-}
-*/
