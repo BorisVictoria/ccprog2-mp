@@ -434,12 +434,14 @@ void buyMenu(struct user users[], int userIndex, int userCount, struct item item
                 else if (cartItemCount >= 10)
                     printf("Maximum number of items in cart! Please remove an item first\n");
                 else
+                {
                     cartItemAdded = addToCart(items, itemCount, cart, cartItemCount, userid);
                     if (cartItemAdded == 1)
                     {
                         cartItemCount++;
                         cartItemCount = sortCart(cart, cartItemCount);
                     }
+                }
                 break;
             case 6:
                 if (itemCount == 0)
