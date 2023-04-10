@@ -28,11 +28,11 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             if (productid < 1)
                 printf("Please input a positive number");
         }
-        while (productid < 1);
+        while (productid < 1); // repeat prompt until user enters a positive number
 
         sellerid = users[userIndex].userid;
 
-        for (int i = 0; i < userItemCount; i++)
+        for (int i = 0; i < userItemCount; i++) // search for productid and return if it exists
         {
             if (productid == users[userIndex].items[i].productid)
             {
@@ -44,7 +44,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 
         for (int i = 0; i < itemCount; i++)
         {
-            if (productid == items[i].productid)
+            if (productid == items[i].productid) // search for productid and return if it exists
             {
                 printf("Product ID already exists! Returning to menu\n");
                 return success;
@@ -68,7 +68,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             if (quantity < 1)
                 printf("Please input a positive quantity:");
         }
-        while (quantity < 1);
+        while (quantity < 1); // repeat prompt if user does not enter a positive number
 
         printf("Input Price:");
         do
@@ -77,7 +77,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             if (price < 1)
                 printf("Please input a positive price:");
         }
-        while (price < 1);
+        while (price < 1); // repeat prompt if user does not enter a positive number
 
         printf("\nProduct ID:%ld\n", productid);
         printf("Seller ID:%ld\n", sellerid);
@@ -129,7 +129,7 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             exit = 1;
         }
 
-        if (success == 1)
+        if (success == 1) // store information if user says yes
         {
             printf("\nAdding item successful!\n");
             users[userIndex].items[userItemCount].sellerid = sellerid;
@@ -140,15 +140,6 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
             users[userIndex].items[userItemCount].quantity = quantity;
             users[userIndex].items[userItemCount].price = price;
             users[userIndex].userItemCount++;
-
-            printf("\nTest: Determine what was stored\n");
-            printf("\nProduct ID:%ld\n", users[userIndex].items[userItemCount].productid);
-            printf("Seller ID:%ld\n", users[userIndex].items[userItemCount].sellerid);
-            printf("Name:%s\n", users[userIndex].items[userItemCount].name);
-            printf("Category:%s\n", users[userIndex].items[userItemCount].category);
-            printf("Description:%s\n", users[userIndex].items[userItemCount].description);
-            printf("Quantity:%ld\n",  users[userIndex].items[userItemCount].quantity);
-            printf("Price:%lf\n",  users[userIndex].items[userItemCount].price);
 
         }
 
@@ -164,7 +155,7 @@ void showMyProducts(struct user users[], int userIndex, int userItemCount)
     printf("-----------------------------------------------------------------------------------------\n");
     printf("| Product ID |       Item Name       |     Category     |  Quantity  |    Unit Price    |\n");
     printf("-----------------------------------------------------------------------------------------\n");
-    for (int i = 0; i < userItemCount; i++)
+    for (int i = 0; i < userItemCount; i++) // show products of user
     {
         printf("| %10ld | %-21s | %-16s | %10ld | %16lf |\n", users[userIndex].items[i].productid, users[userIndex].items[i].name, users[userIndex].items[i].category, users[userIndex].items[i].quantity, users[userIndex].items[i].price);
         printf("-----------------------------------------------------------------------------------------\n");
@@ -180,20 +171,20 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
     int found;
     int loop = 0;
 
-    while (exit == 0)
+    while (exit == 0) // cycle through items
     {
         found = 0;
         for (int i = userProductIndex; i < userItemCount; i++)
         {
 
-            if (users[userIndex].items[i].quantity < 5)
+            if (users[userIndex].items[i].quantity < 5) // print if a low stock item is found
             {
                 found = 1;
-                loop = 1;
+                loop = 1; // will loop from end to start of items if a low stock item is found
                 userProductIndex = i;
                 i = userItemCount;
             }
-            else if (i == userItemCount-1 && loop == 1)
+            else if (i == userItemCount-1 && loop == 1) // set i to -1 to restart loop if a low stock item is found
             {
                 i = -1;
             }
@@ -214,8 +205,8 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
 
             if (choice == 'N' || choice == 'n')
             {
-                userProductIndex++;
-                if (userProductIndex >= userItemCount)
+                userProductIndex++; // go to next index in items
+                if (userProductIndex >= userItemCount) // reset index to zero if index is greater than the number of items a user has
                     userProductIndex = 0;
             }
 
@@ -227,7 +218,7 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
         }
         else
         {
-            printf("No Low Stock Products Found!\n");
+            printf("No Low Stock Products Found!\n"); // return if no low stock product is found
             exit = 1;
         }
 
@@ -260,7 +251,7 @@ int sellMenu(struct user users[], int userIndex, struct item items[], int itemCo
                     printf("Maximum number of items already added!\n");
                 else
                     itemAdded = addNewItem(users, userIndex, userItemCount, items, itemCount);
-                if (itemAdded == 1)
+                if (itemAdded == 1) // increment number of items if item was added
                 {
                     userItemCount++;
                     itemCount++;

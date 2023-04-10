@@ -14,7 +14,7 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
         if (sellerid < 1)
             printf("Please input a positive number:");
     }
-    while (sellerid < 1);
+    while (sellerid < 1); // repeat prompt until user enters a positive number
 
     for (int i = 0; i < cartItemCount; i++)
     {
@@ -25,13 +25,13 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
         }
     }
 
-    if (found == 0)
+    if (found == 0) // return if seller is not found in items
     {
         printf("Seller ID not found! Returning to edit cart menu\n");
         return;
     }
 
-    for (int i = 0; i < cartItemCount; i++)
+    for (int i = 0; i < cartItemCount; i++) // set quantity to zero so item will get removed by sortCart()
     {
         if (sellerid == cart[i].sellerid)
             cart[i].quantity = 0;
@@ -51,7 +51,7 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
         if (productid < 1)
             printf("Please input a positive number:");
     }
-    while (productid < 1);
+    while (productid < 1); // repeat prompt until user enters a positive number
 
     for (int i = 0; i < cartItemCount; i++)
     {
@@ -68,7 +68,7 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
         return;
     }
 
-    for (int i = 0; i < cartItemCount; i++)
+    for (int i = 0; i < cartItemCount; i++) // set quantity to zero so item will get removed by sortCart()
     {
         if (productid == cart[i].productid)
             cart[i].quantity = 0;
@@ -91,7 +91,7 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
         if (productid < 1)
             printf("Please input a positive number:");
     }
-    while (productid < 1);
+    while (productid < 1); // repeat prompt until user enters a positive number
 
     for (int i = 0; i < cartItemCount; i++)
     {
@@ -103,7 +103,7 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
         }
     }
 
-    if (found == 0)
+    if (found == 0) // return if product is not found in items
     {
         printf("Product ID not found! Returning to edit cart menu\n");
         return;
@@ -118,7 +118,7 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
         }
     }
 
-    if (items[productIndex].quantity <= 0)
+    if (items[productIndex].quantity <= 0) // check to remove item if quantity is zero
     {
         printf("Product is out of stock! Removing from cart\n");
         cart[cartProductIndex].quantity = 0;
@@ -138,11 +138,11 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
             printf("Entered quantity is not available. Please try again:");
         }
     }
-    while(quantity <= 0 || items[productIndex].quantity < quantity);
+    while(quantity <= 0 || items[productIndex].quantity < quantity); // repeat prompt until user enters a positive number that is less than or equal to quantity available
     printf("\nProduct quantity changed!\n");
     printf("New Quantity:%ld\n", quantity);
 
-    cart[cartProductIndex].quantity = quantity;
+    cart[cartProductIndex].quantity = quantity; // set quantity of item in cart
 
 }
 
@@ -154,13 +154,13 @@ int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int
 
     printf("\nProducts in Cart\n");
 
-    for (int i = 0; i < cartItemCount; i++)
+    for (int i = 0; i < cartItemCount; i++) // determine number of items in cart
     {
         sellers[i] = cart[i].sellerid;
         sellerCount++;
     }
 
-    for (int i = 0; i < sellerCount; i++)
+    for (int i = 0; i < sellerCount; i++) // store into sellers all non-duplicate seller id
     {
         for (int j = i+1; j < sellerCount; j++)
         {
@@ -176,7 +176,7 @@ int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int
         }
     }
 
-    for (int i = 0; i < sellerCount; i++)
+    for (int i = 0; i < sellerCount; i++) // iterate through seller id and print all their products by seller
     {
         printf("\nSeller ID: %ld\n", sellers[i]);
         printf("-----------------------------------------------------------------------------------------\n");
@@ -206,15 +206,15 @@ int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int
         switch (choice) {
             case 1:
                 removeItemsFromSeller(cart, cartItemCount);
-                cartItemCount = sortCart(cart, cartItemCount);
+                cartItemCount = sortCart(cart, cartItemCount); // sort cart after removing item
                 break;
             case 2:
                 removeSpecificItem(cart, cartItemCount);
-                cartItemCount = sortCart(cart, cartItemCount);
+                cartItemCount = sortCart(cart, cartItemCount); // sort cart after removing item
                 break;
             case 3:
                 editQuantity(cart, cartItemCount, items, itemCount);
-                cartItemCount = sortCart(cart, cartItemCount);
+                cartItemCount = sortCart(cart, cartItemCount); // sort cart if item has been removed
                 break;
             case 4:
                 break;

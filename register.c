@@ -26,14 +26,14 @@ int registerUser(struct user users[], int userCount)
             if (userid < 1)
                 printf("Please input a positive number:");
         }
-        while (userid < 1);
+        while (userid < 1); // repeat prompt until user enters a positive number
 
         for (int i = 0; i < userCount; i++)
         {
             if (userid == users[i].userid)
             {
                 printf("User ID already exists! Exiting registration\n");
-                return success;
+                return success; // return if user already exists
             }
         }
 
@@ -53,7 +53,7 @@ int registerUser(struct user users[], int userCount)
             if (contactnumber < 1)
                 printf("Please input a positive number:");
         }
-        while (contactnumber < 1);
+        while (contactnumber < 1); // repeat prompt until user enters a positive number
 
         printf("\nUser ID:%ld\n", userid);
         printf("Name:%s\n", name);
@@ -95,7 +95,7 @@ int registerUser(struct user users[], int userCount)
             exit = 1;
         }
 
-        if (success == 1)
+        if (success == 1) // store information if user says yes
         {
             printf("\nRegistration successful!\n");
             users[userCount].userid = userid;
@@ -118,7 +118,7 @@ int registerUser(struct user users[], int userCount)
 
     }
 
-    return success;
+    return success; // return success of registration
 
 }
 

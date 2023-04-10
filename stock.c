@@ -16,7 +16,7 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
         if (quantity < 1)
             printf("Please input a positive quantity:");
     }
-    while (quantity < 1);
+    while (quantity < 1); // repeat prompt until user enters a positive number
     printf("\nQuantity:%ld\n", quantity);
 
     printf("Confirm amount added [Y]/[N]:");
@@ -39,7 +39,7 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
         printf("Unrecognized option, returning to menu\n");
     }
 
-    if (success == 1)
+    if (success == 1) // add quantity to item if user says yes
     {
         printf("\nAmount added!\n");
         users[userIndex].items[userProductIndex].quantity += quantity;
@@ -58,10 +58,10 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
     do
     {
         price = getDouble();
-        if (price < 1)
+        if (price <= 0)
             printf("Please input a positive price:");
     }
-    while (price < 1);
+    while (price <= 0); // repeat prompt until user enters a positive double number
     printf("\nPrice:%lf\n", price);
 
     printf("Confirm new price [Y]/[N]:");
@@ -84,7 +84,7 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
         printf("Unrecognized option, returning to menu\n");
     }
 
-    if (success == 1)
+    if (success == 1) // change price if user says yes
     {
         printf("\nPrice changed!\n");
         users[userIndex].items[userProductIndex].price = price;
@@ -125,7 +125,7 @@ void changeItemName(struct user users[], int userIndex, int userProductIndex, st
         printf("Unrecognized option, returning to menu\n");
     }
 
-    if (success == 1)
+    if (success == 1) // change name if user says yes
     {
         printf("\nItem name changed!\n");
         strcpy(users[userIndex].items[userProductIndex].name, name);
@@ -165,7 +165,7 @@ void changeCategory(struct user users[], int userIndex, int userProductIndex, st
         printf("Unrecognized option, returning to menu\n");
     }
 
-    if (success == 1)
+    if (success == 1) // change category if user says yes
     {
         printf("\nItem category changed!\n");
         strcpy(users[userIndex].items[userProductIndex].category, category);
@@ -205,7 +205,7 @@ void changeDescription(struct user users[], int userIndex, int userProductIndex,
         printf("Unrecognized option, returning to menu\n");
     }
 
-    if (success == 1)
+    if (success == 1) // change description if user says yes
     {
         printf("\nItem description changed!\n");
         strcpy(users[userIndex].items[userProductIndex].description, description);
@@ -232,9 +232,9 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
         if (productid < 1)
             printf("Please input a positive number");
     }
-    while (productid < 1);
+    while (productid < 1); // repeat prompt until user enters a positive number
 
-    for (int i = 0; i < userItemCount; i++)
+    for (int i = 0; i < userItemCount; i++) // search for product in items
     {
         if (productid == users[userIndex].items[i].productid)
         {
@@ -244,7 +244,7 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
         }
     }
 
-    if (found == 0)
+    if (found == 0) // return if product is not found
     {
         printf("Product ID not found in User! Returning to sell menu\n");
         return;
@@ -262,7 +262,7 @@ void editStockMenu(struct user users[], int userIndex, int userItemCount, struct
         }
     }
 
-    if (found == 0)
+    if (found == 0) // return if product is not found
     {
         printf("Product ID not found in Items array! Returning to sell menu\n");
         return;

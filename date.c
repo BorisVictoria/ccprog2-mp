@@ -1,7 +1,7 @@
 // This file contains the function for validating the date in the checkout menu
 #include <stdio.h>
 #include "structures.h"
-int checkLeapYear(long year)
+int checkLeapYear(long year) // check if leap year
 {
     if ((year % 4 == 0) && (year % 100 != 0) && (year % 400 == 0))
         return 1;
@@ -9,7 +9,7 @@ int checkLeapYear(long year)
         return 0;
 }
 
-int checkValidDate(long month, long day, long year)
+int checkValidDate(long month, long day, long year) // check if date is valid
 {
     if (month == 4 || month == 6 || month == 9 || month == 11)
         if (day <= 30)

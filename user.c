@@ -18,9 +18,9 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
         if (userid < 1)
             printf("Please input a positive number:");
     }
-    while (userid < 1);
+    while (userid < 1); // repeat prompt until user enters a positive number
 
-    for (int i = 0; i < userCount; i++)
+    for (int i = 0; i < userCount; i++) // search for user in users array
     {
         if (userid == users[i].userid)
         {
@@ -30,7 +30,7 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
         }
     }
 
-    if (found == 0)
+    if (found == 0) // return if user was not found
     {
         printf("User ID not found! Returning to main menu\n\n");
         return itemCount;
@@ -39,7 +39,7 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
     printf("Password:");
     getString(password, 10);
 
-    if (strcmp(password, users[userIndex].password) != 0)
+    if (strcmp(password, users[userIndex].password) != 0) // return if password is incorrect
     {
         printf("Incorrect password! Returning to main menu\n\n");
         return itemCount;

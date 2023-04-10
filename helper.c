@@ -10,7 +10,7 @@ int justSpaces(char *string)
 {
     while (*string != '\0')
     {
-        if (!isspace((unsigned char)*string))
+        if (!isspace((unsigned char)*string)) // check if item is all spaces
             return 0;
         string++;
     }
@@ -19,37 +19,37 @@ int justSpaces(char *string)
 
 void getString(char dest[], int destsize)
 {
-    char buffer[1024];
+    char buffer[1024]; // set buffer to 1024
     long len;
     int success;
 
     success = 0;
-    while (success == 0)
+    while (success == 0) // repeat until successful
     {
-        fgets(buffer, 1024, stdin);
-        buffer[strcspn(buffer, "\n")] = '\0';
-        len = strlen(buffer);
-        if (len > destsize)
+        fgets(buffer, 1024, stdin); // get input from user
+        buffer[strcspn(buffer, "\n")] = '\0'; // replace new line with null
+        len = strlen(buffer); // get length of buffer
+        if (len > destsize) // repeat prompt if user enters string greater than destination size
         {
             printf("Input too long! Please try again:");
         }
-        else if (len == 0)
+        else if (len == 0) // repeat prompt if users enters nothing
         {
             printf("Input cannot be empty! Please try again:");
         }
-        else if (justSpaces(buffer) == 1)
+        else if (justSpaces(buffer) == 1) // repeat prompt if input is just spaces
         {
             printf("Input cannot be just spaces! Please try again:");
         }
-        else
+        else // store input
         {
             success = 1;
         }
 
     }
-    if (destsize > 1)
+    if (destsize > 1) // input must be string
         strcpy(dest, buffer);
-    else
+    else // input must be character
         *dest = buffer[0];
 }
 
@@ -62,27 +62,27 @@ long getLong(void)
 
     do
     {
-       fgets(buffer, 1024, stdin);
+       fgets(buffer, 1024, stdin); // get number
 
        errno = 0;
-       number = strtol(buffer, &convert, 10);
+       number = strtol(buffer, &convert, 10); // convert to long
 
-       if (errno == ERANGE)
+       if (errno == ERANGE) // repeat prompt if user enters a number too large
        {
-           printf("Input is too large for integer. Please try again:");
+           printf("Input is too large for long integer. Please try again:");
            success = 0;
        }
-       else if (convert == buffer)
-       {
-           printf("Input was not fully converted. Please try again:");
-           success = 0;
-       }
-       else if (*convert && *convert != '\n')
+       else if (convert == buffer) // repeat prompt if no character was read
        {
            printf("Input was not fully converted. Please try again:");
            success = 0;
        }
-       else
+       else if (*convert && *convert != '\n') // repeat prompt if input is not end of line
+       {
+           printf("Input was not fully converted. Please try again:");
+           success = 0;
+       }
+       else // store input
        {
            success = 1;
        }
@@ -90,7 +90,7 @@ long getLong(void)
     }
     while (success == 0);
 
-    return number;
+    return number; // return number
 
 }
 
@@ -103,27 +103,27 @@ double getDouble(void)
 
     do
     {
-        fgets(buffer, 1024, stdin);
+        fgets(buffer, 1024, stdin); // get number
 
         errno = 0;
-        number = strtod(buffer, &convert);
+        number = strtod(buffer, &convert); // convert to double
 
-        if (errno == ERANGE)
+        if (errno == ERANGE) // repeat prompt if user enters a number too large
         {
-            printf("Input is too large for long integer. Please try again:");
+            printf("Input is too large for double. Please try again:");
             success = 0;
         }
-        else if (convert == buffer)
-        {
-            printf("Input was not fully converted. Please try again:");
-            success = 0;
-        }
-        else if (*convert && *convert != '\n')
+        else if (convert == buffer) // repeat prompt if no character was read
         {
             printf("Input was not fully converted. Please try again:");
             success = 0;
         }
-        else
+        else if (*convert && *convert != '\n') // repeat prompt if input is not end of line
+        {
+            printf("Input was not fully converted. Please try again:");
+            success = 0;
+        }
+        else // store input
         {
             success = 1;
         }
@@ -131,11 +131,11 @@ double getDouble(void)
     }
     while (success == 0);
 
-    return number;
+    return number; // return number
 
 }
 
-void sortUsers(struct user users[], int userCount)
+void sortUsers(struct user users[], int userCount) // selection sort for users
 {
     int min;
     struct user temp;
@@ -145,7 +145,7 @@ void sortUsers(struct user users[], int userCount)
         min = i;
         for (int j = i+1; j < userCount; j++)
         {
-            if (users[j].userid < users[min].userid)
+            if (users[j].userid < users[min].userid) // sort users by ascending order based on user id
                 min = j;
         }
         if (min != i)
@@ -158,7 +158,7 @@ void sortUsers(struct user users[], int userCount)
     }
 }
 
-void sortItems(struct item items[], int itemCount)
+void sortItems(struct item items[], int itemCount) // selection sort for items
 {
     int min;
     struct item temp;
@@ -168,7 +168,7 @@ void sortItems(struct item items[], int itemCount)
         min = i;
         for (int j = i+1; j < itemCount; j++)
         {
-            if (items[j].productid < items[min].productid)
+            if (items[j].productid < items[min].productid) // sort items by ascending order based on product id
                 min = j;
         }
         if (min != i)
@@ -182,7 +182,7 @@ void sortItems(struct item items[], int itemCount)
 
 }
 
-int sortCart(struct item items[], int cartItemCount)
+int sortCart(struct item items[], int cartItemCount) // selection sort for cart items
 {
     int min;
     int max;
@@ -194,7 +194,7 @@ int sortCart(struct item items[], int cartItemCount)
         max = i;
         for (int j = i+1; j < cartItemCount; j++)
         {
-            if (items[j].quantity > items[max].quantity)
+            if (items[j].quantity > items[max].quantity) // sort cart items from max to min quantity
                 max = j;
         }
         if (max != i)
@@ -205,7 +205,7 @@ int sortCart(struct item items[], int cartItemCount)
         }
     }
 
-    for (int i = 0; i < cartItemCount; i++)
+    for (int i = 0; i < cartItemCount; i++) // remove item from cart if quantity is zero
     {
         if (items[i].quantity > 0)
             newCartItemCount++;
@@ -216,7 +216,7 @@ int sortCart(struct item items[], int cartItemCount)
         min = i;
         for (int j = i+1; j < newCartItemCount; j++)
         {
-            if (items[j].sellerid < items[min].sellerid)
+            if (items[j].sellerid < items[min].sellerid) // sort items in cart by seller id in ascending order
                 min = j;
         }
         if (min != i)
@@ -234,7 +234,7 @@ int sortCart(struct item items[], int cartItemCount)
         min = i;
         for (int j = i+1; j < newCartItemCount; j++)
         {
-            if (items[j].sellerid == items[min].sellerid && items[j].productid < items[min].productid)
+            if (items[j].sellerid == items[min].sellerid && items[j].productid < items[min].productid) // sort items of seller in cart by product in ascending order
                 min = j;
         }
         if (min != i)
@@ -247,6 +247,6 @@ int sortCart(struct item items[], int cartItemCount)
     }
 
 
-    return newCartItemCount;
+    return newCartItemCount; // return number of items in cart
 
 }

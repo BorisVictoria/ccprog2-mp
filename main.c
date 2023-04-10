@@ -3,15 +3,14 @@
 
 int main()
 {
-    struct user users[100];
+    struct user users[100]; //initialize structs containing users and items
     struct item items[2000];
-    int userCount, itemCount;
+    int userCount, itemCount; // determine number of users and items
     int choice = 0;
     int registerSuccess;
 
     userCount = readUsers(users);
     itemCount = readItems(items);  // Read all data from text files to structures;
-    //transactionCount = readTransactions();
     storeItemsToUsers(users, userCount, items, itemCount);
 
     while (choice != 4)
@@ -28,11 +27,18 @@ int main()
         switch (choice)
         {
             case 1:
-                registerSuccess = registerUser(users, userCount);
-                if (registerSuccess == 1)
+                if (userCount >= 100) // check if users are already at max size
+                {
+                    printf("Maximum number of users already!\n");
+                }
+                else
+                {
+                    registerSuccess = registerUser(users, userCount);
+                }
+                if (registerSuccess == 1) // increment number of users if registration is successful
                 {
                     userCount++;
-                    sortUsers(users, userCount);
+                    sortUsers(users, userCount); // sort users in increasing order by userid
                 }
                 break;
             case 2:
@@ -56,9 +62,6 @@ int main()
 
     writeUsers(users, userCount);
     writeItems(items, itemCount);              // Write all data from structures to text files;
-    //writeTransactions();
-
-
 
     return 0;
 }
