@@ -43,6 +43,7 @@ struct transactor{
     double total;
 };
 //Helper.c Functions
+int justSpaces(char *string);
 void getString(char dest[], int destsize);
 long getLong(void);
 double getDouble(void);

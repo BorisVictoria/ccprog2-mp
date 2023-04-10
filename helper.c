@@ -3,7 +3,19 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include <ctype.h>
 #include "structures.h"
+
+int justSpaces(char *string)
+{
+    while (*string != '\0')
+    {
+        if (!isspace((unsigned char)*string))
+            return 0;
+        string++;
+    }
+    return 1;
+}
 
 void getString(char dest[], int destsize)
 {
@@ -24,6 +36,10 @@ void getString(char dest[], int destsize)
         else if (len == 0)
         {
             printf("Input cannot be empty! Please try again:");
+        }
+        else if (justSpaces(buffer) == 1)
+        {
+            printf("Input cannot be just spaces! Please try again:");
         }
         else
         {

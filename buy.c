@@ -86,6 +86,10 @@ void showProductBySeller(struct user users[], int userCount)
         printf("Seller ID not found! Returning to buy menu\n");
         return;
     }
+    else if (users[userIndex].userItemCount <= 0)
+    {
+        printf("User has no items! Returning to buy menu\n");
+    }
 
     printf("\nSeller ID: %ld\n\n", sellerid);
     printf("-----------------------------------------------------------------------------------------\n");
