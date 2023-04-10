@@ -581,7 +581,7 @@ void adminMenu(struct user users[], int userCount, int itemCount)
     }
 
     while (choice != 6) {
-        printf("Admin Menu\n\n");
+        printf("\nAdmin Menu\n\n");
         printf("[1] Show All Users\n");
         printf("[2] Show All Sellers\n");
         printf("[3] Show Total Sales in Given Duration\n");
