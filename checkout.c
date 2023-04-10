@@ -460,12 +460,12 @@ void checkoutByItem(struct user users[], long userid, int userCount, struct item
     items[productIndex].quantity -= cart[cartProductIndex].quantity;
     cart[cartProductIndex].quantity = 0;
 
-    printf("Transaction Summary\n");
+    printf("\nTransaction Summary\n");
     printf("--------------------------------------------------------------------------------------------\n");
     printf("|  Quantity  | Product ID |       Item Name       |    Unit Price    | Total Price of Item |\n");
     printf("--------------------------------------------------------------------------------------------\n");
-    printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n\n", transactions[0].items[0].quantity, productid, transactions[0].items[0].name, transactions[0].items[0].price, transactions[0].total);
-
+    printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[0].items[0].quantity, productid, transactions[0].items[0].name, transactions[0].items[0].price, transactions[0].total);
+    printf("--------------------------------------------------------------------------------------------\n");
     printf("Total Amount Due: %lf\n", transactions[0].total);
     printf("Paid to: %ld %s\n", transactions[0].sellerid, users[userIndex].name);
 
