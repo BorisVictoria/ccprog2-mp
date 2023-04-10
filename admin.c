@@ -549,7 +549,7 @@ void showShopaholics(struct transaction transactions[], int transactionCount, st
     }
 
     //seller ID, seller name, total sales in the duration
-    printf("Shopaholics\n");
+    printf("\nShopaholics\n");
     printf("----------------------------------------------------------------------------\n");
     printf("|  BuyerID   |         Name          | Total amount bought in the duration |\n");
     printf("----------------------------------------------------------------------------\n");

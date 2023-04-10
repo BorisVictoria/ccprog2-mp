@@ -167,7 +167,7 @@ void checkoutAll(struct user users[], long userid, int userCount, struct item it
 
             for (int l = 0; l < transactionItemCount; l++)
             {
-                printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[k].items[l].quantity, productid, transactions[k].items[l].name, transactions[k].items[l].price, transactions[k].items[l].quantity * transactions[k].items[l].price);
+                printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[k].items[l].quantity, transactions[k].items[l].productid, transactions[k].items[l].name, transactions[k].items[l].price, transactions[k].items[l].quantity * transactions[k].items[l].price);
                 printf("--------------------------------------------------------------------------------------------\n");
             }
             printf("\nTotal Amount Due: %lf\n", transactions[k].total);
@@ -350,7 +350,7 @@ void checkoutBySeller(struct user users[], long userid, int userCount, struct it
 
         for (int j = 0; j < transactionItemCount; j++)
         {
-            printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[i].items[j].quantity, productid, transactions[i].items[j].name, transactions[i].items[j].price, transactions[i].items[j].quantity * transactions[i].items[j].price);
+            printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[i].items[j].quantity, transactions[i].items[j].productid, transactions[i].items[j].name, transactions[i].items[j].price, transactions[i].items[j].quantity * transactions[i].items[j].price);
             printf("--------------------------------------------------------------------------------------------\n");
         }
         printf("\nTotal Amount Due: %lf\n", transactions[i].total);
