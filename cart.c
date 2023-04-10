@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include "structures.h"
 
+/* removeItemsFromSeller removes items in cart corresponding to seller id inputted
+ * @cart[] - array of items belonging to user
+ * @cartItemCount - number of items in cart
+*/
 void removeItemsFromSeller(struct item cart[], int cartItemCount)
 {
     long sellerid;
@@ -39,6 +43,11 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
     printf("Items from seller removed from cart!\n");
 
 }
+
+/* removeSpecificItem removes item corresponding to product id inputted
+ * @cart[] - array of items belonging to user
+ * @cartItemCount - number of items in cart
+*/
 void removeSpecificItem(struct item cart[], int cartItemCount)
 {
     long productid;
@@ -76,6 +85,13 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
     printf("Item removed from cart!\n");
 
 }
+
+/* editQuantity edits the quantity of item in cart
+ * @cart[] - array of items belonging to user
+ * @cartItemCount - number of items in cart
+ * @items[] - array of items
+ * @itemCount - number of items
+*/
 void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount)
 {
     long productid;
