@@ -3,6 +3,9 @@
 #include <string.h>
 #include "structures.h"
 
+/* readUsers stores information found in the file to users array
+ * @users[] - array of users
+ */
 int readUsers(struct user users[])
 {
     FILE *userFile = fopen("Users.txt", "r");
@@ -52,6 +55,9 @@ int readUsers(struct user users[])
 
 }
 
+/* readItems stores information found in the file to items array
+ * @items[] - array of items
+ */
 int readItems(struct item items[])
 {
     FILE *itemFile = fopen("Items.txt", "r");
@@ -107,6 +113,9 @@ int readItems(struct item items[])
 
 }
 
+/* readCart stores information found in the file to items array corresponding to user id
+ * @items[] - array of items
+ */
 int readCart(struct item items[], long userid)
 {
 
@@ -166,6 +175,9 @@ int readCart(struct item items[], long userid)
 
 }
 
+/* readTransactionsItems stores into transactionsItems array the dimensions of the transactions struct
+ * @transactionItems[] - array containing dimensions of transactions struct
+ */
 int readTransactionItems(int transactionItems[])
 {
     FILE *transactionItemFile = fopen("TransactionOffsets.txt", "r");
@@ -196,6 +208,11 @@ int readTransactionItems(int transactionItems[])
 
 }
 
+/* readTransactions stores information found in the file to the transactions array
+ * @transactions[] - array of transactions
+ * @transactionItems[] - array containing dimensions of transactions struct
+ * @transactionCount - number of transactions
+ */
 void readTransactions(struct transaction transactions[], int transactionItems[], int transactionCount)
 {
     FILE *transactionFile = fopen("Transactions.txt", "r");
@@ -253,6 +270,12 @@ void readTransactions(struct transaction transactions[], int transactionItems[],
     fclose(transactionFile); // close file
 }
 
+/* storeItemsToUsers stores items to users items array
+ * @users[] - array of users
+ * @userCount - number of users
+ * @items[] - array of items
+ * @itemCount - number of items
+ */
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount)
 {
     int userItemCount;
