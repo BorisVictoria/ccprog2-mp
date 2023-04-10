@@ -256,6 +256,7 @@ void showProductByName(struct item items[], int itemCount)
  * @cart[] - array of items belonging to user
  * @cartItemCount - number of items in cart
  * @userid - id corresponding to user
+ * @return success - 1 if item has been added, 0 if not
 */
 int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid)
 {
