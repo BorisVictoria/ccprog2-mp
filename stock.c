@@ -3,6 +3,13 @@
 #include <string.h>
 #include "structures.h"
 
+/* replenish adds quantity to item
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userProductIndex - index of user product
+ * @items[] - array of items
+ * @productIndex - index of product
+*/
 void replenish(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     long quantity;
@@ -48,6 +55,13 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
     }
 }
 
+/* changePrice changes price of item
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userProductIndex - index of user product
+ * @items[] - array of items
+ * @productIndex - index of product
+*/
 void changePrice(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     double price;
@@ -95,6 +109,13 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
 
 }
 
+/* changeItemName changes name of item
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userProductIndex - index of user product
+ * @items[] - array of items
+ * @productIndex - index of product
+*/
 void changeItemName(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char name[21];
@@ -135,6 +156,13 @@ void changeItemName(struct user users[], int userIndex, int userProductIndex, st
 
 }
 
+/* changeCategory changes category of item
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userProductIndex - index of user product
+ * @items[] - array of items
+ * @productIndex - index of product
+*/
 void changeCategory(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char category[16];
@@ -175,6 +203,13 @@ void changeCategory(struct user users[], int userIndex, int userProductIndex, st
 
 }
 
+/* changeDescription changes description of item
+ * @users[] - array of users
+ * @userIndex - index of user
+ * @userProductIndex - index of user product
+ * @items[] - array of items
+ * @productIndex - index of product
+*/
 void changeDescription(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
     char description[31];
