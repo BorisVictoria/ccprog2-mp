@@ -4,16 +4,16 @@
 #include "structures.h"
 
 /* checkoutAll checks out all items found in the cart
- * @users[] - array of users
- * @userid - id belonging to user
- * @userCount - number of users
- * @items[] - array of items
- * @itemCount - number of items
- * @cart[] - array of items belong to user
- * @cartItemCount - number of items in cart
- * @month - month
- * @day - day
- * @yar - year
+ * @param users[] - array of users
+ * @param userid - id belonging to user
+ * @param userCount - number of users
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param cart[] - array of items belong to user
+ * @param cartItemCount - number of items in cart
+ * @param month - month
+ * @param day - day
+ * @param year - year
  */
 void checkoutAll(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
@@ -203,16 +203,16 @@ void checkoutAll(struct user users[], long userid, int userCount, struct item it
 }
 
 /* checkoutBySeller checks out all items corresponding to seller id inputted
- * @users[] - array of users
- * @userid - id belonging to user
- * @userCount - number of users
- * @items[] - array of items
- * @itemCount - number of items
- * @cart[] - array of items belong to user
- * @cartItemCount - number of items in cart
- * @month - month
- * @day - day
- * @yar - year
+ * @param users[] - array of users
+ * @param userid - id belonging to user
+ * @param userCount - number of users
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param cart[] - array of items belong to user
+ * @param cartItemCount - number of items in cart
+ * @param month - month
+ * @param day - day
+ * @param year - year
  */
 void checkoutBySeller(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
@@ -398,16 +398,16 @@ void checkoutBySeller(struct user users[], long userid, int userCount, struct it
 }
 
 /* checkoutByItem checks out an item corresponding to product id inputted
- * @users[] - array of users
- * @userid - id belonging to user
- * @userCount - number of users
- * @items[] - array of items
- * @itemCount - number of items
- * @cart[] - array of items belong to user
- * @cartItemCount - number of items in cart
- * @month - month
- * @day - day
- * @yar - year
+ * @param users[] - array of users
+ * @param userid - id belonging to user
+ * @param userCount - number of users
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param cart[] - array of items belong to user
+ * @param cartItemCount - number of items in cart
+ * @param month - month
+ * @param day - day
+ * @param year - year
  */
 void checkoutByItem(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
@@ -511,10 +511,11 @@ void checkoutByItem(struct user users[], long userid, int userCount, struct item
 }
 
 /* checkCartItem checks if any modification has been made to the item and changes it accordingly
- * @items[] - array of items
- * @cart[] - array of items belong to user
- * @cartItemIndex - index of cart item
- * @itemIndex - index of item
+ * @param items[] - array of items
+ * @param cart[] - array of items belong to user
+ * @param cartItemIndex - index of cart item
+ * @param itemIndex - index of item
+ * @return proceed - check if items have been modified
  */
 int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, int itemIndex)
 {
@@ -582,12 +583,12 @@ int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, in
 }
 
 /* cartIntegrityCheck checks integrity of cart by comparing it to items array
- * @items[] - array of items
- * @itemCount - number of items
- * @cartItemIndex - index of cart item
- * @cartItemCount - number of items in cart
- * @*proceed - 1 if item has been modified, 0 if not
- * @return cartItemCount, the number of items in the cart after modification
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param cartItemIndex - index of cart item
+ * @param cartItemCount - number of items in cart
+ * @param *proceed - 1 if item has been modified, 0 if not
+ * @return cartItemCount - the number of items in the cart after modification
  */
 int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount, int* proceed)
 {

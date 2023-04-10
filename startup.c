@@ -4,7 +4,8 @@
 #include "structures.h"
 
 /* readUsers stores information found in the file to users array
- * @users[] - array of users
+ * @param users[] - array of users
+ * @return userCount - number of users
  */
 int readUsers(struct user users[])
 {
@@ -56,7 +57,8 @@ int readUsers(struct user users[])
 }
 
 /* readItems stores information found in the file to items array
- * @items[] - array of items
+ * @param items[] - array of items
+ * @return itemCount - number of items
  */
 int readItems(struct item items[])
 {
@@ -114,7 +116,9 @@ int readItems(struct item items[])
 }
 
 /* readCart stores information found in the file to items array corresponding to user id
- * @items[] - array of items
+ * @param items[] - array of items
+ * @param userid - id belonging to user
+ * @return itemCount - number of items
  */
 int readCart(struct item items[], long userid)
 {
@@ -176,7 +180,8 @@ int readCart(struct item items[], long userid)
 }
 
 /* readTransactionsItems stores into transactionsItems array the dimensions of the transactions struct
- * @transactionItems[] - array containing dimensions of transactions struct
+ * @param transactionItems[] - array containing dimensions of transactions struct
+ * @return transactionCount - number of transactions
  */
 int readTransactionItems(int transactionItems[])
 {
@@ -209,9 +214,9 @@ int readTransactionItems(int transactionItems[])
 }
 
 /* readTransactions stores information found in the file to the transactions array
- * @transactions[] - array of transactions
- * @transactionItems[] - array containing dimensions of transactions struct
- * @transactionCount - number of transactions
+ * @param transactions[] - array of transactions
+ * @param transactionItems[] - array containing dimensions of transactions struct
+ * @param transactionCount - number of transactions
  */
 void readTransactions(struct transaction transactions[], int transactionItems[], int transactionCount)
 {
@@ -271,10 +276,10 @@ void readTransactions(struct transaction transactions[], int transactionItems[],
 }
 
 /* storeItemsToUsers stores items to users items array
- * @users[] - array of users
- * @userCount - number of users
- * @items[] - array of items
- * @itemCount - number of items
+ * @param users[] - array of users
+ * @param userCount - number of users
+ * @param items[] - array of items
+ * @param itemCount - number of items
  */
 void storeItemsToUsers(struct user users[], int userCount, struct item items[], int itemCount)
 {

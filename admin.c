@@ -4,12 +4,11 @@
 #include "structures.h"
 
 /* showAllUsers has a void return type and prints every user from the users array including userID, password, name, address, and phone number of each user in table form
- @param users passes the users array from main
- @param userCount the number of users in users array
- @return void return type
- Pre-condition: Admin password is correct
+* @param users passes the users array from main
+* @param userCount the number of users in users array
+* @return void return type
+* Pre-condition: Admin password is correct
 */
-
 void showAllUsers(struct user users[], int userCount){
     printf("All Users\n");
     printf("----------------------------------------------------------------------------------------------------\n");
@@ -23,12 +22,11 @@ void showAllUsers(struct user users[], int userCount){
 }
 
 /* showAllSellers has a void return type and prints every seller from the users array including userID, password, name, address, and phone number of each seller in table form
- @param users passes the users array from main
- @param userCount the number of users in users array
- @return void return type
- Pre-condition: Admin password is correct
+* @param users passes the users array from main
+* @param userCount the number of users in users array
+* @return void return type
+* Pre-condition: Admin password is correct
 */
-
 void showAllSellers(struct user users[], int userCount){
     printf("All Sellers\n");
     printf("-------------------------------------------------------------------------------------------------------------------------------\n");
@@ -44,13 +42,11 @@ void showAllSellers(struct user users[], int userCount){
 }
 
 /* showTotalSalesByDuration has a double return type and returns the total sales of every transaction between two given dates
-
- @param transactions passes the transactions array from adminMenu
- @param transactionCount the number of users in users array
- @return returns total sales as a double value
- Pre-condition: Start date and end date inputted are valid dates
+* @param transactions passes the transactions array from adminMenu
+* @param transactionCount the number of users in users array
+* @return returns total sales as a double value
+* Pre-condition: Start date and end date inputted are valid dates
 */
-
 double showTotalSalesByDuration(struct transaction transactions[], int transactionCount){
     long month, month2;
     long day, day2;
@@ -208,13 +204,12 @@ double showTotalSalesByDuration(struct transaction transactions[], int transacti
 }
 
 /* showSellerSales has a void return type and prints every seller and their respective total sales in the inputted duration in a table format
-
- @param transactions passes the transactions array from adminMenu
- @param transactionCount the number of transactions
- @param users passes the users array
- @param userCount number of users in the users array
- @return void return type
- Pre-condition: Start date and end date inputted are valid dates
+* @param transactions passes the transactions array from adminMenu
+* @param transactionCount the number of transactions
+* @param users passes the users array
+* @param userCount number of users in the users array
+* @return void return type
+* Pre-condition: Start date and end date inputted are valid dates
 */
 void showSellerSales(struct transaction transactions[], int transactionCount, struct user users[], int userCount){
     struct transactor transactors[100];
@@ -401,13 +396,12 @@ void showSellerSales(struct transaction transactions[], int transactionCount, st
     }
 }
 /* showShopaholics has a void return type and prints every buyer and their respective total amount bought in the inputted duration in a table format
-
- @param transactions passes the transactions array from adminMenu
- @param transactionCount the number of transactions
- @param users passes the users array
- @param userCount number of users in the users array
- @return void return type
- Pre-condition: Start date and end date inputted are valid dates
+* @param transactions passes the transactions array from adminMenu
+* @param transactionCount the number of transactions
+* @param users passes the users array
+* @param userCount number of users in the users array
+* @return void return type
+* Pre-condition: Start date and end date inputted are valid dates
 */
 void showShopaholics(struct transaction transactions[], int transactionCount, struct user users[], int userCount){
     struct transactor transactors[100];
@@ -595,12 +589,11 @@ void showShopaholics(struct transaction transactions[], int transactionCount, st
 }
 
 /* adminMenu has a void return type and allows the user to select from 5 admin options which each call their respective function
-
- @param users passes the users array
- @param userCount number of users in the users array
- @param itemCount number of items in the items array
- @return void return type
- Pre-condition: password admin inputted is correct
+* @param users passes the users array
+* @param userCount number of users in the users array
+* @param itemCount number of items in the items array
+* @return void return type
+* Pre-condition: password admin inputted is correct
 */
 void adminMenu(struct user users[], int userCount, int itemCount)
 {

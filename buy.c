@@ -4,8 +4,8 @@
 #include "structures.h"
 
 /* viewAllProducts outputs products of all users
- * @users[] - array of users
- * @userCount - number of users
+ * @param users[] - array of users
+ * @param userCount - number of users
 */
 void viewAllProducts(struct user users[], int userCount)
 {
@@ -62,8 +62,8 @@ void viewAllProducts(struct user users[], int userCount)
 }
 
 /* showProductBySeller outputs products of specific seller
- * @users[] - array of users
- * @userCount - number of users
+ * @param users[] - array of users
+ * @param userCount - number of users
 */
 void showProductBySeller(struct user users[], int userCount)
 {
@@ -113,8 +113,8 @@ void showProductBySeller(struct user users[], int userCount)
 }
 
 /* showProductByCategory outputs products matching category inputted
- * @items[] - array of items
- * @itemCount - number of items
+ * @param items[] - array of items
+ * @param itemCount - number of items
 */
 void showProductByCategory(struct item items[], int itemCount)
 {
@@ -182,8 +182,8 @@ void showProductByCategory(struct item items[], int itemCount)
 }
 
 /* showProductByName outputs products matching name inputted
- * @items[] - array of items
- * @itemCount - number of items
+ * @param items[] - array of items
+ * @param itemCount - number of items
 */
 void showProductByName(struct item items[], int itemCount)
 {
@@ -251,11 +251,11 @@ void showProductByName(struct item items[], int itemCount)
 }
 
 /* addToCart adds item to cart matching user id
- * @items[] - array of items
- * @itemCount - number of items
- * @cart[] - array of items belonging to user
- * @cartItemCount - number of items in cart
- * @userid - id corresponding to user
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param cart[] - array of items belonging to user
+ * @param cartItemCount - number of items in cart
+ * @param userid - id corresponding to user
  * @return success - 1 if item has been added, 0 if not
 */
 int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid)

@@ -3,8 +3,8 @@
 #include "structures.h"
 
 /* writeUsers writes to the file the information in the users array
- * @users[] - array of users
- * @userCount - number of users
+ * @param users[] - array of users
+ * @param userCount - number of users
  */
 void writeUsers(struct user users[], int userCount)
 {
@@ -23,8 +23,8 @@ void writeUsers(struct user users[], int userCount)
 }
 
 /* writeItems writes to the file the information in the items array
- * @items[] - array of users
- * @itemCount - number of users
+ * @param items[] - array of users
+ * @param itemCount - number of users
  */
 void writeItems(struct item items[], int itemCount)
 {
@@ -44,9 +44,9 @@ void writeItems(struct item items[], int itemCount)
 }
 
 /* writeCart writes to the file the information in the cart belonging to the user
- * @items[] - array of items
- * @itemCount - number of items
- * @userid - id belonging to user
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @param userid - id belonging to user
  */
 void writeCart(struct item items[], int itemCount, long userid)
 {
@@ -70,7 +70,7 @@ void writeCart(struct item items[], int itemCount, long userid)
 }
 
 /* writeTransactionItems writes to the file the dimensions of the transactions array
- * @transactionItems - number of items transacted
+ * @param transactionItems - number of items transacted
  */
 void writeTransactionItems(int transactionItems) // write transaction dimensions to file
 {
@@ -84,8 +84,8 @@ void writeTransactionItems(int transactionItems) // write transaction dimensions
 }
 
 /* writeTransactions writes to the file the information in the transactions array
- * @transactions[] - array of transactions
- * @totalTransactionItemCount - total number of items transacted
+ * @param transactions[] - array of transactions
+ * @param totalTransactionItemCount - total number of items transacted
  */
 void writeTransactions(struct transaction transactions[], int totalTransactionItemCount)
 {

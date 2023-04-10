@@ -7,7 +7,7 @@
 #include "structures.h"
 
 /* justSpaces checks if the input is just made of spaces
- * @*string - pointer to character
+ * @param *string - pointer to character
  * @return 1 if input is just spaces
  * @return 0 if input has non-whitespace character
 */
@@ -23,8 +23,8 @@ int justSpaces(char *string)
 }
 
 /* getString gets string input
- * @dest[] - character array to output to
- * @destsize - size of destination array
+ * @param dest[] - character array to output to
+ * @param destsize - size of destination array
 */
 void getString(char dest[], int destsize)
 {
@@ -151,8 +151,8 @@ double getDouble(void)
 }
 
 /* sortUsers sorts users array by user id
- * @users[] - array of users
- * @userCount - number of users
+ * @param users[] - array of users
+ * @param userCount - number of users
 */
 void sortUsers(struct user users[], int userCount) // selection sort for users
 {
@@ -178,8 +178,8 @@ void sortUsers(struct user users[], int userCount) // selection sort for users
 }
 
 /* sortItems sorts items array by product id
- * @items[] - array of items
- * @itemCount - number of items
+ * @param items[] - array of items
+ * @param itemCount - number of items
 */
 void sortItems(struct item items[], int itemCount) // selection sort for items
 {
@@ -206,8 +206,8 @@ void sortItems(struct item items[], int itemCount) // selection sort for items
 }
 
 /* sortCart sorts items array by seller id then product id
- * @items[] - array of users
- * @cartItemCount - number of users
+ * @param items[] - array of users
+ * @param cartItemCount - number of users
 */
 int sortCart(struct item items[], int cartItemCount) // selection sort for cart items
 {

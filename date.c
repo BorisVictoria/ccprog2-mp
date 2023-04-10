@@ -2,7 +2,7 @@
 #include "structures.h"
 
 /* checkLeapYear checks if year is a leap year
- * @year - year
+ * @param year - year
  */
 int checkLeapYear(long year) // check if leap year
 {
@@ -13,9 +13,9 @@ int checkLeapYear(long year) // check if leap year
 }
 
 /* checkValidDate checks if a date is valid
- * @month - month
- * @day - day
- * @year - year
+ * @param month - month
+ * @param day - day
+ * @param year - year
  */
 int checkValidDate(long month, long day, long year) // check if date is valid
 {

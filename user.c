@@ -4,13 +4,12 @@
 #include "structures.h"
 
 /* userMenu has an int return type and returns the itemCount when sell menu is selected or user not found
-
- @param users passes the users array
- @param userCount number of users in the users array
- @param items passes items array
- @param itemCount number of items in item array
- @return returns itemCount
- Pre-condition: users array has at least one user
+* @param users passes the users array
+* @param userCount number of users in the users array
+* @param items passes items array
+* @param itemCount number of items in item array
+* @return returns itemCount
+* Pre-condition: users array has at least one user
 */
 int userMenu(struct user users[], int userCount, struct item items[], int itemCount)
 {

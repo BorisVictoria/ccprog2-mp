@@ -4,11 +4,11 @@
 #include "structures.h"
 
 /* replenish adds quantity to item
- * @users[] - array of users
- * @userIndex - index of user
- * @userProductIndex - index of user product
- * @items[] - array of items
- * @productIndex - index of product
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userProductIndex - index of user product
+ * @param items[] - array of items
+ * @param productIndex - index of product
 */
 void replenish(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
@@ -56,11 +56,11 @@ void replenish(struct user users[], int userIndex, int userProductIndex, struct 
 }
 
 /* changePrice changes price of item
- * @users[] - array of users
- * @userIndex - index of user
- * @userProductIndex - index of user product
- * @items[] - array of items
- * @productIndex - index of product
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userProductIndex - index of user product
+ * @param items[] - array of items
+ * @param productIndex - index of product
 */
 void changePrice(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
@@ -110,11 +110,11 @@ void changePrice(struct user users[], int userIndex, int userProductIndex, struc
 }
 
 /* changeItemName changes name of item
- * @users[] - array of users
- * @userIndex - index of user
- * @userProductIndex - index of user product
- * @items[] - array of items
- * @productIndex - index of product
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userProductIndex - index of user product
+ * @param items[] - array of items
+ * @param productIndex - index of product
 */
 void changeItemName(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
@@ -157,11 +157,11 @@ void changeItemName(struct user users[], int userIndex, int userProductIndex, st
 }
 
 /* changeCategory changes category of item
- * @users[] - array of users
- * @userIndex - index of user
- * @userProductIndex - index of user product
- * @items[] - array of items
- * @productIndex - index of product
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userProductIndex - index of user product
+ * @param items[] - array of items
+ * @param productIndex - index of product
 */
 void changeCategory(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {
@@ -204,11 +204,11 @@ void changeCategory(struct user users[], int userIndex, int userProductIndex, st
 }
 
 /* changeDescription changes description of item
- * @users[] - array of users
- * @userIndex - index of user
- * @userProductIndex - index of user product
- * @items[] - array of items
- * @productIndex - index of product
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userProductIndex - index of user product
+ * @param items[] - array of items
+ * @param productIndex - index of product
 */
 void changeDescription(struct user users[], int userIndex, int userProductIndex, struct item items[], int productIndex)
 {

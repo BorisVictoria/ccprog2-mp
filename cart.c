@@ -3,8 +3,8 @@
 #include "structures.h"
 
 /* removeItemsFromSeller removes items in cart corresponding to seller id inputted
- * @cart[] - array of items belonging to user
- * @cartItemCount - number of items in cart
+ * @param cart[] - array of items belonging to user
+ * @param cartItemCount - number of items in cart
 */
 void removeItemsFromSeller(struct item cart[], int cartItemCount)
 {
@@ -45,8 +45,8 @@ void removeItemsFromSeller(struct item cart[], int cartItemCount)
 }
 
 /* removeSpecificItem removes item corresponding to product id inputted
- * @cart[] - array of items belonging to user
- * @cartItemCount - number of items in cart
+ * @param cart[] - array of items belonging to user
+ * @param cartItemCount - number of items in cart
 */
 void removeSpecificItem(struct item cart[], int cartItemCount)
 {
@@ -87,10 +87,10 @@ void removeSpecificItem(struct item cart[], int cartItemCount)
 }
 
 /* editQuantity edits the quantity of item in cart
- * @cart[] - array of items belonging to user
- * @cartItemCount - number of items in cart
- * @items[] - array of items
- * @itemCount - number of items
+ * @param cart[] - array of items belonging to user
+ * @param cartItemCount - number of items in cart
+ * @param items[] - array of items
+ * @param itemCount - number of items
 */
 void editQuantity(struct item cart[], int cartItemCount, struct item items[], int itemCount)
 {
@@ -161,6 +161,14 @@ void editQuantity(struct item cart[], int cartItemCount, struct item items[], in
     cart[cartProductIndex].quantity = quantity; // set quantity of item in cart
 
 }
+
+/* editCartMenu prints the UI of the edit cart menu and returns the number of items in the cart
+ * @param cart[] - array of items belonging to user
+ * @param cartItemCount - number of items in cart
+ * @param items[] - array of items
+ * @param itemCount - number of items
+ * @return cartItemCount - return number of items in cart
+*/
 
 int editCartMenu(struct item cart[], int cartItemCount, struct item items[], int itemCount)
 {

@@ -4,11 +4,11 @@
 #include "structures.h"
 
 /* addNewItem adds new item to items struct
- * @users[] - array of users
- * @userIndex - index of user
- * @userItemCount -  number of items each user has
- * @items[] - array of items
- * @itemCount - number of items
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userItemCount -  number of items each user has
+ * @param items[] - array of items
+ * @param itemCount - number of items
 */
 int addNewItem(struct user users[], int userIndex, int userItemCount, struct item items[], int itemCount)
 {
@@ -156,10 +156,10 @@ int addNewItem(struct user users[], int userIndex, int userItemCount, struct ite
 
 }
 
-/* showMyProducts show products of user
- * @users[] - array of users
- * @userIndex - index of user
- * @userItemCount -  number of items each user has
+/* showMyProducts shows products of user
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userItemCount -  number of items each user has
 */
 void showMyProducts(struct user users[], int userIndex, int userItemCount)
 {
@@ -176,9 +176,9 @@ void showMyProducts(struct user users[], int userIndex, int userItemCount)
 }
 
 /* showMyProducts shows low stock products of user
- * @users[] - array of users
- * @userIndex - index of user
- * @userItemCount -  number of items each user has
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param userItemCount -  number of items each user has
 */
 void showMyLowStockProducts(struct user users[], int userIndex, int userItemCount)
 {
@@ -242,6 +242,13 @@ void showMyLowStockProducts(struct user users[], int userIndex, int userItemCoun
     }
 }
 
+/* sellMenu prints the UI of the sell menu and returns the number of items
+ * @param users[] - array of users
+ * @param userIndex - index of user
+ * @param items[] -  array of items
+ * @param itemCount - number of items
+ * @return itemCount - return number of items
+*/
 int sellMenu(struct user users[], int userIndex, struct item items[], int itemCount)
 {
 
