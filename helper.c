@@ -21,6 +21,10 @@ void getString(char dest[], int destsize)
         {
             printf("Input too long! Please try again:");
         }
+        else if (len == 0)
+        {
+            printf("Input cannot be empty! Please try again:");
+        }
         else
         {
             success = 1;
