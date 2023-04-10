@@ -117,7 +117,7 @@ double getDouble(void)
 
 void sortUsers(struct user users[], int userCount)
 {
-    int min ;
+    int min;
     struct user temp;
 
     for (int i = 0; i < userCount-1; i++)

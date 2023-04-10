@@ -570,6 +570,7 @@ int checkoutMenu(struct user users[], long userid, int userCount, struct item it
 
     do
     {
+        printf("Please input a valid date for the transaction:\n");
         printf("Input month [mm]:");
         do
         {
@@ -610,16 +611,37 @@ int checkoutMenu(struct user users[], long userid, int userCount, struct item it
 
         switch (choice) {
             case 1:
-                checkoutAll(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
-                cartItemCount = sortCart(cart, cartItemCount);
+                if (cartItemCount == 0)
+                {
+                    printf("Please add an item to cart first!\n");
+                }
+                else
+                {
+                    checkoutAll(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                    cartItemCount = sortCart(cart, cartItemCount);
+                }
                 break;
             case 2:
-               checkoutBySeller(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
-                cartItemCount = sortCart(cart, cartItemCount);
+                if (cartItemCount == 0)
+                {
+                    printf("Please add an item to cart first!\n");
+                }
+                else
+                {
+                    checkoutBySeller(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                    cartItemCount = sortCart(cart, cartItemCount);
+                }
                 break;
             case 3:
-                checkoutByItem(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
-                cartItemCount = sortCart(cart, cartItemCount);
+                if (cartItemCount == 0)
+                {
+                    printf("Please add an item to cart first!\n");
+                }
+                else
+                {
+                    checkoutByItem(users, userid, userCount, items, itemCount, cart, cartItemCount, month, day, year);
+                    cartItemCount = sortCart(cart, cartItemCount);
+                }
                 break;
             case 4:
                 break;
