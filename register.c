@@ -3,6 +3,13 @@
 #include <string.h>
 #include "structures.h"
 
+/* registerUser has an int return type and returns either 1 or 0 depending on whether the registration was successful
+
+ @param users passes the users array
+ @param userCount number of users in the users array
+ @return returns either 1 or 0 depending on whether the registration was successful
+ Pre-condition: users array is not already fully populated
+*/
 int registerUser(struct user users[], int userCount)
 {
     long userid;
