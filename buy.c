@@ -3,6 +3,10 @@
 #include <string.h>
 #include "structures.h"
 
+/* viewAllProducts outputs products of all users
+ * @users[] - array of users
+ * @userCount - number of users
+*/
 void viewAllProducts(struct user users[], int userCount)
 {
     char choice = '\0';
@@ -57,6 +61,10 @@ void viewAllProducts(struct user users[], int userCount)
 
 }
 
+/* showProductBySeller outputs products of specific seller
+ * @users[] - array of users
+ * @userCount - number of users
+*/
 void showProductBySeller(struct user users[], int userCount)
 {
     long sellerid;
@@ -104,6 +112,10 @@ void showProductBySeller(struct user users[], int userCount)
 
 }
 
+/* showProductByCategory outputs products matching category inputted
+ * @items[] - array of items
+ * @itemCount - number of items
+*/
 void showProductByCategory(struct item items[], int itemCount)
 {
     char choice = '\0';
@@ -169,6 +181,10 @@ void showProductByCategory(struct item items[], int itemCount)
     }
 }
 
+/* showProductByName outputs products matching name inputted
+ * @items[] - array of items
+ * @itemCount - number of items
+*/
 void showProductByName(struct item items[], int itemCount)
 {
     char choice = '\0';
@@ -234,6 +250,13 @@ void showProductByName(struct item items[], int itemCount)
     }
 }
 
+/* addToCart adds item to cart matching user id
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @cart[] - array of items belonging to user
+ * @cartItemCount - number of items in cart
+ * @userid - id corresponding to user
+*/
 int addToCart(struct item items[], int itemCount, struct item cart[], int cartItemCount, long userid)
 {
     long productid;
