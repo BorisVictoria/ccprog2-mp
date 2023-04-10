@@ -158,11 +158,14 @@ void checkoutAll(struct user users[], long userid, int userCount, struct item it
                     transactionItemCount = totalTransactionItemCount % 5;
 
             printf("\nTransaction Summary\n");
-            printf("Quantity\t\t Product ID\t\t Item Name\t\t Unit Price\t\t Total Price of Item\n");
+            printf("--------------------------------------------------------------------------------------------\n");
+            printf("|  Quantity  | Product ID |       Item Name       |    Unit Price    | Total Price of Item |\n");
+            printf("--------------------------------------------------------------------------------------------\n");
 
             for (int l = 0; l < transactionItemCount; l++)
             {
-                printf("%ld %ld %s %lf %lf\n", transactions[k].items[l].quantity, productid, transactions[k].items[l].name, transactions[k].items[l].price, transactions[k].items[l].quantity * transactions[k].items[l].price);
+                printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[k].items[l].quantity, productid, transactions[k].items[l].name, transactions[k].items[l].price, transactions[k].items[l].quantity * transactions[k].items[l].price);
+                printf("--------------------------------------------------------------------------------------------\n");
             }
             printf("\nTotal Amount Due: %lf\n", transactions[k].total);
             printf("Paid to: %ld %s\n", transactions[k].sellerid, users[userIndex].name);
@@ -337,11 +340,14 @@ void checkoutBySeller(struct user users[], long userid, int userCount, struct it
                 transactionItemCount = totalTransactionItemCount % 5;
 
         printf("\nTransaction Summary\n");
-        printf("Quantity\t\t Product ID\t\t Item Name\t\t Unit Price\t\t Total Price of Item\n");
+        printf("--------------------------------------------------------------------------------------------\n");
+        printf("|  Quantity  | Product ID |       Item Name       |    Unit Price    | Total Price of Item |\n");
+        printf("--------------------------------------------------------------------------------------------\n");
 
         for (int j = 0; j < transactionItemCount; j++)
         {
-            printf("%ld %ld %s %lf %lf\n", transactions[i].items[j].quantity, productid, transactions[i].items[j].name, transactions[i].items[j].price, transactions[i].items[j].quantity * transactions[i].items[j].price);
+            printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[i].items[j].quantity, productid, transactions[i].items[j].name, transactions[i].items[j].price, transactions[i].items[j].quantity * transactions[i].items[j].price);
+            printf("--------------------------------------------------------------------------------------------\n");
         }
         printf("\nTotal Amount Due: %lf\n", transactions[i].total);
         printf("Paid to: %ld %s\n", transactions[i].sellerid, users[userIndex].name);
@@ -451,7 +457,10 @@ void checkoutByItem(struct user users[], long userid, int userCount, struct item
 
     printf("Transaction Summary\n");
     printf("Quantity\t\t Product ID\t\t Item Name\t\t Unit Price\t\t Total Price of Item\n");
-    printf("%ld %ld %s %lf %lf ", transactions[0].items[0].quantity, productid, transactions[0].items[0].name, transactions[0].items[0].price, transactions[0].total);
+    printf("--------------------------------------------------------------------------------------------\n");
+    printf("|  Quantity  | Product ID |       Item Name       |    Unit Price    | Total Price of Item |\n");
+    printf("--------------------------------------------------------------------------------------------\n");
+    printf("| %10ld | %10ld | %-21s | %16lf | %19lf |\n", transactions[0].items[0].quantity, productid, transactions[0].items[0].name, transactions[0].items[0].price, transactions[0].total);
 
     printf("Total Amount Due: %lf\n", transactions[0].total);
     printf("Paid to: %ld %s\n", transactions[0].sellerid, users[userIndex].name);
