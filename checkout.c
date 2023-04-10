@@ -3,7 +3,18 @@
 #include <string.h>
 #include "structures.h"
 
-
+/* checkoutAll checks out all items found in the cart
+ * @users[] - array of users
+ * @userid - id belonging to user
+ * @userCount - number of users
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @cart[] - array of items belong to user
+ * @cartItemCount - number of items in cart
+ * @month - month
+ * @day - day
+ * @yar - year
+ */
 void checkoutAll(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
     struct transaction transactions[10];
@@ -190,6 +201,19 @@ void checkoutAll(struct user users[], long userid, int userCount, struct item it
 
 
 }
+
+/* checkoutBySeller checks out all items corresponding to seller id inputted
+ * @users[] - array of users
+ * @userid - id belonging to user
+ * @userCount - number of users
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @cart[] - array of items belong to user
+ * @cartItemCount - number of items in cart
+ * @month - month
+ * @day - day
+ * @yar - year
+ */
 void checkoutBySeller(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
     struct transaction transactions[10];
@@ -373,6 +397,18 @@ void checkoutBySeller(struct user users[], long userid, int userCount, struct it
 
 }
 
+/* checkoutByItem checks out an item corresponding to product id inputted
+ * @users[] - array of users
+ * @userid - id belonging to user
+ * @userCount - number of users
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @cart[] - array of items belong to user
+ * @cartItemCount - number of items in cart
+ * @month - month
+ * @day - day
+ * @yar - year
+ */
 void checkoutByItem(struct user users[], long userid, int userCount, struct item items[], int itemCount, struct item cart[], int cartItemCount, int month, int day, int year)
 {
     struct transaction transactions[10];
@@ -474,6 +510,12 @@ void checkoutByItem(struct user users[], long userid, int userCount, struct item
 
 }
 
+/* checkCartItem checks if any modification has been made to the item and changes it accordingly
+ * @items[] - array of items
+ * @cart[] - array of items belong to user
+ * @cartItemIndex - index of cart item
+ * @itemIndex - index of item
+ */
 int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, int itemIndex)
 {
     int proceed = 1;
@@ -539,6 +581,14 @@ int checkCartItem(struct item items[], struct item cart[], int cartItemIndex, in
     return proceed;
 }
 
+/* cartIntegrityCheck checks integrity of cart by comparing it to items array
+ * @items[] - array of items
+ * @itemCount - number of items
+ * @cartItemIndex - index of cart item
+ * @cartItemCount - number of items in cart
+ * @*proceed - 1 if item has been modified, 0 if not
+ * @return cartItemCount, the number of items in the cart after modification
+ */
 int cartIntegrityCheck(struct item items[], int itemCount, struct item cart[], int cartItemCount, int* proceed)
 {
     long productid;
