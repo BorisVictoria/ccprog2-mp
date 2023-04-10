@@ -559,7 +559,7 @@ void showShopaholics(struct transaction transactions[], int transactionCount, st
     }
 }
 
-void adminMenu(struct user users[], int userCount)
+void adminMenu(struct user users[], int userCount, int itemCount)
 {
     struct transaction transactions[100];
     int transactionCount;
@@ -579,24 +579,6 @@ void adminMenu(struct user users[], int userCount)
         printf("Unauthorized access not allowed\n");
         return;
     }
-/*
-    //TEST: Print contents of transactions[] if they are correct
-    for (int i = 0; i < transactionCount; i++)
-    {
-        printf("\ntransactionsItems[%d] = %d\n", i, transactionItems[i]);
-    }
-
-    for (int i = 0; i < transactionCount; i++)
-    {
-        printf("\ntransactions[%d].buyerid = %ld\n", i, transactions[i].buyerid);
-        printf("transactions[%d].sellerid = %ld\n", i, transactions[i].sellerid);
-        printf("transactions[%d].month = %ld\n", i, transactions[i].month);
-        printf("transactions[%d].day = %ld\n", i, transactions[i].day);
-        printf("transactions[%d].year = %ld\n", i, transactions[i].year);
-        printf("transactions[%d].total = %lf\n\n", i, transactions[i].total);
-
-    }
-*/
 
     while (choice != 6) {
         printf("Admin Menu\n\n");
@@ -612,20 +594,47 @@ void adminMenu(struct user users[], int userCount)
 
         switch (choice) {
             case 1:
-                showAllUsers(users,userCount);
+                if (userCount <= 0)
+                {
+                    printf("No Users Found!\n");
+                }
+                else
+                    showAllUsers(users,userCount);
                 break;
             case 2:
-                showAllSellers(users, userCount);
+                if (itemCount <= 0)
+                {
+                    printf("No Sellers Found!\n");
+                }
+                else
+                    showAllSellers(users, userCount);
                 break;
             case 3:
-                total = showTotalSalesByDuration(transactions, transactionCount);
-                printf("Total sales in this given duration is: %lf\n", total);
+                if (transactionCount <= 0)
+                {
+                    printf("No Transactions Found!\n");
+                }
+                else
+                {
+                    total = showTotalSalesByDuration(transactions, transactionCount);
+                    printf("Total sales in this given duration is: %lf\n", total);
+                }
                 break;
             case 4:
-                showSellerSales(transactions, transactionCount, users, userCount);
+                if (transactionCount <= 0)
+                {
+                    printf("No Transactions Found!\n");
+                }
+                else
+                    showSellerSales(transactions, transactionCount, users, userCount);
                 break;
             case 5:
-                showShopaholics(transactions, transactionCount, users, userCount);
+                if (transactionCount <= 0)
+                {
+                    printf("No Transactions Found!\n");
+                }
+                else
+                    showShopaholics(transactions, transactionCount, users, userCount);
                 break;
             case 6:
                 printf("Returning to the Main Menu\n");

@@ -112,7 +112,7 @@ int userMenu(struct user users[], int userCount, struct item items[], int itemCo
 int registerUser(struct user users[], int userCount);
 
 //admin.c Functions
-void adminMenu(struct user users[], int userCount);
+void adminMenu(struct user users[], int userCount, int itemCount);
 void showAllUsers(struct user users[], int userCount);
 void showAllSellers(struct user users[], int userCount);
 double showTotalSalesByDuration(struct transaction transactions[], int transactionCount);
