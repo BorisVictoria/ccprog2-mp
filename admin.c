@@ -4,19 +4,21 @@
 #include "structures.h"
 
 void showAllUsers(struct user users[], int userCount){
+    printf("All Users\n");
     printf("----------------------------------------------------------------------------------------------------\n");
-    printf("|   userID   |  password  |         name          |             address             | phone number |\n");
+    printf("|   UserID   |  Password  |         Name          |             Address             | Phone Number |\n");
     printf("----------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<userCount; i++) {
             printf("| %10ld | %-10s | %-21s | %-31s | %12ld |\n", users[i].userid, users[i].password, users[i].name, users[i].address, users[i].contactnumber);
-            printf("--------------------------------------------------------------------------------------------------------\n");
+            printf("----------------------------------------------------------------------------------------------------\n");
     }
 //userID, password, name, address, phone number
 }
 
 void showAllSellers(struct user users[], int userCount){
+    printf("All Sellers\n");
     printf("-------------------------------------------------------------------------------------------------------------------------------\n");
-    printf("|   userID   |  password  |         name          |             address             | phone number | number of items for sale |\n");
+    printf("|   UserID   |  Password  |         Name          |             Address             | Phone Number | Number of items for sale |\n");
     printf("-------------------------------------------------------------------------------------------------------------------------------\n");
     for(int i=0; i<userCount; i++) {
         if(users[i].userItemCount > 0) {
@@ -363,12 +365,13 @@ void showSellerSales(struct transaction transactions[], int transactionCount, st
     }
 
     //seller ID, seller name, total sales in the duration
+    printf("Seller Sales\n");
     printf("--------------------------------------------------------------------\n");
-    printf("|  sellerID  |         name          | total sales in the duration |\n");
+    printf("|  SellerID  |         Name          | Total sales in the duration |\n");
     printf("--------------------------------------------------------------------\n");
     for(int k=0; k<ctr; k++) {
         printf("| %10ld | %-21s | %27lf |\n", transactors[k].sellerid, transactors[k].name, transactors[k].total);
-        printf("---------------------------------------------------------------------\n");
+        printf("--------------------------------------------------------------------\n");
     }
 }
 
@@ -546,8 +549,9 @@ void showShopaholics(struct transaction transactions[], int transactionCount, st
     }
 
     //seller ID, seller name, total sales in the duration
+    printf("Shopaholics\n");
     printf("----------------------------------------------------------------------------\n");
-    printf("|  buyerID   |         name          | total amount bought in the duration |\n");
+    printf("|  BuyerID   |         Name          | Total amount bought in the duration |\n");
     printf("----------------------------------------------------------------------------\n");
     for(int k=0; k<ctr; k++) {
         printf("| %10ld | %-21s | %35lf |\n", transactors[k].buyerid, transactors[k].name, transactors[k].total);
